@@ -1,23 +1,91 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from './Pages/Home';
+import Contact from './Pages/Contact';
+import NewsMedia from './Pages/News&Media';
+import Partnership from './Pages/Partnership';
+import Pipeline from './Pages/Pipeline';
+import Platform from './Pages/Platform';
+import About from './Pages/About';
 import './App.css';
+import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
+
+
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <div>
+        <Navbar />
+        <Home />
+        <Footer />
+      </div>
+    },
+    {
+      path: '/contact',
+      element: <div>
+        <Navbar />
+        <Contact />
+        <Footer />
+      </div>
+    },
+    {
+      path: '/news-media',
+      element: <div>
+        <Navbar />
+        <NewsMedia />
+        <Footer />
+      </div>
+    },
+    {
+      path: '/partnership',
+      element: <div>
+        <Navbar />
+        <Partnership />
+        <Footer />
+      </div>
+    },
+    {
+      path: '/pipeline',
+      element: <div>
+        <Navbar />
+        <Pipeline />
+        <Footer />
+      </div>
+    },
+    {
+      path: '/platform',
+      element: <div>
+        <Navbar />
+        <Platform />
+        <Footer />
+      </div>
+    },
+    {
+      path: '/about',
+      element: <div>
+        <Navbar />
+        <About />
+        <Footer />
+      </div>
+    },
+    { path: '*', element: <div>404 Not Found
+      <Footer />
+    </div> }
+  ]
+);
+
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div>
+
+      <RouterProvider router={router} />
     </div>
   );
 }
