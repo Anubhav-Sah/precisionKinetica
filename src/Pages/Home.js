@@ -124,60 +124,45 @@ const Navbar = () => {
 
 // Pipeline Section
 const PipelineIntro = () => (
-  <section className="relative w-full py-28 px-4 bg-gradient-to-tr from-blue-100 via-white to-blue-200 overflow-hidden flex flex-col md:flex-row items-center gap-10 border-b border-blue-100 shadow-lg rounded-3xl my-8 transition-all duration-300 before:absolute before:top-0 before:left-0 before:w-full before:h-10 before:bg-gradient-to-b before:from-white before:to-transparent before:z-10 after:absolute after:bottom-0 after:left-0 after:w-full after:h-10 after:bg-gradient-to-t after:from-white after:to-transparent after:z-10" id="pipeline">
-    <div className="flex-1 flex justify-center md:order-2">
-      <PlaceholderImg className="w-full max-w-xl h-64 md:h-80 rounded-2xl shadow-lg border-2 border-blue-200" text="5-Panel Step Animation GIF" />
-    </div>
-    <div className="flex-1 flex flex-col items-center justify-center z-10 text-center">
-      <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-blue-800 leading-tight drop-shadow tracking-tight">Pipeline</h2>
-      <p className="text-lg md:text-xl mb-8 text-gray-700 font-medium max-w-2xl">
-        Our workflow unfolds as a continuous story: structure prep, milestone tessellation, enhanced-sampling for robust initialization, and parallel MD/BD simulations. Milestoning theory then assembles transition statistics into mean first-passage times and free-energy profiles.
-      </p>
-      <a href="/pipeline" className="inline-flex items-center px-8 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white text-lg font-semibold shadow-md transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
-        <span className="pr-2">Explore Pipeline</span>
-        <svg className="w-5 h-5 opacity-80 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-      </a>
-    </div>
+  <section className="w-full py-24 px-4 bg-blue-50/60 shadow-lg flex flex-col items-center text-center" id="pipeline">
+    <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-blue-800 tracking-tight">Pipeline</h2>
+    <p className="text-xl md:text-2xl mb-8 text-gray-700 font-medium max-w-2xl mx-auto">
+      Our workflow unfolds as a continuous story: structure prep, milestone tessellation, enhanced-sampling for robust initialization, and parallel MD/BD simulations. Milestoning theory then assembles transition statistics into mean first-passage times and free-energy profiles.
+    </p>
+    <a href="/pipeline" className="inline-flex items-center px-8 py-3 rounded-full bg-blue-700 hover:bg-blue-800 text-white text-lg font-semibold shadow transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
+      <span className="pr-2">Explore Pipeline</span>
+      <svg className="w-5 h-5 opacity-80 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+    </a>
   </section>
 );
 
 
 // Research & Publications Section
 const ResearchIntro = () => (
-  <section className="relative w-full py-28 px-4 bg-gradient-to-br from-white via-blue-100 to-blue-200 overflow-hidden flex flex-col md:flex-row-reverse items-center gap-10 border-b border-blue-100 shadow-lg rounded-3xl my-8 transition-all duration-300 before:absolute before:top-0 before:left-0 before:w-full before:h-10 before:bg-gradient-to-b before:from-white before:to-transparent before:z-10 after:absolute after:bottom-0 after:left-0 after:w-full after:h-10 after:bg-gradient-to-t after:from-white after:to-transparent after:z-10" id="research">
-    <div className="flex-1 flex justify-center md:order-1">
-      <PlaceholderImg className="w-full max-w-lg h-60 md:h-72 rounded-2xl shadow-lg border-2 border-blue-100" text="Paper Cover Image Grid" />
-    </div>
-    <div className="flex-1 flex flex-col items-center justify-center z-10 text-center">
-      <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-blue-700 leading-tight drop-shadow tracking-tight">Research & Publications</h2>
-      <p className="text-lg md:text-xl mb-8 text-gray-700 font-medium max-w-2xl">
-        Precision Kinetica builds on a decade of milestoning innovation. Explore our open-source code, published methods, and simulation datasets on GitHub and Zenodo. Join the conversation and advance the science with us.
-      </p>
-      <a href="/research" className="inline-flex items-center px-8 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-300 hover:from-blue-600 hover:to-blue-400 text-white text-lg font-semibold shadow-md transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
-        <span className="pr-2">See Publications</span>
-        <svg className="w-5 h-5 opacity-80 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-      </a>
-    </div>
+  <section className="w-full py-24 px-4 bg-blue-50/60 shadow-lg flex flex-col items-center text-center" id="research">
+    <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-blue-700 tracking-tight">Research & Publications</h2>
+    <p className="text-xl md:text-2xl mb-8 text-gray-700 font-medium max-w-2xl mx-auto">
+      Precision Kinetica builds on a decade of milestoning innovation. Explore our open-source code, published methods, and simulation datasets on GitHub and Zenodo. Join the conversation and advance the science with us.
+    </p>
+    <a href="/research" className="inline-flex items-center px-8 py-3 rounded-full bg-blue-700 hover:bg-blue-800 text-white text-lg font-semibold shadow transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
+      <span className="pr-2">See Publications</span>
+      <svg className="w-5 h-5 opacity-80 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+    </a>
   </section>
 );
 
 
 // News & Media Section
 const NewsIntro = () => (
-  <section className="relative w-full py-28 px-4 bg-gradient-to-tl from-blue-50 via-white to-blue-200 overflow-hidden flex flex-col md:flex-row items-center gap-10 border-b border-blue-100 shadow-lg rounded-3xl my-8 transition-all duration-300 before:absolute before:top-0 before:left-0 before:w-full before:h-10 before:bg-gradient-to-b before:from-white before:to-transparent before:z-10 after:absolute after:bottom-0 after:left-0 after:w-full after:h-10 after:bg-gradient-to-t after:from-white after:to-transparent after:z-10" id="news">
-    <div className="flex-1 flex justify-center md:order-2">
-      <PlaceholderImg className="w-full max-w-md h-40 md:h-56 rounded-2xl shadow-lg border-2 border-blue-200" text="Scrolling Headlines Ticker GIF" />
-    </div>
-    <div className="flex-1 flex flex-col items-center justify-center z-10 text-center">
-      <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-blue-700 leading-tight drop-shadow tracking-tight">News & Media</h2>
-      <p className="text-lg md:text-xl mb-8 text-gray-700 font-medium max-w-2xl">
-        From our seed round to conference presentations and press features, stay tuned for the latest on residence-time strategies, force-field advances, and case-study breakthroughs—coming soon.
-      </p>
-      <a href="/news" className="inline-flex items-center px-8 py-3 rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white text-lg font-semibold shadow-md transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
-        <span className="pr-2">See News</span>
-        <svg className="w-5 h-5 opacity-80 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-      </a>
-    </div>
+  <section className="w-full py-24 px-4 bg-blue-50/60 shadow-lg flex flex-col items-center text-center" id="news">
+    <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-blue-700 tracking-tight">News & Media</h2>
+    <p className="text-xl md:text-2xl mb-8 text-gray-700 font-medium max-w-2xl mx-auto">
+      From our seed round to conference presentations and press features, stay tuned for the latest on residence-time strategies, force-field advances, and case-study breakthroughs—coming soon.
+    </p>
+    <a href="/news" className="inline-flex items-center px-8 py-3 rounded-full bg-blue-700 hover:bg-blue-800 text-white text-lg font-semibold shadow transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
+      <span className="pr-2">See News</span>
+      <svg className="w-5 h-5 opacity-80 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+    </a>
   </section>
 );
 
