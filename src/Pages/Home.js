@@ -1,33 +1,92 @@
 import React from 'react';
 
 // Hero Section
-const Hero = () => (
-  <section className="w-full min-h-[60vh] flex flex-col items-center justify-center py-32 px-4 text-center bg-white border-b border-blue-100">
-    <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-blue-800 tracking-tight leading-tight">
-      Charting new paths<br className="hidden md:block" /> to superior medicines
-    </h1>
-    <p className="text-xl md:text-2xl mb-10 text-gray-700 font-medium max-w-2xl mx-auto">
-      AI-driven discovery, automation, and execution for next-generation therapeutics.
-    </p>
-    <a href="#pipeline" className="inline-flex items-center px-10 py-4 rounded-full bg-blue-700 hover:bg-blue-800 text-white text-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
-      <span className="pr-2">Explore Our Platform</span>
-      <svg className="w-5 h-5 opacity-80 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-    </a>
-  </section>
-);
+
+const Hero = () => {
+  return (
+    <section className="relative w-screen h-screen flex flex-col items-center justify-center px-4 text-center overflow-hidden bg-blue-800 text-white">
+      {/* 🔹 Background Video */}
+      {/* <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-30"
+      >
+        <source src="/media/home_background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video> */}
+
+      {/* 🔹 Optional Dark Overlay for readability */}
+      <div className="absolute inset-0 bg-blue-800/80 z-0" />
+
+      {/* 🔹 Main Content */}
+      <div className="relative z-10 text-white">
+        <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
+          Charting new paths<br className="hidden md:block" /> to superior medicines
+        </h1>
+        <p className="text-xl md:text-2xl mb-10 font-medium max-w-2xl mx-auto">
+          AI-driven discovery, automation, and execution for next-generation therapeutics.
+        </p>
+        <a
+          href="#pipeline"
+          className="inline-flex items-center px-10 py-4 rounded-full bg-white hover:bg-blue-100 text-blue-800 text-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300"
+        >
+          <span className="pr-2">Explore Our Platform</span>
+          <svg
+            className="w-5 h-5 opacity-80 group-hover:translate-x-1 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  );
+};
+
+
+
+
 
 // TrustedBy Section
 const TrustedBy = () => (
-  <section className="w-full py-10 px-4 bg-white border-b border-blue-100" id="trusted">
+  <section className="w-full py-16 px-4 bg-blue-100 border-b border-blue-200" id="trusted">
     <div className="max-w-5xl mx-auto flex flex-col items-center">
-      <span className="uppercase text-xs tracking-widest text-gray-400 mb-8 font-semibold">Trusted by</span>
-      <div className="flex flex-wrap justify-center gap-12">
-        <PlaceholderImg className="w-36 h-12 grayscale hover:grayscale-0 transition duration-200" text="BioPharma Inc." />
-        <PlaceholderImg className="w-36 h-12 grayscale hover:grayscale-0 transition duration-200" text="GenomicsLab" />
-        <PlaceholderImg className="w-36 h-12 grayscale hover:grayscale-0 transition duration-200" text="MedAI Partners" />
-        <PlaceholderImg className="w-36 h-12 grayscale hover:grayscale-0 transition duration-200" text="ProteinX" />
-        <PlaceholderImg className="w-36 h-12 grayscale hover:grayscale-0 transition duration-200" text="HealthNext" />
+      <span className="uppercase text-xs tracking-widest text-blue-800 mb-8 font-bold letter-spacing-wider">
+        Trusted by
+      </span>
+      <div className="flex flex-wrap justify-center gap-12 mb-8">
+        <div className="w-36 h-12 relative group rounded-lg border border-blue-700 shadow-md overflow-hidden flex items-center justify-center transition-all duration-300 bg-blue-700">
+          <span className="text-white font-semibold relative z-10">BioPharma Inc.</span>
+          <span className="absolute inset-0 z-0 transition-all duration-500 group-hover:scale-110 group-hover:blur-md group-hover:bg-blue-400/60 bg-transparent"></span>
+        </div>
+        <div className="w-36 h-12 relative group rounded-lg border border-blue-700 shadow-md overflow-hidden flex items-center justify-center transition-all duration-300 bg-blue-700">
+          <span className="text-white font-semibold relative z-10">GenomicsLab</span>
+          <span className="absolute inset-0 z-0 transition-all duration-500 group-hover:scale-110 group-hover:blur-md group-hover:bg-blue-400/60 bg-transparent"></span>
+        </div>
+        <div className="w-36 h-12 relative group rounded-lg border border-blue-700 shadow-md overflow-hidden flex items-center justify-center transition-all duration-300 bg-blue-700">
+          <span className="text-white font-semibold relative z-10">MedAI Partners</span>
+          <span className="absolute inset-0 z-0 transition-all duration-500 group-hover:scale-110 group-hover:blur-md group-hover:bg-blue-400/60 bg-transparent"></span>
+        </div>
+        <div className="w-36 h-12 relative group rounded-lg border border-blue-700 shadow-md overflow-hidden flex items-center justify-center transition-all duration-300 bg-blue-700">
+          <span className="text-white font-semibold relative z-10">ProteinX</span>
+          <span className="absolute inset-0 z-0 transition-all duration-500 group-hover:scale-110 group-hover:blur-md group-hover:bg-blue-400/60 bg-transparent"></span>
+        </div>
+        <div className="w-36 h-12 relative group rounded-lg border border-blue-700 shadow-md overflow-hidden flex items-center justify-center transition-all duration-300 bg-blue-700">
+          <span className="text-white font-semibold relative z-10">HealthNext</span>
+          <span className="absolute inset-0 z-0 transition-all duration-500 group-hover:scale-110 group-hover:blur-md group-hover:bg-blue-400/60 bg-transparent"></span>
+        </div>
       </div>
+      {/* <div className="flex items-center gap-2 mt-2">
+        <svg className="w-5 h-5 text-blue-700 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 3a1 1 0 01.993.883L11 4v8.586l3.293-3.293a1 1 0 011.497 1.32l-.083.094-5 5a1 1 0 01-1.32.083l-.094-.083-5-5a1 1 0 011.32-1.497l.094.083L9 12.586V4a1 1 0 011-1z" />
+        </svg>
+        <span className="text-blue-700 font-medium text-sm">Leading biopharma & AI companies</span>
+      </div> */}
     </div>
   </section>
 );
@@ -181,7 +240,6 @@ const PipelineIntro = () => (
 
 const Home = () => (
   <div className="w-full min-h-screen flex flex-col bg-white">
-    <Navbar />
     <Hero />
     <TrustedBy />
     <FeaturesGrid />
