@@ -19,8 +19,8 @@ function Navbar() {
         transition-all duration-300
         backdrop-blur-md
         ${floating
-          ? 'fixed top-6 left-4 right-4 bg-blue-800/80 shadow-lg rounded-full border border-blue-900'
-          : 'absolute top-6 left-4 right-4 bg-blue-800/80 border-none rounded-full shadow-none'
+          ? 'fixed top-6 left-4 right-4 bg-white/30 shadow-lg rounded-full border border-transparent opacity-100 animate-navbar-fade-in'
+          : 'absolute top-6 left-4 right-4 bg-blue-800/80 border-none rounded-full shadow-none opacity-95 animate-navbar-fade-out'
         }
         flex items-center justify-between
         px-12 py-5
@@ -33,7 +33,11 @@ function Navbar() {
       <div>
         <NavLink
           to="/"
-          className="text-xl font-bold tracking-wide text-white hover:text-blue-200 transition"
+          className={`text-xl font-bold tracking-wide transition ${
+            floating
+              ? 'text-blue-800 hover:text-blue-900'
+              : 'text-white hover:text-blue-200'
+          }`}
         >
           PRECISION KINETICA
         </NavLink>
@@ -45,8 +49,12 @@ function Navbar() {
           to="/platform"
           className={({ isActive }) =>
             isActive
-              ? 'font-medium text-white underline'
-              : 'font-medium text-blue-100 hover:text-white transition'
+              ? floating
+                ? 'font-medium text-blue-800 underline'
+                : 'font-medium text-white underline'
+              : floating
+                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
+                : 'font-medium text-blue-100 hover:text-white transition'
           }
         >
           Platform
@@ -55,8 +63,12 @@ function Navbar() {
           to="/pipeline"
           className={({ isActive }) =>
             isActive
-              ? 'font-medium text-white underline'
-              : 'font-medium text-blue-100 hover:text-white transition'
+              ? floating
+                ? 'font-medium text-blue-800 underline'
+                : 'font-medium text-white underline'
+              : floating
+                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
+                : 'font-medium text-blue-100 hover:text-white transition'
           }
         >
           Pipeline
@@ -65,8 +77,12 @@ function Navbar() {
           to="/partnership"
           className={({ isActive }) =>
             isActive
-              ? 'font-medium text-white underline'
-              : 'font-medium text-blue-100 hover:text-white transition'
+              ? floating
+                ? 'font-medium text-blue-800 underline'
+                : 'font-medium text-white underline'
+              : floating
+                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
+                : 'font-medium text-blue-100 hover:text-white transition'
           }
         >
           Partnerships
@@ -75,8 +91,12 @@ function Navbar() {
           to="/news-media"
           className={({ isActive }) =>
             isActive
-              ? 'font-medium text-white underline'
-              : 'font-medium text-blue-100 hover:text-white transition'
+              ? floating
+                ? 'font-medium text-blue-800 underline'
+                : 'font-medium text-white underline'
+              : floating
+                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
+                : 'font-medium text-blue-100 hover:text-white transition'
           }
         >
           News & Media
@@ -85,8 +105,12 @@ function Navbar() {
           to="/about"
           className={({ isActive }) =>
             isActive
-              ? 'font-medium text-white underline'
-              : 'font-medium text-blue-100 hover:text-white transition'
+              ? floating
+                ? 'font-medium text-blue-800 underline'
+                : 'font-medium text-white underline'
+              : floating
+                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
+                : 'font-medium text-blue-100 hover:text-white transition'
           }
         >
           About
@@ -100,8 +124,12 @@ function Navbar() {
           className={({ isActive }) =>
             `inline-block px-6 py-2 rounded-full text-lg font-medium transition ${
               isActive
-                ? 'bg-white text-blue-800'
-                : 'bg-blue-700 text-white hover:bg-white hover:text-blue-800'
+                ? floating
+                  ? 'bg-blue-800 text-white'
+                  : 'bg-white text-blue-800'
+                : floating
+                  ? 'bg-blue-700 text-white hover:bg-blue-800'
+                  : 'bg-blue-700 text-white hover:bg-white hover:text-blue-800'
             }`
           }
         >
@@ -111,5 +139,25 @@ function Navbar() {
     </nav>
   );
 }
+
+// Tailwind CSS: Add these to your global CSS (e.g., App.css or index.css)
+/*
+@layer utilities {
+  @keyframes navbar-fade-in {
+    from { opacity: 0; transform: translateY(-16px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  @keyframes navbar-fade-out {
+    from { opacity: 1; transform: translateY(0);}
+    to { opacity: 0.95; transform: translateY(-8px);}
+  }
+  .animate-navbar-fade-in {
+    animation: navbar-fade-in 0.4s ease;
+  }
+  .animate-navbar-fade-out {
+    animation: navbar-fade-out 0.4s ease;
+  }
+}
+*/
 
 export default Navbar;
