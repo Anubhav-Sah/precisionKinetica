@@ -101,7 +101,7 @@ const FeaturesGrid = () => (
           <PlaceholderImg className="w-20 h-20 mb-6" text="Innovation" />
           <h3 className="font-bold text-2xl mb-2 text-blue-700">Innovation</h3>
           <p className="text-gray-700 text-lg mb-4">Accurate and data-efficient physics-based AI technologies that span from early-stage discovery to the clinic.</p>
-          <a href="/platform" className="inline-flex items-center px-6 py-2 rounded-full bg-blue-700 hover:bg-blue-800 text-white font-semibold transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300 text-base">Read More</a>
+          <a href="/PlatformPage" className="inline-flex items-center px-6 py-2 rounded-full bg-blue-700 hover:bg-blue-800 text-white font-semibold transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300 text-base">Read More</a>
         </div>
         <div className="flex flex-col items-center text-center">
           <PlaceholderImg className="w-20 h-20 mb-6" text="Automation" />

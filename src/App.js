@@ -4,7 +4,7 @@ import Contact from './Pages/Contact';
 import NewsMedia from './Pages/News&Media';
 import Partnership from './Pages/Partnership';
 import Pipeline from './Pages/Pipeline';
-import Platform from './Pages/Platform';
+import Platform from './Pages/PlatformPage';
 import About from './Pages/About';
 import './App.css';
 import Navbar from './Components/Navbar';
@@ -75,8 +75,6 @@ const router = createBrowserRouter(
     </div> }
   ]
 );
-
-
 
 
 
