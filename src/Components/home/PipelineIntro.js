@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function PipelineIntro() {
   return (
-    <section className="w-full py-16 px-2 sm:px-4 bg-blue-50 border-b border-blue-100 flex flex-col items-center text-center" id="pipeline">
+    <section className="w-full py-16 px-2 sm:px-4 bg-gray-200  flex flex-col items-center text-center" id="pipeline">
       
       <h2 className="text-4xl font-extrabold mb-14 text-center text-blue-800 tracking-tight">
         <span className="bg-gradient-to-r from-blue-700 via-blue-400 to-blue-700 bg-clip-text text-transparent">
