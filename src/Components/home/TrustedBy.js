@@ -26,10 +26,10 @@ function TrustedBy() {
           <span className="text-white font-semibold relative z-10">ProteinX</span>
           <span className="absolute inset-0 z-0 transition-all duration-500 group-hover:scale-110 group-hover:blur-md group-hover:bg-blue-400/60 bg-transparent"></span>
         </div>
-        <div className="inline-flex items-center px-10 py-4 rounded-full bg-white hover:bg-blue-100 text-blue-800 text-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
+        {/* <div className="inline-flex items-center px-10 py-4 rounded-full bg-white hover:bg-blue-100 text-blue-800 text-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
           <span className="text-white font-semibold relative z-10">HealthNext</span>
           <span className="absolute inset-0 z-0 transition-all duration-500 group-hover:scale-110 group-hover:blur-md group-hover:bg-blue-400/60 bg-transparent"></span>
-        </div>
+        </div> */}
       </div>
       {/* <div className="flex items-center gap-2 mt-2">
         <svg className="w-5 h-5 text-blue-700 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
