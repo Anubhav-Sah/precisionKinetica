@@ -2,7 +2,7 @@ import React from 'react'
 
 function TrustedBy() {
   return (
-    <section className="w-full py-16 px-4 bg-blue-100 border-b border-blue-200" id="trusted">
+    <section className="w-full py-16 px-4 bg-gray-200 border-b border-gray-300" id="trusted">
     <div className="max-w-5xl mx-auto flex flex-col items-center">
       <h2 className="text-4xl font-extrabold mb-14 text-center text-blue-800 tracking-tight">
         <span className="bg-gradient-to-r from-blue-700 via-blue-400 to-blue-700 bg-clip-text text-transparent">

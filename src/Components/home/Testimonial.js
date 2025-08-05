@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Testimonial() {
   return (
-    <section className="w-full py-24 px-4 bg-blue-50" id="news">
+    <section className="w-full py-16 px-4 bg-gray-200 border-b border-gray-300" id="news">
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
         <h2 className="text-4xl font-extrabold mb-14 text-center text-blue-800 tracking-tight">
         <span className="bg-gradient-to-r from-blue-700 via-blue-400 to-blue-700 bg-clip-text text-transparent">

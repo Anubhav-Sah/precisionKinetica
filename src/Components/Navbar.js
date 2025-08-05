@@ -18,14 +18,11 @@ function Navbar() {
         z-50
         transition-all duration-300
         backdrop-blur-md
-        ${floating
-          ? 'fixed top-6 left-4 right-4 bg-white/30 shadow-lg rounded-full border border-transparent opacity-100 animate-navbar-fade-in'
-          : 'absolute top-6 left-4 right-4 bg-blue-800/80 border-none rounded-full shadow-none opacity-95 animate-navbar-fade-out'
-        }
+        fixed top-4 left-4 right-4 bg-white/30 shadow-md rounded-full
         flex items-center justify-between
-        px-12 py-5
+        px-6 py-3
         w-[calc(100%-2rem)]
-        max-w-[1800px]
+        max-w-[1000px]
         mx-auto
       `}
     >
@@ -33,28 +30,20 @@ function Navbar() {
       <div>
         <NavLink
           to="/"
-          className={`text-xl font-bold tracking-wide transition ${
-            floating
-              ? 'text-blue-800 hover:text-blue-900'
-              : 'text-white hover:text-blue-200'
-          }`}
+          className="text-lg font-bold tracking-wide text-gray-800 hover:text-black transition"
         >
           PRECISION KINETICA
         </NavLink>
       </div>
 
       {/* Center: Main links */}
-      <div className="flex gap-6">
+      <div className="flex gap-4 text-sm font-medium">
         <NavLink
           to="/platform"
           className={({ isActive }) =>
             isActive
-              ? floating
-                ? 'font-medium text-blue-800 underline'
-                : 'font-medium text-white underline'
-              : floating
-                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
-                : 'font-medium text-blue-100 hover:text-white transition'
+              ? 'text-black underline'
+              : 'text-gray-700 hover:text-black transition'
           }
         >
           Platform
@@ -63,12 +52,8 @@ function Navbar() {
           to="/pipeline"
           className={({ isActive }) =>
             isActive
-              ? floating
-                ? 'font-medium text-blue-800 underline'
-                : 'font-medium text-white underline'
-              : floating
-                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
-                : 'font-medium text-blue-100 hover:text-white transition'
+              ? 'text-black underline'
+              : 'text-gray-700 hover:text-black transition'
           }
         >
           Pipeline
@@ -77,87 +62,45 @@ function Navbar() {
           to="/partnership"
           className={({ isActive }) =>
             isActive
-              ? floating
-                ? 'font-medium text-blue-800 underline'
-                : 'font-medium text-white underline'
-              : floating
-                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
-                : 'font-medium text-blue-100 hover:text-white transition'
+              ? 'text-black underline'
+              : 'text-gray-700 hover:text-black transition'
           }
         >
-          Partnerships
+          Partnership
         </NavLink>
         <NavLink
           to="/news-media"
           className={({ isActive }) =>
             isActive
-              ? floating
-                ? 'font-medium text-blue-800 underline'
-                : 'font-medium text-white underline'
-              : floating
-                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
-                : 'font-medium text-blue-100 hover:text-white transition'
+              ? 'text-black underline'
+              : 'text-gray-700 hover:text-black transition'
           }
         >
-          News & Media
+          News & Research
         </NavLink>
         <NavLink
           to="/about"
           className={({ isActive }) =>
             isActive
-              ? floating
-                ? 'font-medium text-blue-800 underline'
-                : 'font-medium text-white underline'
-              : floating
-                ? 'font-medium text-blue-700 hover:text-blue-900 transition'
-                : 'font-medium text-blue-100 hover:text-white transition'
+              ? 'text-black underline'
+              : 'text-gray-700 hover:text-black transition'
           }
         >
           About
         </NavLink>
-      </div>
-
-      {/* Right: Contact */}
-      <div>
         <NavLink
           to="/contact"
           className={({ isActive }) =>
-            `inline-block px-6 py-2 rounded-full text-lg font-medium transition ${
-              isActive
-                ? floating
-                  ? 'bg-blue-800 text-white'
-                  : 'bg-white text-blue-800'
-                : floating
-                  ? 'bg-blue-700 text-white hover:bg-blue-800'
-                  : 'bg-blue-700 text-white hover:bg-white hover:text-blue-800'
-            }`
+            isActive
+              ? 'text-black underline'
+              : 'text-gray-700 hover:text-black transition'
           }
         >
-          Contact Us
+          Contact
         </NavLink>
       </div>
     </nav>
   );
 }
-
-// Tailwind CSS: Add these to your global CSS (e.g., App.css or index.css)
-/*
-@layer utilities {
-  @keyframes navbar-fade-in {
-    from { opacity: 0; transform: translateY(-16px);}
-    to { opacity: 1; transform: translateY(0);}
-  }
-  @keyframes navbar-fade-out {
-    from { opacity: 1; transform: translateY(0);}
-    to { opacity: 0.95; transform: translateY(-8px);}
-  }
-  .animate-navbar-fade-in {
-    animation: navbar-fade-in 0.4s ease;
-  }
-  .animate-navbar-fade-out {
-    animation: navbar-fade-out 0.4s ease;
-  }
-}
-*/
 
 export default Navbar;
