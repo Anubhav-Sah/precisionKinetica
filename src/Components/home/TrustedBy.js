@@ -4,9 +4,11 @@ function TrustedBy() {
   return (
     <section className="w-full py-16 px-4 bg-blue-100 border-b border-blue-200" id="trusted">
     <div className="max-w-5xl mx-auto flex flex-col items-center">
-      <span className="uppercase text-xs tracking-widest text-blue-800 mb-8 font-bold letter-spacing-wider">
-        Trusted by
-      </span>
+      <h2 className="text-4xl font-extrabold mb-14 text-center text-blue-800 tracking-tight">
+        <span className="bg-gradient-to-r from-blue-700 via-blue-400 to-blue-700 bg-clip-text text-transparent">
+          Trusted By
+        </span>
+      </h2>
       <div className="flex flex-wrap justify-center gap-12 mb-8">
         <div className="w-36 h-12 relative group rounded-lg border border-blue-700 shadow-md overflow-hidden flex items-center justify-center transition-all duration-300 bg-blue-700">
           <span className="text-white font-semibold relative z-10">BioPharma Inc.</span>
@@ -24,7 +26,7 @@ function TrustedBy() {
           <span className="text-white font-semibold relative z-10">ProteinX</span>
           <span className="absolute inset-0 z-0 transition-all duration-500 group-hover:scale-110 group-hover:blur-md group-hover:bg-blue-400/60 bg-transparent"></span>
         </div>
-        <div className="w-36 h-12 relative group rounded-lg border border-blue-700 shadow-md overflow-hidden flex items-center justify-center transition-all duration-300 bg-blue-700">
+        <div className="inline-flex items-center px-10 py-4 rounded-full bg-white hover:bg-blue-100 text-blue-800 text-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
           <span className="text-white font-semibold relative z-10">HealthNext</span>
           <span className="absolute inset-0 z-0 transition-all duration-500 group-hover:scale-110 group-hover:blur-md group-hover:bg-blue-400/60 bg-transparent"></span>
         </div>
