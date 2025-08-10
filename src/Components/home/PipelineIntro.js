@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import her2video from '../../videos/5TDN_spin-structure.mp4';
+import cdk24video from '../../videos/3QQH_spin-structure.mp4';
+import novelvideo from '../../videos/1JKG_spin-structure.mp4';
 
 export default function PipelineIntro() {
   const pipelineCards = [
@@ -7,29 +10,25 @@ export default function PipelineIntro() {
       title: "HER2",
       description:
         "1000x selectivity and brain penetrance to unlock the therapeutic potential of the target for metastatic disease.",
-      iconPath:
-        "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+      video: her2video,
     },
     {
       title: "CDK2/4",
       description:
         "First-in-class CDK2/4 profile to address cyclin D and cyclin E driven cancers while avoiding off-target dose-limiting toxicities.",
-      iconPath:
-        "M9 17v-2a4 4 0 014-4h4m0 0V7m0 4l-4-4",
+      video: cdk24video,
     },
     {
       title: "Novel Target Classes",
       description:
         "Programs focusing on cryptic pockets, allostery, and protein-protein interactions, spanning multiple therapeutic areas.",
-      iconPath:
-        "M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z",
+      video: novelvideo,
     },
     {
       title: "HER2",
       description:
         "1000x selectivity and brain penetrance to unlock the therapeutic potential of the target for metastatic disease.",
-      iconPath:
-        "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+      video: her2video,
     },
   ];
 
@@ -50,20 +49,15 @@ export default function PipelineIntro() {
             key={index}
             className="flex-1 max-w-sm mx-auto bg-white rounded-3xl shadow-2xl border border-blue-100 flex flex-col items-center text-center p-8 transition-transform duration-300 hover:scale-105 hover:shadow-blue-200 group"
           >
-            <div className="w-20 h-20 mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-200 to-blue-400 shadow-lg group-hover:scale-110 transition-transform">
-              <svg
-                className="w-10 h-10 text-blue-700"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d={card.iconPath}
-                />
-              </svg>
+            <div className="w-20 h-20 mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-200 to-blue-400 shadow-lg group-hover:scale-110 transition-transform overflow-hidden">
+              <video
+                src={card.video}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
             </div>
             <h3 className="font-bold text-2xl mb-2 text-blue-700">
               {card.title}
