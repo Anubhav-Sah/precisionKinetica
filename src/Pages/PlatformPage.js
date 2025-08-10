@@ -14,11 +14,11 @@ const PlatformHero = () => (
     <div className="absolute inset-0 bg-blue-950/80 z-0" />
     <div className="relative z-10 flex flex-col items-center">
       <h1 className="text-6xl md:text-7xl font-extrabold mb-8 tracking-tight leading-tight drop-shadow-lg">
-        Automated Kinetics, Unlocked
+        Automated Drug-Target Kinetics in Hours
       </h1>
       <p className="text-2xl md:text-3xl mb-10 font-medium max-w-3xl mx-auto drop-shadow">
-        Upload a PDB file. Get kinetic and thermodynamic profiles in hours.<br />
-        <span className="text-blue-200 font-bold">kon, koff, ΔG</span>—all computed by our end-to-end, physics-based platform.
+        Upload your PDB. Receive kon, koff and ΔG profiles in hours—no manual setup.<br />
+        
       </p>
       <PlaceholderImg className="w-full max-w-4xl h-64 mb-8" text="Pipeline Flow Animation (1200×600 px)" />
       
@@ -30,21 +30,28 @@ const PlatformHero = () => (
 const PlatformFeatures = () => (
   <section className="w-full py-24 px-4 bg-gradient-to-br from-blue-50 via-white to-blue-100">
     <div className="max-w-7xl mx-auto flex flex-col items-center">
-      <h2 className="text-4xl font-extrabold mb-16 text-blue-900 text-center">Why PrecisionKinetica?</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+      <h2 className="text-4xl font-extrabold mb-16 text-blue-900 text-center">Why Choose PrecisionKinetica?</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
         <div className="flex flex-col items-start bg-white rounded-2xl p-10 shadow-lg hover:shadow-xl transition">
-          <h3 className="font-bold text-2xl mb-4 text-blue-800">End-to-End Automation</h3>
+          <h3 className="font-bold text-2xl mb-4 text-blue-800">Fully Automated Workflow</h3>
           <p className="text-gray-700 text-lg mb-6">
-            From structure upload to kinetic profiles, every step is automated. No manual parameterization, no scripting, no guesswork.
+            From PDB upload through kon/koff/ΔG output, every step runs without script edits or manual intervention.
           </p>
           <PlaceholderImg className="w-full h-40 mb-2" text="Automated Workflow GIF" />
         </div>
         <div className="flex flex-col items-start bg-white rounded-2xl p-10 shadow-lg hover:shadow-xl transition">
-          <h3 className="font-bold text-2xl mb-4 text-blue-800">Physics-Based Accuracy</h3>
+          <h3 className="font-bold text-2xl mb-4 text-blue-800">Physics-Driven Precision</h3>
           <p className="text-gray-700 text-lg mb-6">
-            QM-trained force fields, Voronoi-milestoning, and parallel MD/BD simulations deliver rigorous, reproducible results for kon, koff, and ΔG.
+            QM-trained espaloma force fields and Voronoi-milestoning yield reproducible, experimental-grade kon, koff, and ΔG
           </p>
           <PlaceholderImg className="w-full h-40 mb-2" text="Accuracy Chart GIF" />
+        </div>
+        <div className="flex flex-col items-start bg-white rounded-2xl p-10 shadow-lg hover:shadow-xl transition">
+          <h3 className="font-bold text-2xl mb-4 text-blue-800">Scalable Performance</h3>
+          <p className="text-gray-700 text-lg mb-6">
+            Parallel MD in multiple cells and BD simulations complete full kinetic profiles in hours, not weeks.
+          </p>
+          <PlaceholderImg className="w-full h-40 mb-2" text="Performance Chart GIF" />
         </div>
       </div>
     </div>
