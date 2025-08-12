@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { Button } from "../Components/ui/button";
 import { Card, CardContent } from "../Components/ui/card";
 
@@ -7,7 +7,7 @@ const Home = () => {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" }
   };
 
   const staggerChildren = {
@@ -33,29 +33,29 @@ const Home = () => {
       <section className="min-h-screen molecular-bg flex items-center relative overflow-hidden">
         {/* Animated molecular structures */}
         <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div 
+          <motion.div
             className="absolute top-20 left-10 w-16 h-16 bg-teal-200 rounded-full opacity-20"
             animate={floatingAnimation}
           />
-          <motion.div 
+          <motion.div
             className="absolute top-32 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20"
             animate={floatingAnimation}
             transition={{ ...floatingAnimation.transition, delay: -2 }}
           />
-          <motion.div 
+          <motion.div
             className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20"
             animate={floatingAnimation}
             transition={{ ...floatingAnimation.transition, delay: -4 }}
           />
-          <motion.div 
+          <motion.div
             className="absolute bottom-32 right-1/3 w-14 h-14 bg-emerald-200 rounded-full opacity-20"
             animate={floatingAnimation}
             transition={{ ...floatingAnimation.transition, delay: -1 }}
           />
         </motion.div>
-        
+
         <div className="container mx-auto px-6 relative z-10">
-          <motion.div 
+          <motion.div
             className="max-w-4xl mx-auto text-center"
             variants={staggerChildren}
             initial="initial"
@@ -72,24 +72,27 @@ const Home = () => {
                 AI-driven discovery, automation, and execution for next-generation therapeutics.
               </p>
             </motion.div>
-            
+
             <motion.div variants={fadeInUp}>
-              <Link href="/platform" data-testid="button-explore-platform">
-                <Button 
+
+
+              <Link to="/platform" data-testid="button-explore-platform">
+                <Button
                   size="lg"
                   className="bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 text-lg px-8 py-4 rounded-full font-semibold transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   Explore Our Platform →
                 </Button>
               </Link>
+
             </motion.div>
-            
+
             <motion.div variants={fadeInUp} className="mt-16">
               <Card className="bg-slate-50 border-slate-200 shadow-2xl">
                 <CardContent className="p-8">
-                  <img 
-                    src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800" 
-                    alt="Molecular dynamics simulation visualization" 
+                  <img
+                    src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800"
+                    alt="Molecular dynamics simulation visualization"
                     className="rounded-xl shadow-lg w-full h-auto"
                     data-testid="img-md-simulation"
                   />
@@ -103,11 +106,11 @@ const Home = () => {
       {/* Trusted By Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <h2 className="font-heading text-2xl font-semibold text-slate-600 mb-8">Trusted By</h2>
@@ -124,11 +127,11 @@ const Home = () => {
       {/* Features Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
@@ -138,8 +141,8 @@ const Home = () => {
               With a single PDB file upload, our seekrflow engine transforms receptor–ligand structures into comprehensive kinetic and thermodynamic profiles in hours.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -154,7 +157,7 @@ const Home = () => {
                 testId: "card-innovation"
               },
               {
-                title: "Automation", 
+                title: "Automation",
                 description: "AI-driven, high-throughput experimentation using automated Voronoi-milestoning to go from molecular designs to biological data each week.",
                 gradient: "from-blue-500 to-teal-600",
                 testId: "card-automation"
@@ -174,7 +177,7 @@ const Home = () => {
                     </div>
                     <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">{feature.title}</h3>
                     <p className="text-slate-600 mb-6 leading-relaxed flex-1">{feature.description}</p>
-                    <Link href="/platform" data-testid={`link-read-more-${feature.title.toLowerCase()}`}>
+                    <Link to={`/platform`} data-testid={`link-read-more-${feature.title.toLowerCase()}`}>
                       <span className="text-teal-600 font-semibold hover:text-teal-700 transition-colors cursor-pointer">
                         Read More →
                       </span>
@@ -190,11 +193,11 @@ const Home = () => {
       {/* Pipeline Preview Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
@@ -204,8 +207,8 @@ const Home = () => {
               From benchmark systems to challenging therapeutic targets, our platform delivers rigorously derived kon, koff, and ΔG values.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -253,16 +256,19 @@ const Home = () => {
               </motion.div>
             ))}
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="text-center mt-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Link href="/pipeline" data-testid="button-see-full-pipeline">
-              <Button size="lg" className="bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 px-8 py-4 rounded-full text-lg font-semibold transform transition-all duration-300 hover:scale-105">
+            <Link to="/pipeline" data-testid="button-see-full-pipeline">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 px-8 py-4 rounded-full text-lg font-semibold transform transition-all duration-300 hover:scale-105"
+              >
                 See Full Pipeline →
               </Button>
             </Link>
@@ -273,19 +279,19 @@ const Home = () => {
       {/* News Preview Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
               News & Media
             </h2>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -300,14 +306,14 @@ const Home = () => {
                 testId: "news-revolution"
               },
               {
-                date: "June 10, 2025", 
+                date: "June 10, 2025",
                 title: "CNBC Disruptor 50 List",
                 description: "Precision Kinetica named to CNBC's 2025 Disruptor 50 List",
                 testId: "news-cnbc"
               },
               {
                 date: "June 4, 2025",
-                title: "Phase 1/1B Study Completion", 
+                title: "Phase 1/1B Study Completion",
                 description: "Lead Program IAM1363, a Small Molecule Inhibitor of Wild-Type and Oncogenic HER2 Mutant Proteins",
                 testId: "news-phase1"
               }
@@ -318,7 +324,7 @@ const Home = () => {
                     <div className="text-sm text-teal-600 font-semibold mb-2">{news.date}</div>
                     <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">{news.title}</h3>
                     <p className="text-slate-600 mb-4 flex-1">{news.description}</p>
-                    <Link href="/research" data-testid={`link-read-news-${index}`}>
+                    <Link to="/news-media" data-testid={`link-read-news-${index}`}>
                       <span className="text-teal-600 font-semibold hover:text-teal-700 transition-colors cursor-pointer">
                         Read More →
                       </span>
@@ -328,15 +334,15 @@ const Home = () => {
               </motion.div>
             ))}
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="text-center mt-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Link href="/research" data-testid="button-view-all-news">
+            <Link to="/news-media" data-testid="button-view-all-news">
               <Button size="lg" className="bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 px-8 py-4 rounded-full text-lg font-semibold">
                 View All News →
               </Button>
@@ -351,7 +357,7 @@ const Home = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-4xl md:text-5xl mb-6">
@@ -360,7 +366,7 @@ const Home = () => {
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
               Get in touch to see how Precision Kinetica can transform your R&D with AI-powered protein prediction.
             </p>
-            <Link href="/contact" data-testid="button-contact-us">
+            <Link to="/contact" data-testid="button-contact-us">
               <Button size="lg" className="bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:from-teal-600 hover:to-emerald-600 px-8 py-4 rounded-full text-lg font-semibold">
                 Get Started →
               </Button>
