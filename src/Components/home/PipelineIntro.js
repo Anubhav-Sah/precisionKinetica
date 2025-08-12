@@ -24,26 +24,32 @@ export default function PipelineIntro() {
         "Programs focusing on cryptic pockets, allostery, and protein-protein interactions, spanning multiple therapeutic areas.",
       video: novelvideo,
     },
+<<<<<<< HEAD
+=======
+    
+>>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
   ];
 // bg-gray-200
   return (
     <section
+<<<<<<< HEAD
       className="w-full py-16 px-2 sm:px-4  flex flex-col items-center text-center"
+=======
+      className="w-full py-16 px-4 sm:px-6 bg-[#F3F4F6] flex flex-col items-center text-center"
+>>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
       id="pipeline"
     >
-      <h2 className="text-4xl font-extrabold mb-14 text-center text-blue-800 tracking-tight">
-        <span className="bg-gradient-to-r from-blue-700 via-blue-400 to-blue-700 bg-clip-text text-transparent">
-          Our Pipeline: Transforming Possibilities into Therapies
-        </span>
+      <h2 className="font-inter text-[44px] font-bold mb-14 text-center text-[#0E3A8A] tracking-tight leading-tight">
+        Our Pipeline: Transforming Possibilities into Therapies
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center w-full max-w-6xl mx-auto mb-8">
         {pipelineCards.map((card, index) => (
           <div
             key={index}
-            className="flex-1 max-w-sm mx-auto bg-white rounded-3xl shadow-2xl border border-blue-100 flex flex-col items-center text-center p-8 transition-transform duration-300 hover:scale-105 hover:shadow-blue-200 group"
+            className="flex-1 max-w-sm mx-auto bg-white rounded-[16px] shadow-lg border border-[#D1D5DB] flex flex-col items-center text-center p-8 transition-transform duration-300 hover:scale-105 hover:shadow-xl"
           >
-            <div className="w-20 h-20 mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-200 to-blue-400 shadow-lg group-hover:scale-110 transition-transform overflow-hidden">
+            <div className="w-20 h-20 mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-[#BFDBFE] to-[#60A5FA] shadow-md overflow-hidden">
               <video
                 src={card.video}
                 autoPlay
@@ -53,17 +59,19 @@ export default function PipelineIntro() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h3 className="font-bold text-2xl mb-2 text-blue-700">
+            <h3 className="font-inter font-bold text-[20px] text-[#0E3A8A] mb-2">
               {card.title}
             </h3>
-            <p className="text-gray-700 text-lg mb-4">{card.description}</p>
+            <p className="font-roboto text-[16px] text-[#4B5563] leading-[1.6]">
+              {card.description}
+            </p>
           </div>
         ))}
       </div>
 
       <Link
         to="/pipeline"
-        className="inline-flex items-center px-6 py-2 rounded-full bg-blue-700 hover:bg-blue-800 text-white font-semibold transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300 text-base shadow group-hover:shadow-lg"
+        className="inline-flex items-center px-6 py-3 rounded-[4px] bg-[#0E3A8A] hover:bg-[#0b2d6e] text-white font-inter font-medium text-[16px] leading-[1.6] transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-[#93C5FD]"
       >
         See Full Pipeline
         <svg
