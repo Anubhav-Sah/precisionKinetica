@@ -24,17 +24,11 @@ export default function PipelineIntro() {
         "Programs focusing on cryptic pockets, allostery, and protein-protein interactions, spanning multiple therapeutic areas.",
       video: novelvideo,
     },
-    {
-      title: "HER2",
-      description:
-        "1000x selectivity and brain penetrance to unlock the therapeutic potential of the target for metastatic disease.",
-      video: her2video,
-    },
   ];
-
+// bg-gray-200
   return (
     <section
-      className="w-full py-16 px-2 sm:px-4 bg-gray-200 flex flex-col items-center text-center"
+      className="w-full py-16 px-2 sm:px-4  flex flex-col items-center text-center"
       id="pipeline"
     >
       <h2 className="text-4xl font-extrabold mb-14 text-center text-blue-800 tracking-tight">
