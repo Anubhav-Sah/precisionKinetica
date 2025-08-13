@@ -1,80 +1,298 @@
-import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "../Components/ui/card";
+import { Badge } from "../Components/ui/badge";
 
-function PipelineHero() {
-  return (
-    <section className="w-full pt-36 pb-24 bg-blue-900 text-white">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <h1 className="text-5xl font-bold mb-6">Our Pipeline</h1>
-        <p className="text-lg max-w-2xl mx-auto">
-          Discover how our innovative research is shaping the future of biotechnology, AI in health, and digital diagnostics.
-        </p>
-      </div>
-    </section>
-  );
-}
+const Pipeline = () => {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  };
 
-function PipelineStages() {
-  const stages = [
-    {
-      title: "Discovery",
-      desc: "Fundamental biological and computational research aimed at uncovering new insights and targets.",
-    },
-    {
-      title: "Development",
-      desc: "Building real-world solutions using synthetic biology, data science, and software platforms.",
-    },
-    {
-      title: "Validation",
-      desc: "Clinical and lab validation with industry experts and domain specialists.",
-    },
-    {
-      title: "Deployment",
-      desc: "Real-world rollout through partnerships, open platforms, and integrations with health systems.",
-    },
-  ];
+  const staggerChildren = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
 
   return (
-    <section className="w-full py-20 bg-blue-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">How We Work</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stages.map((s, i) => (
-            <div
-              key={i}
-              className="bg-white p-6 rounded-2xl shadow hover:shadow-lg text-center transition-all"
-            >
-              <h3 className="text-xl font-semibold text-blue-800 mb-2">{s.title}</h3>
-              <p className="text-blue-600">{s.desc}</p>
-            </div>
-          ))}
+    <div className="pt-20">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="font-heading font-bold text-4xl md:text-6xl text-slate-800 mb-6">
+              Pipeline
+            </h1>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+              Our workflow unfolds as a continuous story rather than discrete steps. It begins with structure preparation and delivers comprehensive kinetic and thermodynamic profiles.
+            </p>
+          </motion.div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-function PipelineCTA() {
-  return (
-    <section className="w-full py-24 bg-blue-100">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Let’s Move Science Forward</h2>
-        <p className="text-blue-800 mb-8 text-lg">
-          Join us in building the next generation of bio-AI tools and technologies. Our pipeline is open to collaboration.
-        </p>
-        <button className="px-8 py-3 bg-blue-900 text-white font-semibold rounded-xl hover:bg-blue-800 transition">
-          Partner With Us
-        </button>
-      </div>
-    </section>
-  );
-}
+      {/* Pipeline Overview */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-slate-50 border-slate-200 mb-12" data-testid="pipeline-visualization">
+              <CardContent className="p-8">
+                <img 
+                  src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400" 
+                  alt="Five-panel step animation showing complete pipeline workflow" 
+                  className="rounded-xl w-full h-auto mb-6"
+                  data-testid="img-pipeline-steps"
+                />
+                <h2 className="font-heading font-bold text-3xl text-slate-800 mb-4">
+                  Complete Automated Workflow
+                </h2>
+                <p className="text-slate-600 leading-relaxed text-lg">
+                  From structure preparation through final analysis, our pipeline handles every step automatically. The uploaded complex is split into receptor and ligand, parameterized, solvated with physiological ion concentration, and energy-minimized. Enhanced-sampling techniques generate realistic conformations for each milestone cell, ensuring robust initialization before parallel simulations begin.
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
 
-export default function PipelinePage() {
-  return (
-    <div className="w-full min-h-screen flex flex-col bg-white">
-      <PipelineHero />
-      <PipelineStages />
-      <PipelineCTA />
+      {/* Detailed Pipeline Steps */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Pipeline Components
+            </h2>
+          </motion.div>
+          
+          <motion.div 
+            className="space-y-12"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                title: "Structure Preparation",
+                description: "The uploaded complex is split into receptor and ligand, parameterized using espaloma force fields, solvated with physiological ion concentration, and energy-minimized to prepare for simulation.",
+                details: ["Complex splitting", "Force field parameterization", "Solvation with ions", "Energy minimization"],
+                gradient: "from-slate-50 to-teal-50",
+                testId: "step-structure-prep"
+              },
+              {
+                title: "Reaction Coordinate Definition",
+                description: "A one-dimensional reaction coordinate, defined by the center-of-mass distance of binding-site residues, anchors a tessellation of milestones that track progress from bound to unbound states.",
+                details: ["Center-of-mass distance", "Binding-site residues", "Milestone tessellation", "Progress tracking"],
+                gradient: "from-slate-50 to-blue-50",
+                testId: "step-reaction-coordinate"
+              },
+              {
+                title: "Enhanced Sampling",
+                description: "Enhanced-sampling techniques such as steered MD, metadynamics or random-acceleration MD generate realistic conformations for each milestone cell, ensuring robust initialization.",
+                details: ["Steered molecular dynamics", "Metadynamics simulations", "Random-acceleration MD", "Robust initialization"],
+                gradient: "from-slate-50 to-emerald-50",
+                testId: "step-enhanced-sampling"
+              },
+              {
+                title: "Parallel Simulations",
+                description: "All simulations run in parallel—unbiased MD to capture dissociation kinetics and Brownian-dynamics to capture association rates—maximizing computational efficiency.",
+                details: ["Unbiased MD simulations", "Brownian dynamics", "Parallel execution", "Kinetic rate capture"],
+                gradient: "from-slate-50 to-purple-50",
+                testId: "step-parallel-sims"
+              },
+              {
+                title: "Milestoning Analysis", 
+                description: "Milestoning theory assembles transition statistics into mean first-passage times and free-energy profiles, delivering comprehensive kinetic and thermodynamic characterization.",
+                details: ["Transition statistics", "First-passage times", "Free-energy profiles", "Kinetic characterization"],
+                gradient: "from-slate-50 to-orange-50",
+                testId: "step-analysis"
+              }
+            ].map((step, index) => (
+              <motion.div key={step.title} variants={fadeInUp}>
+                <Card className={`bg-gradient-to-br ${step.gradient} border border-slate-200 hover:shadow-lg transition-all duration-300`} data-testid={step.testId}>
+                  <CardContent className="p-8">
+                    <div className="grid md:grid-cols-3 gap-8 items-center">
+                      <div className="md:col-span-2">
+                        <div className="flex items-center mb-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-blue-600 rounded-xl mr-4 flex items-center justify-center">
+                            <span className="text-white font-bold text-sm">{String(index + 1).padStart(2, '0')}</span>
+                          </div>
+                          <h3 className="font-heading font-semibold text-2xl text-slate-800">{step.title}</h3>
+                        </div>
+                        <p className="text-slate-600 leading-relaxed mb-4">{step.description}</p>
+                        <div className="space-y-2">
+                          {step.details.map((detail, detailIndex) => (
+                            <Badge key={detailIndex} variant="secondary" className="mr-2">
+                              {detail}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <img 
+                          src={`https://images.unsplash.com/photo-155975714${8 + index}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450`}
+                          alt={`${step.title} visualization`}
+                          className="rounded-lg shadow-lg w-full h-auto"
+                          data-testid={`img-step-${index + 1}`}
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Simulation Parameters */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Simulation Parameters
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Explicit-solvent MD simulations execute within each cell using optimized parameters for maximum accuracy and efficiency.
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                parameter: "200 ns",
+                description: "Default simulation time per Voronoi cell",
+                icon: "⏱️",
+                testId: "param-time"
+              },
+              {
+                parameter: "OpenMM",
+                description: "GPU-accelerated molecular dynamics engine",
+                icon: "⚡",
+                testId: "param-engine"
+              },
+              {
+                parameter: "TIP3P",
+                description: "Water model with physiological conditions",
+                icon: "💧",
+                testId: "param-water"
+              },
+              {
+                parameter: "Reflective",
+                description: "Boundary conditions for enhanced sampling",
+                icon: "🔄",
+                testId: "param-boundaries"
+              }
+            ].map((param, index) => (
+              <motion.div key={param.parameter} variants={fadeInUp}>
+                <Card className="bg-gradient-to-br from-slate-50 to-teal-50 hover:shadow-lg transition-all duration-300 text-center h-full" data-testid={param.testId}>
+                  <CardContent className="p-8 flex flex-col h-full">
+                    <div className="text-4xl mb-4">{param.icon}</div>
+                    <div className="text-2xl font-bold text-transparent bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text mb-2">
+                      {param.parameter}
+                    </div>
+                    <p className="text-slate-600 flex-1">{param.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Output Metrics */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Pipeline Outputs
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              The result is a rigorously derived transition-rate matrix that yields comprehensive kinetic and thermodynamic profiles.
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                title: "Association Rates (kon)",
+                description: "Quantitative measurement of binding kinetics from Brownian dynamics simulations",
+                units: "M⁻¹s⁻¹",
+                testId: "output-kon"
+              },
+              {
+                title: "Dissociation Rates (koff)",
+                description: "Residence time characterization from unbiased molecular dynamics trajectories",
+                units: "s⁻¹",
+                testId: "output-koff"
+              },
+              {
+                title: "Free Energy (ΔG)",
+                description: "Thermodynamic binding affinity landscapes along reaction coordinates",
+                units: "kcal/mol",
+                testId: "output-free-energy"
+              }
+            ].map((output, index) => (
+              <motion.div key={output.title} variants={fadeInUp}>
+                <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full" data-testid={output.testId}>
+                  <CardContent className="p-8 h-full flex flex-col">
+                    <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-600 rounded-2xl mb-6 flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">{output.units}</span>
+                    </div>
+                    <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">{output.title}</h3>
+                    <p className="text-slate-600 leading-relaxed flex-1">{output.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default Pipeline;
