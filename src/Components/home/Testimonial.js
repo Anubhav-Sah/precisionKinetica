@@ -24,27 +24,17 @@ function Testimonial() {
 
   return (
     <section
-<<<<<<< HEAD
       className="w-full py-16 px-4 "
       style={{
         // backgroundColor: 'var(--color-bg-primary)',
         // borderColor: 'var(--color-border)',
       }}
-=======
-      className="w-full py-16 px-4 border-b border-gray-300"
-      style={{ backgroundColor: "#F3F4F6" }}
->>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
       id="news"
     >
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
         <h2
-<<<<<<< HEAD
           className="text-4xl font-extrabold mb-14 text-center tracking-tight"
           style={{ color: 'var(--color-text-accent)' }}
-=======
-          className="text-4xl font-bold mb-14 text-center tracking-tight"
-          style={{ color: "#0E3A8A" }}
->>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
         >
           News & Media
         </h2>
@@ -65,11 +55,7 @@ function Testimonial() {
               >
                 <svg
                   className="w-8 h-8"
-<<<<<<< HEAD
                   style={{ color: 'var(--color-bg-primary)' }}
-=======
-                  style={{ color: "#0E3A8A" }}
->>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
@@ -80,14 +66,10 @@ function Testimonial() {
               </div>
 
               <div className="flex-1 text-left">
-<<<<<<< HEAD
                 <h3
                   className="font-semibold text-lg mb-1"
                   style={{ color: 'var(--color-text-accent)' }}
                 >
-=======
-                <h3 className="font-semibold text-lg mb-1" style={{ color: "#0E3A8A" }}>
->>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
                   {item.title}
                 </h3>
                 {item.description && (
@@ -105,16 +87,11 @@ function Testimonial() {
 
               <Link
                 to="/news-media"
-<<<<<<< HEAD
                 className="group mt-10 inline-flex items-center px-6 py-2 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-4"
                 style={{
                   backgroundColor: 'var(--color-bg-accent)',
                   color: 'var(--color-bg-primary)',
                 }}
-=======
-                className="group mt-10 inline-flex items-center px-6 py-2 rounded-full"
-                style={{ backgroundColor: "#0E3A8A" }}
->>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
               >
                 <span className="text-white text-base font-semibold">Read More</span>
                 <svg
@@ -130,8 +107,6 @@ function Testimonial() {
             </div>
           ))}
         </div>
-<<<<<<< HEAD
-=======
 
         {/* View All News */}
         <Link
@@ -154,14 +129,9 @@ function Testimonial() {
             />
           </svg>
         </Link>
->>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
       </div>
     </section>
   )
 }
 
-<<<<<<< HEAD
 export default Testimonial
-=======
-export default Testimonial;
->>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4

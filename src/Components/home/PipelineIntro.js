@@ -24,19 +24,11 @@ export default function PipelineIntro() {
         "Programs focusing on cryptic pockets, allostery, and protein-protein interactions, spanning multiple therapeutic areas.",
       video: novelvideo,
     },
-<<<<<<< HEAD
-=======
-    
->>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
   ];
 // bg-gray-200
   return (
     <section
-<<<<<<< HEAD
-      className="w-full py-16 px-2 sm:px-4  flex flex-col items-center text-center"
-=======
       className="w-full py-16 px-4 sm:px-6 bg-[#F3F4F6] flex flex-col items-center text-center"
->>>>>>> ac90755a2ca468f8d5eec44e7a5af6c0cdd18ee4
       id="pipeline"
     >
       <h2 className="font-inter text-[44px] font-bold mb-14 text-center text-[#0E3A8A] tracking-tight leading-tight">
