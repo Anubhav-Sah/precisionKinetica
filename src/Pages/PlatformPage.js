@@ -1,233 +1,269 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "../Components/ui/card";
+import { Badge } from "../Components/ui/badge";
 
-// Professional placeholder image/gif component
-const PlaceholderImg = ({ className = '', text = 'Image' }) => (
-  <div className={`bg-gradient-to-br from-blue-100 to-blue-300 flex items-center justify-center rounded-xl border border-blue-200 shadow ${className}`}>
-    <span className="text-blue-500 font-semibold text-lg">{text}</span>
-  </div>
-);
+const Platform = () => {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  };
 
-// Hero Section
-const PlatformHero = () => (
-  <section className="relative w-full min-h-[60vh] flex flex-col items-center justify-center px-4 text-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 text-white pt-40">
-    <div className="absolute inset-0 bg-blue-950/80 z-0" />
-    <div className="relative z-10 flex flex-col items-center">
-      <h1 className="text-6xl md:text-7xl font-extrabold mb-8 tracking-tight leading-tight drop-shadow-lg">
-        Automated Drug-Target Kinetics in Hours
-      </h1>
-      <p className="text-2xl md:text-3xl mb-10 font-medium max-w-3xl mx-auto drop-shadow">
-        Upload your PDB. Receive kon, koff and ΔG profiles in hours—no manual setup.<br />
-        
-      </p>
-      <PlaceholderImg className="w-full max-w-4xl h-64 mb-8" text="Pipeline Flow Animation (1200×600 px)" />
-      
-    </div>
-  </section>
-);
+  const staggerChildren = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
 
-// Platform Features Section (distinct visual style)
-const PlatformFeatures = () => (
-  <section className="w-full py-24 px-4 bg-gradient-to-br from-blue-50 via-white to-blue-100">
-    <div className="max-w-7xl mx-auto flex flex-col items-center">
-      <h2 className="text-4xl font-extrabold mb-16 text-blue-900 text-center">Why Choose PrecisionKinetica?</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
-        <div className="flex flex-col items-start bg-white rounded-2xl p-10 shadow-lg hover:shadow-xl transition">
-          <h3 className="font-bold text-2xl mb-4 text-blue-800">Fully Automated Workflow</h3>
-          <p className="text-gray-700 text-lg mb-6">
-            From PDB upload through kon/koff/ΔG output, every step runs without script edits or manual intervention.
-          </p>
-          <PlaceholderImg className="w-full h-40 mb-2" text="Automated Workflow GIF" />
-        </div>
-        <div className="flex flex-col items-start bg-white rounded-2xl p-10 shadow-lg hover:shadow-xl transition">
-          <h3 className="font-bold text-2xl mb-4 text-blue-800">Physics-Driven Precision</h3>
-          <p className="text-gray-700 text-lg mb-6">
-            QM-trained espaloma force fields and Voronoi-milestoning yield reproducible, experimental-grade kon, koff, and ΔG
-          </p>
-          <PlaceholderImg className="w-full h-40 mb-2" text="Accuracy Chart GIF" />
-        </div>
-        <div className="flex flex-col items-start bg-white rounded-2xl p-10 shadow-lg hover:shadow-xl transition">
-          <h3 className="font-bold text-2xl mb-4 text-blue-800">Scalable Performance</h3>
-          <p className="text-gray-700 text-lg mb-6">
-            Parallel MD in multiple cells and BD simulations complete full kinetic profiles in hours, not weeks.
-          </p>
-          <PlaceholderImg className="w-full h-40 mb-2" text="Performance Chart GIF" />
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-// How It Works Section (horizontal stepper, unique style)
-const HowItWorks = () => (
-  <section className="w-full py-24 px-4 bg-blue-50">
-    <div className="max-w-6xl mx-auto flex flex-col items-center">
-      <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-blue-900 text-center">How It Works</h2>
-      <div className="flex flex-col md:flex-row gap-12 w-full justify-center items-center">
-        <div className="flex flex-col items-center text-center bg-white rounded-xl p-8 shadow hover:shadow-lg transition w-full md:w-1/3">
-          <PlaceholderImg className="w-14 h-14 mb-3" text="Upload" />
-          <h3 className="font-bold text-lg mb-2 text-blue-800">Upload Structure</h3>
-          <p className="text-gray-700 text-base">
-            Start with a single PDB file—no manual prep required.
-          </p>
-        </div>
-        <div className="flex flex-col items-center text-center bg-white rounded-xl p-8 shadow hover:shadow-lg transition w-full md:w-1/3">
-          <PlaceholderImg className="w-14 h-14 mb-3" text="Automated Pipeline" />
-          <h3 className="font-bold text-lg mb-2 text-blue-800">Automated Pipeline</h3>
-          <p className="text-gray-700 text-base">
-            Espaloma force field, Voronoi-milestoning, and parallel MD/BD simulations run in the cloud.
-          </p>
-        </div>
-        <div className="flex flex-col items-center text-center bg-white rounded-xl p-8 shadow hover:shadow-lg transition w-full md:w-1/3">
-          <PlaceholderImg className="w-14 h-14 mb-3" text="Results" />
-          <h3 className="font-bold text-lg mb-2 text-blue-800">Kinetic & Thermodynamic Profiles</h3>
-          <p className="text-gray-700 text-base">
-            Receive kon, koff, and ΔG, plus free-energy landscapes and residence times.
-          </p>
-        </div>
-      </div>
-      <PlaceholderImg className="w-full max-w-2xl h-40 mt-12" text="Step Animation" />
-    </div>
-  </section>
-);
-
-// CTA Section
-const PlatformCTA = () => (
-  <section className="w-full py-20 px-4 text-center bg-white">
-    <h2 className="text-3xl font-extrabold mb-6 text-blue-900 tracking-tight">Ready to accelerate your drug discovery?</h2>
-    <p className="text-xl mb-8 text-gray-700 max-w-xl mx-auto">
-      Contact us to see how PrecisionKinetica can deliver kinetic and thermodynamic insights for your lead series.
-    </p>
-    <a href="/contact" className="inline-flex items-center px-12 py-5 rounded-full bg-blue-700 hover:bg-blue-800 text-white text-xl font-semibold shadow-lg transition focus:outline-none focus:ring-4 focus:ring-blue-300">
-      <span className="pr-2">Get in Touch</span>
-      <svg className="w-6 h-6 opacity-80 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-    </a>
-  </section>
-);
-
-
-// Cloud & Dev Tool Integrations
-const logos = [
-  { name: "AWS", src: "/logos/aws.svg" },
-  { name: "Azure", src: "/logos/azure.svg" },
-  { name: "GCP", src: "/logos/gcp.svg" },
-  { name: "GitHub", src: "/logos/github.svg" },
-  { name: "Okta", src: "/logos/okta.svg" },
-  { name: "Terraform", src: "/logos/terraform.svg" },
-];
-
-const Integrations = () => (
-  <section className="w-full py-14 px-4 bg-white">
-    <div className="max-w-5xl mx-auto">
-      <h2 className="text-xl font-extrabold mb-8 text-blue-900 text-center">Cloud & Dev Tool Integrations</h2>
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-8 justify-items-center items-center">
-        {logos.map(logo => (
-          <div
-            key={logo.name}
-            className="w-20 h-20 flex items-center justify-center transition filter grayscale hover:grayscale-0 hover:scale-105"
-          >
-            {/* Replace with <img src={logo.src} ... /> for real logos */}
-            <PlaceholderImg className="w-16 h-16" text={logo.name} />
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-// Feature Highlights
-const features = [
-  {
-    title: "Declarative Policy-as-Code",
-    desc: "Manage access control with versioned, auditable code. Integrate with CI/CD for automated enforcement.",
-    img: <PlaceholderImg className="w-full h-40 rounded-xl" text="Code Example" />,
-    reverse: false,
-  },
-  {
-    title: "Real-Time Drift Detection",
-    desc: "Continuously monitor cloud resources for configuration drift and policy violations.",
-    img: <PlaceholderImg className="w-full h-40 rounded-xl" text="Drift Monitor" />,
-    reverse: true,
-  },
-  {
-    title: "Unified Audit & Compliance",
-    desc: "Centralized logging and reporting for compliance and security teams.",
-    img: <PlaceholderImg className="w-full h-40 rounded-xl" text="Audit Logs" />,
-    reverse: false,
-  },
-];
-
-const FeatureHighlights = () => (
-  <section className="w-full py-20 px-4 bg-blue-50">
-    <div className="max-w-6xl mx-auto flex flex-col gap-16">
-      {features.map((f, i) => (
-        <div
-          key={f.title}
-          className={`flex flex-col md:flex-row ${f.reverse ? 'md:flex-row-reverse' : ''} items-center gap-10`}
-        >
-          <div className="flex-1">{f.img}</div>
-          <div className="flex-1 text-left">
-            <h3 className="text-2xl font-bold text-blue-800 mb-4">{f.title}</h3>
-            <p className="text-gray-700 text-lg">{f.desc}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-);
-
-// Video Section
-const PlatformVideo = () => (
-  <section className="w-full flex justify-center items-center py-24 bg-white">
-    <div className="w-full max-w-5xl aspect-video bg-black rounded-2xl shadow-lg flex items-center justify-center overflow-hidden">
-      {/* Replace src with your actual video file */}
-      <video
-        controls
-        poster=""
-        className="w-full h-full object-cover bg-black"
-      >
-        <source src="/media/platform_demo.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
-);
-
-
-
-// Publications Section
-const Publications = () => (
-  <section className="w-full py-24 px-4 bg-blue-50">
-    <div className="max-w-6xl mx-auto">
-      <h2 className="text-3xl font-extrabold text-blue-900 mb-12 text-center">Publications</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[1, 2, 3].map(i => (
-          <Link
-            to="/news-and-media"
-            key={i}
-            className="flex flex-col bg-white rounded-xl shadow hover:shadow-lg transition p-6 hover:bg-blue-50"
-          >
-            <PlaceholderImg className="w-full h-40 mb-4" text={`Article ${i}`} />
-            <h3 className="text-xl font-semibold text-blue-800 mb-2">Sample Article Title {i}</h3>
-            <p className="text-gray-600 text-base">
-              Brief description of the article. It should be a teaser for the full story.
-            </p>
-          </Link>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-
-export default function PlatformPage() {
   return (
-    <div className="w-full min-h-screen flex flex-col bg-white">
-      <PlatformHero />
-      <PlatformFeatures />
-      <HowItWorks />
-      <PlatformVideo />
-      <Publications />
+    <div className="pt-20">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="font-heading font-bold text-4xl md:text-6xl text-slate-800 mb-6">
+              Platform
+            </h1>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+              At the core of our technology lies an end-to-end pipeline that merges three state-of-the-art advances into a single, fully automated process.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Technology Overview */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-slate-50 border-slate-200 mb-12" data-testid="platform-overview">
+              <CardContent className="p-8">
+                <img 
+                  src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600" 
+                  alt="Automated milestoning pipeline schematic" 
+                  className="rounded-xl shadow-lg w-full h-auto mb-6"
+                  data-testid="img-pipeline-schematic"
+                />
+                <h2 className="font-heading font-bold text-3xl text-slate-800 mb-4">
+                  Automated Milestoning Pipeline
+                </h2>
+                <p className="text-slate-600 leading-relaxed text-lg">
+                  First, receptor and ligand are each parameterized using our QM-trained espaloma force field model, capturing subtle electronic effects. Next, configurational space is partitioned into one-dimensional Voronoi cells along the center-of-mass reaction coordinate, ensuring systematic coverage of binding and unbinding pathways. Finally, explicit-solvent MD simulations execute within each cell—by default 200 ns per cell using OpenMM with TIP3P water and reflective-boundary conditions—while parallel Brownian-dynamics runs define long-range association.
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Core Technologies */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Core Technologies
+            </h2>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                title: "SEEKR2 Milestoning",
+                description: "Advanced Voronoi milestoning technology for systematic coverage of binding and unbinding pathways with automated milestone placement.",
+                features: ["Automated milestone placement", "Voronoi cell partitioning", "Center-of-mass reaction coordinate", "Systematic pathway coverage"],
+                testId: "tech-seekr2"
+              },
+              {
+                title: "Espaloma Force Fields",
+                description: "QM-trained neural network force fields that capture subtle electronic effects for enhanced accuracy in molecular simulations.",
+                features: ["QM-level accuracy", "Neural network architecture", "Electronic effects capture", "Transferable parameterization"],
+                testId: "tech-espaloma"
+              },
+              {
+                title: "OpenMM Acceleration",
+                description: "GPU-accelerated molecular dynamics simulations with explicit solvent and reflective boundary conditions for optimal performance.",
+                features: ["GPU acceleration", "Explicit solvent modeling", "TIP3P water model", "Reflective boundaries"],
+                testId: "tech-openmm"
+              }
+            ].map((tech, index) => (
+              <motion.div key={tech.title} variants={fadeInUp}>
+                <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full" data-testid={tech.testId}>
+                  <CardContent className="p-8 h-full flex flex-col">
+                    <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-600 rounded-2xl mb-6 flex items-center justify-center">
+                      <div className="w-8 h-8 bg-white rounded-lg"></div>
+                    </div>
+                    <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">{tech.title}</h3>
+                    <p className="text-slate-600 mb-6 leading-relaxed flex-1">{tech.description}</p>
+                    <div className="space-y-2">
+                      {tech.features.map((feature, featureIndex) => (
+                        <Badge key={featureIndex} variant="secondary" className="mr-2">
+                          {feature}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Process Flow */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Workflow Process
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Our workflow unfolds as a continuous story rather than discrete steps, delivering comprehensive kinetic profiles.
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-5 gap-6"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                step: "01",
+                title: "Structure Preparation",
+                description: "Upload complex, split into receptor and ligand, parameterize with espaloma"
+              },
+              {
+                step: "02", 
+                title: "Tessellation",
+                description: "One-dimensional reaction coordinate anchors milestone tessellation"
+              },
+              {
+                step: "03",
+                title: "Enhanced Sampling",
+                description: "Steered MD, metadynamics, or random-acceleration for initialization"
+              },
+              {
+                step: "04",
+                title: "Parallel Simulations",
+                description: "Unbiased MD for dissociation, Brownian dynamics for association"
+              },
+              {
+                step: "05",
+                title: "Analysis",
+                description: "Milestoning theory assembles transition statistics into kinetic profiles"
+              }
+            ].map((step, index) => (
+              <motion.div key={step.step} variants={fadeInUp}>
+                <Card className="bg-gradient-to-br from-slate-50 to-teal-50 hover:shadow-lg transition-all duration-300 h-full" data-testid={`workflow-step-${step.step}`}>
+                  <CardContent className="p-6 text-center h-full flex flex-col">
+                    <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">{step.step}</span>
+                    </div>
+                    <h3 className="font-heading font-semibold text-lg text-slate-800 mb-3">{step.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed flex-1">{step.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Performance Metrics */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Platform Performance
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Rigorously derived transition-rate matrix yields kon, koff, and ΔG without any manual intervention.
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-4 gap-8"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                metric: "200 ns",
+                description: "Default simulation time per Voronoi cell",
+                testId: "metric-simulation-time"
+              },
+              {
+                metric: "Hours",
+                description: "From PDB upload to kinetic profile delivery",
+                testId: "metric-delivery-time"
+              },
+              {
+                metric: "Automated",
+                description: "Zero manual intervention required",
+                testId: "metric-automation"
+              },
+              {
+                metric: "GPU",
+                description: "OpenMM acceleration for maximum performance",
+                testId: "metric-acceleration"
+              }
+            ].map((metric, index) => (
+              <motion.div key={metric.metric} variants={fadeInUp}>
+                <Card className="bg-white hover:shadow-lg transition-all duration-300 text-center" data-testid={metric.testId}>
+                  <CardContent className="p-8">
+                    <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text mb-2">
+                      {metric.metric}
+                    </div>
+                    <p className="text-slate-600">{metric.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
     </div>
-  )
-}
+  );
+};
+
+export default Platform;

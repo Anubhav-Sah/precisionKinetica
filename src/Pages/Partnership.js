@@ -1,76 +1,297 @@
-import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "../Components/ui/card";
+import { Button } from "../Components/ui/button";
+import { Link } from "wouter";
 
-function PartnershipHero() {
-  return (
-    <section className="w-full pt-36 pb-24 bg-blue-900 text-white">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <h1 className="text-5xl font-bold mb-6">Partner with Us</h1>
-        <p className="text-lg max-w-2xl mx-auto">
-          Collaborate with us to revolutionize biotechnology, life sciences, and digital health. Together, we can make breakthroughs happen.
-        </p>
-      </div>
-    </section>
-  );
-}
+const Partnerships = () => {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  };
 
-function PartnershipBenefits() {
-  const benefits = [
-    {
-      title: "Research Collaboration",
-      desc: "Team up on cutting-edge biological and AI research initiatives.",
-    },
-    {
-      title: "Shared Resources",
-      desc: "Access our lab infrastructure, datasets, and tech platforms.",
-    },
-    {
-      title: "Talent Access",
-      desc: "Hire, collaborate with, or mentor our highly skilled student community.",
-    },
-  ];
+  const staggerChildren = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
 
   return (
-    <section className="w-full py-20 bg-blue-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">Why Partner With Us?</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {benefits.map((b, i) => (
-            <div
-              key={i}
-              className="bg-white p-6 rounded-2xl shadow hover:shadow-lg text-center transition-all"
-            >
-              <h3 className="text-xl font-semibold text-blue-800 mb-2">{b.title}</h3>
-              <p className="text-blue-600">{b.desc}</p>
-            </div>
-          ))}
+    <div className="pt-20">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="font-heading font-bold text-4xl md:text-6xl text-slate-800 mb-6">
+              Partnerships
+            </h1>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+              We partner with biotech and pharma R&D teams to integrate kinetic insights at every stage of lead optimization. Together, we translate residence-time predictions into go/no-go decisions.
+            </p>
+          </motion.div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-function PartnershipCTA() {
-  return (
-    <section className="w-full py-24 bg-blue-100">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Let’s Build Together</h2>
-        <p className="text-blue-800 mb-8 text-lg">
-          We’re looking for forward-thinking partners who share our vision. Whether you're a startup, lab, or enterprise — let's talk.
-        </p>
-        <button className="px-8 py-3 bg-blue-900 text-white font-semibold rounded-xl hover:bg-blue-800 transition">
-          Contact Our Team
-        </button>
-      </div>
-    </section>
-  );
-}
+      {/* Partnership Workflow */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-slate-50 border-slate-200 mb-12" data-testid="partnership-workflow">
+              <CardContent className="p-8">
+                <img 
+                  src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400" 
+                  alt="Partner workflow integration process showing collaboration stages" 
+                  className="rounded-xl w-full h-auto mb-6"
+                  data-testid="img-workflow-integration"
+                />
+                <h2 className="font-heading font-bold text-3xl text-slate-800 mb-4">
+                  Seamless Integration Workflow
+                </h2>
+                <p className="text-slate-600 leading-relaxed text-lg">
+                  Whether you need co-development on novel targets, secure cloud deployment of our pipeline, or academic collaboration to push method boundaries, our scientific team and engineering staff ensure a seamless integration. We accelerate your internal workflows while maintaining the highest standards of data security and scientific rigor.
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
 
-export default function PartnershipPage() {
-  return (
-    <div className="w-full min-h-screen flex flex-col bg-white">
-      <PartnershipHero />
-      <PartnershipBenefits />
-      <PartnershipCTA />
+      {/* Partnership Types */}
+      <section className="py-20 bg-gradient-to-br from-teal-50 to-slate-50">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Partnership Models
+            </h2>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                title: "Co-Development",
+                description: "Novel target collaboration with secure cloud deployment and method development. Work directly with our team to tackle your most challenging targets.",
+                features: ["Novel target focus", "Secure cloud deployment", "Method customization", "Direct collaboration"],
+                gradient: "from-teal-500 to-blue-600",
+                testId: "partnership-codevelopment"
+              },
+              {
+                title: "Platform Integration",
+                description: "Seamless integration into internal workflows with scientific and engineering support. Maintain your existing processes while adding kinetic insights.",
+                features: ["Workflow integration", "API connectivity", "Training programs", "Technical support"],
+                gradient: "from-blue-500 to-teal-600",
+                testId: "partnership-integration"
+              },
+              {
+                title: "Academic Collaboration",
+                description: "Co-author high-impact publications demonstrating real-world ROI and breakthroughs. Push the boundaries of computational drug discovery.",
+                features: ["Joint publications", "Method development", "Conference presentations", "Grant applications"],
+                gradient: "from-emerald-500 to-blue-600",
+                testId: "partnership-academic"
+              }
+            ].map((partnership, index) => (
+              <motion.div key={partnership.title} variants={fadeInUp}>
+                <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full group" data-testid={partnership.testId}>
+                  <CardContent className="p-8 h-full flex flex-col">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${partnership.gradient} rounded-2xl mb-6 flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                      <div className="w-8 h-8 bg-white rounded-full"></div>
+                    </div>
+                    <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">{partnership.title}</h3>
+                    <p className="text-slate-600 mb-6 leading-relaxed flex-1">{partnership.description}</p>
+                    <div className="space-y-2">
+                      {partnership.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-center text-sm text-slate-600">
+                          <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Success Stories */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Success Stories
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Our partnerships have delivered breakthrough insights across diverse therapeutic areas and target classes.
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                title: "HSP90 Inhibitor Program",
+                company: "Leading Pharmaceutical Company",
+                result: "R² of 0.97 across eight inhibitors covering residence times from seconds to hours",
+                description: "Comprehensive characterization of HSP90 inhibitors with exceptional correlation between predicted and experimental residence times. Enabled rational optimization of lead compounds based on kinetic profiles.",
+                metrics: ["R² = 0.97", "RMSE = 0.52", "8 compounds", "Log-scale accuracy"],
+                testId: "success-hsp90"
+              },
+              {
+                title: "JAK Selectivity Analysis",
+                company: "Biotech Research Consortium", 
+                result: "Spearman correlation of 0.95 for threonine-tyrosine kinase inhibitors",
+                description: "Recovered isoform-specific residence times between JAK2 and JAK3 that directly inform selective lead design. Addressed complex allosteric unbinding mechanisms with unprecedented accuracy.",
+                metrics: ["Spearman ρ = 0.95", "JAK2/JAK3 selectivity", "Allosteric mechanisms", "Lead optimization"],
+                testId: "success-jak"
+              }
+            ].map((story, index) => (
+              <motion.div key={story.title} variants={fadeInUp}>
+                <Card className="bg-gradient-to-br from-slate-50 to-teal-50 hover:shadow-lg transition-all duration-300 h-full" data-testid={story.testId}>
+                  <CardContent className="p-8 h-full flex flex-col">
+                    <div className="text-sm text-teal-600 font-semibold mb-2">{story.company}</div>
+                    <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">{story.title}</h3>
+                    <div className="bg-white rounded-lg p-4 mb-4 border-l-4 border-teal-500">
+                      <p className="text-slate-800 font-medium">{story.result}</p>
+                    </div>
+                    <p className="text-slate-600 leading-relaxed mb-6 flex-1">{story.description}</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {story.metrics.map((metric, metricIndex) => (
+                        <div key={metricIndex} className="text-sm text-slate-600 bg-white rounded px-3 py-1">
+                          {metric}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Partnership Benefits */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Partnership Benefits
+            </h2>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                benefit: "Accelerated Discovery",
+                description: "Reduce lead optimization timelines from years to months",
+                icon: "🚀",
+                testId: "benefit-acceleration"
+              },
+              {
+                benefit: "Reduced Risk",
+                description: "Make informed go/no-go decisions based on kinetic data",
+                icon: "🎯",
+                testId: "benefit-risk"
+              },
+              {
+                benefit: "Cost Efficiency",
+                description: "Minimize late-stage failures through early kinetic profiling",
+                icon: "💰",
+                testId: "benefit-cost"
+              },
+              {
+                benefit: "Scientific Excellence",
+                description: "Co-author high-impact publications and presentations",
+                icon: "🏆",
+                testId: "benefit-excellence"
+              }
+            ].map((benefit, index) => (
+              <motion.div key={benefit.benefit} variants={fadeInUp}>
+                <Card className="bg-white hover:shadow-lg transition-all duration-300 text-center h-full" data-testid={benefit.testId}>
+                  <CardContent className="p-8 flex flex-col h-full">
+                    <div className="text-4xl mb-4">{benefit.icon}</div>
+                    <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">{benefit.benefit}</h3>
+                    <p className="text-slate-600 flex-1">{benefit.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-800 to-blue-800 text-white">
+        <div className="container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl mb-6">
+              Ready to Partner?
+            </h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+              Let's discuss how Precision Kinetica can accelerate your drug discovery programs with cutting-edge kinetic insights.
+            </p>
+            <Link href="/contact" data-testid="button-start-partnership">
+              <Button size="lg" className="bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:from-teal-600 hover:to-emerald-600 px-8 py-4 rounded-full text-lg font-semibold">
+                Start a Partnership →
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default Partnerships;
