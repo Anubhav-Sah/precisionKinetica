@@ -28,7 +28,8 @@ const Home = () => {
   };
 
   return (
-    <div className="pt-20">
+    <div className="w-full min-h-screen pt-20">
+      {/* Hero Section */}
       {/* Hero Section */}
       <section className="min-h-screen molecular-bg flex items-center relative overflow-hidden">
         {/* Animated molecular structures */}
@@ -55,27 +56,34 @@ const Home = () => {
         </motion.div>
 
         <div className="container mx-auto px-6 relative z-10">
+          {/* Main text content */}
           <motion.div
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center mt-16"
             variants={staggerChildren}
             initial="initial"
             animate="animate"
           >
-            <motion.div variants={fadeInUp}>
-              <h1 className="font-heading font-bold text-4xl md:text-6xl lg:text-7xl text-slate-800 mb-6 leading-tight">
-                Charting new paths<br />
-                <span className="bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
-                  to superior medicines
-                </span>
-              </h1>
-              <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                AI-driven discovery, automation, and execution for next-generation therapeutics.
-              </p>
+            {/* Heading + paragraph floating effect */}
+            <motion.div
+              initial={{ y: 0 }}
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <motion.div variants={fadeInUp}>
+                <h1 className="font-heading font-bold text-4xl md:text-6xl lg:text-7xl text-slate-800 mb-6 leading-tight">
+                  Charting new paths<br />
+                  <span className="bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
+                    to superior medicines
+                  </span>
+                </h1>
+                <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  AI-driven discovery, automation, and execution for next-generation therapeutics.
+                </p>
+              </motion.div>
             </motion.div>
 
+            {/* Button */}
             <motion.div variants={fadeInUp}>
-
-
               <Link to="/platform" data-testid="button-explore-platform">
                 <Button
                   size="lg"
@@ -84,10 +92,10 @@ const Home = () => {
                   Explore Our Platform →
                 </Button>
               </Link>
-
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="mt-16">
+            {/* Image Card */}
+            {/* <motion.div variants={fadeInUp} className="mt-16">
               <Card className="bg-slate-50 border-slate-200 shadow-2xl">
                 <CardContent className="p-8">
                   <img
@@ -98,10 +106,12 @@ const Home = () => {
                   />
                 </CardContent>
               </Card>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </section>
+
+
 
       {/* Trusted By Section */}
       <section className="py-16 bg-white">
