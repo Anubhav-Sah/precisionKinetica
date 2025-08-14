@@ -31,7 +31,7 @@ const Home = () => {
     <div className="w-full min-h-screen pt-20">
       {/* Hero Section */}
       {/* Hero Section */}
-      <section className="min-h-screen molecular-bg flex items-center relative overflow-hidden">
+      <section className="h-screen molecular-bg flex items-center justify-center relative overflow-hidden">
         {/* Animated molecular structures */}
         <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -55,10 +55,10 @@ const Home = () => {
           />
         </motion.div>
 
-        <div className="container mx-auto px-6 relative z-10">
-          {/* Main text content */}
+        {/* Centered content */}
+        <div className="container mx-auto px-6 relative z-10 flex flex-col items-center justify-center">
           <motion.div
-            className="max-w-4xl mx-auto text-center mt-16"
+            className="max-w-4xl mx-auto text-center"
             variants={staggerChildren}
             initial="initial"
             animate="animate"
@@ -93,23 +93,10 @@ const Home = () => {
                 </Button>
               </Link>
             </motion.div>
-
-            {/* Image Card */}
-            {/* <motion.div variants={fadeInUp} className="mt-16">
-              <Card className="bg-slate-50 border-slate-200 shadow-2xl">
-                <CardContent className="p-8">
-                  <img
-                    src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800"
-                    alt="Molecular dynamics simulation visualization"
-                    className="rounded-xl shadow-lg w-full h-auto"
-                    data-testid="img-md-simulation"
-                  />
-                </CardContent>
-              </Card>
-            </motion.div> */}
           </motion.div>
         </div>
       </section>
+
 
 
 
