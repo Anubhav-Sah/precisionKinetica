@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "../Components/ui/card";
 import { Button } from "../Components/ui/button";
 import { Link } from "wouter";
+import arpitaHeadshot from "../assets/images/arpita.jpg";
+import anupamHeadshot from "../assets/images/anupam.jpeg";
 
 const About = () => {
   const fadeInUp = {
@@ -23,7 +25,7 @@ const About = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -42,7 +44,7 @@ const About = () => {
       {/* Team Collaboration */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -51,9 +53,9 @@ const About = () => {
           >
             <Card className="bg-slate-50 border-slate-200 mb-12" data-testid="team-collaboration">
               <CardContent className="p-8">
-                <img 
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500" 
-                  alt="Team brainstorming and collaboration session" 
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500"
+                  alt="Team brainstorming and collaboration session"
                   className="rounded-xl w-full h-auto mb-6"
                   data-testid="img-team-brainstorming"
                 />
@@ -72,7 +74,7 @@ const About = () => {
       {/* Leadership Team */}
       <section className="py-20 bg-gradient-to-br from-teal-50 to-slate-50">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -83,8 +85,8 @@ const About = () => {
               Leadership Team
             </h2>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -93,35 +95,39 @@ const About = () => {
           >
             {[
               {
-                name: "Arpita Pandey",
-                role: "Co-Founder & CEO",
-                background: "MBA with deep domain expertise from Flatiron Institute",
-                description: "Brings business strategy and market insights to computational chemistry, ensuring our innovations translate into real-world impact for pharmaceutical partners.",
-                expertise: ["Business Strategy", "Market Analysis", "Partnership Development", "Strategic Planning"],
-                testId: "founder-arpita"
-              },
-              {
-                name: "Anupam Ojha",
-                role: "Co-Founder & CTO",
-                background: "Lead architect of SEEKR2",
-                description: "Drives our technological innovation with deep expertise in computational methods, software engineering, and algorithm development for molecular simulations.",
-                expertise: ["SEEKR2 Architecture", "Algorithm Development", "Software Engineering", "Computational Methods"],
-                testId: "founder-anupam"
-              },
-              {
-                name: "Rommie Amaro",
-                role: "Scientific Advisor",
+                name: "Dr. Rommie E. Amaro",
+                role: "Co-Founder & Chief Scientific Officer",
                 background: "Pioneer in cryo-EM–simulation integration",
                 description: "Guides our scientific vision at the intersection of physics, AI, and biology, ensuring our methods remain at the forefront of computational drug discovery.",
                 expertise: ["Cryo-EM Integration", "Molecular Simulations", "Structural Biology", "Scientific Innovation"],
-                testId: "advisor-rommie"
-              }
+                testId: "advisor-rommie",
+                // image: rommieHeadshot
+              },
+              {
+                name: "Arpita Pandey",
+                role: "Co-Founder & Chief Executive Officer",
+                background: "MBA with deep domain expertise from Flatiron Institute",
+                description: "Brings business strategy and market insights to computational chemistry, ensuring our innovations translate into real-world impact for pharmaceutical partners.",
+                expertise: ["Business Strategy", "Market Analysis", "Partnership Development", "Strategic Planning"],
+                testId: "founder-arpita",
+                image: arpitaHeadshot
+              },
+              {
+                name: "Dr. Anupam Ojha",
+                role: "Co-Founder & Chief Technical Officer",
+                background: "Lead architect of SEEKR2",
+                description: "Drives our technological innovation with deep expertise in computational methods, software engineering, and algorithm development for molecular simulations.",
+                expertise: ["SEEKR2 Architecture", "Algorithm Development", "Software Engineering", "Computational Methods"],
+                testId: "founder-anupam",
+                image: anupamHeadshot
+              },
+              
             ].map((member, index) => (
               <motion.div key={member.name} variants={fadeInUp}>
                 <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full" data-testid={member.testId}>
                   <CardContent className="p-8 text-center h-full flex flex-col">
-                    <img 
-                      src={`https://images.unsplash.com/photo-147209964${5 + index}?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300`}
+                    <img
+                      src={member.image}
                       alt={`${member.name} professional headshot`}
                       className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-slate-100"
                       data-testid={`img-headshot-${index + 1}`}
@@ -145,10 +151,11 @@ const About = () => {
         </div>
       </section>
 
+
       {/* Company Values */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -159,8 +166,8 @@ const About = () => {
               Our Values
             </h2>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -182,7 +189,7 @@ const About = () => {
               },
               {
                 value: "Patient Impact",
-                description: "Ultimately focused on accelerating the development of better medicines",
+                description: "Focused on accelerating better medicines to patients with speed and proven effectiveness.",
                 icon: "❤️",
                 testId: "value-impact"
               },
@@ -210,7 +217,7 @@ const About = () => {
       {/* Careers Section */}
       <section id="careers" className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -224,9 +231,9 @@ const About = () => {
               Join us in redefining drug discovery. Work at the intersection of physics, AI, and biology—contributing code, co-authoring papers, and shaping the future of precision therapeutics.
             </p>
           </motion.div>
-          
+
           {/* Team Culture */}
-          <motion.div 
+          <motion.div
             className="mb-16"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -235,9 +242,9 @@ const About = () => {
           >
             <Card className="bg-slate-50 border-slate-200" data-testid="team-culture">
               <CardContent className="p-8 text-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400" 
-                  alt="Team culture and office environment montage" 
+                <img
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
+                  alt="Team culture and office environment montage"
                   className="rounded-xl mx-auto mb-6"
                   data-testid="img-office-culture"
                 />
@@ -250,8 +257,8 @@ const About = () => {
               </CardContent>
             </Card>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -273,7 +280,7 @@ const About = () => {
               },
               {
                 role: "DevOps Specialists",
-                description: "Scale our pipeline on cloud and HPC infrastructure for high-throughput molecular dynamics simulations.",
+                description: "Scale our advanced pipeline on cloud and HPC infrastructure for high-throughput molecular dynamics simulations.",
                 responsibilities: ["Infrastructure scaling", "Pipeline optimization", "Cloud deployment", "Performance monitoring"],
                 testId: "role-devops"
               }
@@ -299,8 +306,8 @@ const About = () => {
               </motion.div>
             ))}
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="text-center mt-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
