@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 function Navbar() {
   const [floating, setFloating] = useState(false);
@@ -34,11 +35,25 @@ function Navbar() {
     >
       {/* Logo */}
       <div>
-        <NavLink
+        {/* <NavLink
           to="/"
           className="text-lg font-bold tracking-wide text-gray-800 hover:text-black transition"
         >
           PRECISION KINETICA
+        </NavLink> */}
+        <NavLink to="/" data-testid="link-home">
+          <motion.div
+            className="flex items-center space-x-2"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          >
+            <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">PK</span>
+            </div>
+            <span className="font-heading font-semibold text-xl text-slate-800">
+              PRECISION KINETICA
+            </span>
+          </motion.div>
         </NavLink>
       </div>
 
