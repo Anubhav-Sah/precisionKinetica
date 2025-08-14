@@ -215,7 +215,7 @@ const About = () => {
       </section>
 
       {/* Careers Section */}
-      <section id="careers" className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
+      {/* <section id="careers" className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
         <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-16"
@@ -230,10 +230,10 @@ const About = () => {
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Join us in redefining drug discovery. Work at the intersection of physics, AI, and biology—contributing code, co-authoring papers, and shaping the future of precision therapeutics.
             </p>
-          </motion.div>
+          </motion.div> */}
 
           {/* Team Culture */}
-          <motion.div
+          {/* <motion.div
             className="mb-16"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -321,7 +321,7 @@ const About = () => {
             </Link>
           </motion.div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
