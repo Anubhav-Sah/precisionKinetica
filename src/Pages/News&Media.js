@@ -23,7 +23,7 @@ const Research = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -39,10 +39,70 @@ const Research = () => {
         </div>
       </section>
 
+      {/* Research Areas */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+              Research Areas
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                area: "Milestoning Theory",
+                description: "Advanced computational methods for kinetic pathway analysis",
+                testId: "research-milestoning"
+              },
+              {
+                area: "Force Field Development",
+                description: "QM-trained neural networks for molecular simulations",
+                testId: "research-force-fields"
+              },
+              {
+                area: "Drug-Target Kinetics",
+                description: "Residence time prediction and optimization strategies",
+                testId: "research-kinetics"
+              },
+              {
+                area: "Computational Biology",
+                description: "Physics-AI integration for therapeutic discovery",
+                testId: "research-compbio"
+              }
+            ].map((area, index) => (
+              <motion.div key={area.area} variants={fadeInUp}>
+                <Card className="bg-gradient-to-br from-slate-50 to-teal-50 hover:shadow-lg transition-all duration-300 text-center h-full" data-testid={area.testId}>
+                  <CardContent className="p-8 flex flex-col h-full">
+                    <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">{index + 1}</span>
+                    </div>
+                    <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">{area.area}</h3>
+                    <p className="text-slate-600 flex-1">{area.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* Key Publications */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -53,8 +113,8 @@ const Research = () => {
               Key Publications
             </h2>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -93,7 +153,7 @@ const Research = () => {
               <motion.div key={pub.title} variants={fadeInUp}>
                 <Card className="bg-gradient-to-br from-slate-50 to-blue-50 border border-slate-200 hover:shadow-lg transition-all duration-300 h-full" data-testid={pub.testId}>
                   <CardContent className="p-8 h-full flex flex-col">
-                    <img 
+                    <img
                       src={`https://images.unsplash.com/photo-15599571${48 + index}?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400`}
                       alt={`${pub.title} paper cover`}
                       className="rounded-lg w-full h-48 object-cover mb-6"
@@ -115,26 +175,13 @@ const Research = () => {
               </motion.div>
             ))}
           </motion.div>
-          
-          <motion.div 
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              
-             
-            </div>
-          </motion.div>
         </div>
       </section>
 
       {/* News & Media */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -148,9 +195,9 @@ const Research = () => {
               Since our seed round in July 2025, we've presented at leading conferences and been featured in top-tier publications for our physics-AI approach.
             </p>
           </motion.div>
-          
+
           {/* News Ticker */}
-          <motion.div 
+          <motion.div
             className="mb-12"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -159,9 +206,9 @@ const Research = () => {
           >
             <Card className="bg-slate-50 border-slate-200" data-testid="news-ticker">
               <CardContent className="p-8">
-                <img 
-                  src="https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=300" 
-                  alt="News ticker showing recent headlines and announcements" 
+                <img
+                  src="https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=300"
+                  alt="News ticker showing recent headlines and announcements"
                   className="rounded-xl w-full h-auto mb-4"
                   data-testid="img-news-ticker"
                 />
@@ -174,8 +221,8 @@ const Research = () => {
               </CardContent>
             </Card>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -238,66 +285,6 @@ const Research = () => {
                     <Button variant="ghost" size="sm" className="text-teal-600 hover:text-teal-700 p-0 h-auto" data-testid={`button-read-news-${index + 1}`}>
                       Read More →
                     </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Research Areas */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
-              Research Areas
-            </h2>
-          </motion.div>
-          
-          <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                area: "Milestoning Theory",
-                description: "Advanced computational methods for kinetic pathway analysis",
-                testId: "research-milestoning"
-              },
-              {
-                area: "Force Field Development",
-                description: "QM-trained neural networks for molecular simulations",
-                testId: "research-force-fields"
-              },
-              {
-                area: "Drug-Target Kinetics",
-                description: "Residence time prediction and optimization strategies",
-                testId: "research-kinetics"
-              },
-              {
-                area: "Computational Biology",
-                description: "Physics-AI integration for therapeutic discovery",
-                testId: "research-compbio"
-              }
-            ].map((area, index) => (
-              <motion.div key={area.area} variants={fadeInUp}>
-                <Card className="bg-gradient-to-br from-slate-50 to-teal-50 hover:shadow-lg transition-all duration-300 text-center h-full" data-testid={area.testId}>
-                  <CardContent className="p-8 flex flex-col h-full">
-                    <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">{index + 1}</span>
-                    </div>
-                    <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">{area.area}</h3>
-                    <p className="text-slate-600 flex-1">{area.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
