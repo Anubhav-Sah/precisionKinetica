@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "../Components/ui/button";
 import { Card, CardContent } from "../Components/ui/card";
+import { newsData } from "../data/newsData";
 
 const Home = () => {
   const fadeInUp = {
@@ -26,6 +27,7 @@ const Home = () => {
       ease: "easeInOut"
     }
   };
+  const latestNews = newsData.slice(0, 3);
 
   return (
     <div className="w-full min-h-screen pt-20">
@@ -176,7 +178,7 @@ const Home = () => {
                     <p className="text-slate-600 mb-6 leading-relaxed flex-1">{feature.description}</p>
                     <Link to={`/platform`} data-testid={`link-read-more-${feature.title.toLowerCase()}`}>
                       <span className="text-teal-600 font-semibold hover:text-teal-700 transition-colors cursor-pointer">
-                        
+
                       </span>
                     </Link>
                   </CardContent>
@@ -274,13 +276,13 @@ const Home = () => {
       </section>
 
       {/* News Preview Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
         <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
@@ -289,43 +291,27 @@ const Home = () => {
           </motion.div>
 
           <motion.div
-            className="grid md:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {[
-              {
-                date: "July 9, 2025",
-                title: "Revolution Medicines Collaboration",
-                description: "Using AI Discovery Tools to Pursue New Drug Candidates",
-                testId: "news-revolution"
-              },
-              {
-                date: "June 10, 2025",
-                title: "CNBC Disruptor 50 List",
-                description: "Precision Kinetica named to CNBC's 2025 Disruptor 50 List",
-                testId: "news-cnbc"
-              },
-              {
-                date: "June 4, 2025",
-                title: "Phase 1/1B Study Completion",
-                description: "Lead Program IAM1363, a Small Molecule Inhibitor of Wild-Type and Oncogenic HER2 Mutant Proteins",
-                testId: "news-phase1"
-              }
-            ].map((news, index) => (
+            {latestNews.map((news) => (
               <motion.div key={news.title} variants={fadeInUp}>
-                <Card className="bg-white hover:shadow-lg transition-all duration-300 h-full" data-testid={news.testId}>
+                <Card className="bg-white hover:shadow-lg transition-all duration-300 h-full">
                   <CardContent className="p-6 h-full flex flex-col">
-                    <div className="text-sm text-teal-600 font-semibold mb-2">{news.date}</div>
-                    <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">{news.title}</h3>
-                    <p className="text-slate-600 mb-4 flex-1">{news.description}</p>
-                    <Link to="/news-media" data-testid={`link-read-news-${index}`}>
-                      <span className="text-teal-600 font-semibold hover:text-teal-700 transition-colors cursor-pointer">
-                        Read More →
-                      </span>
-                    </Link>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="text-sm text-teal-600 font-semibold">
+                        {news.date}
+                      </div>
+                    </div>
+                    <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">
+                      {news.title}
+                    </h3>
+                    <p className="text-slate-600 mb-4 flex-1">
+                      {news.description}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -339,14 +325,18 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Link to="/news-media" data-testid="button-view-all-news">
-              <Button size="lg" className="bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 px-8 py-4 rounded-full text-lg font-semibold">
+            <Link to="/news" data-testid="button-view-all-news">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 px-8 py-4 rounded-full text-lg font-semibold"
+              >
                 View All News →
               </Button>
             </Link>
           </motion.div>
         </div>
       </section>
+
 
       {/* Contact CTA Section */}
       <section className="py-20 bg-gradient-to-br from-slate-800 to-blue-800 text-white">
