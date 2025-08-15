@@ -52,7 +52,7 @@ const Partnerships = () => {
             <Card className="bg-slate-50 border-slate-200 mb-12" data-testid="partnership-workflow">
               <CardContent className="p-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400" 
+                  src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg" 
                   alt="Partner workflow integration process showing collaboration stages" 
                   className="rounded-xl w-full h-auto mb-6"
                   data-testid="img-workflow-integration"
