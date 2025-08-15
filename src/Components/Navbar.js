@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 function Navbar() {
   const [floating, setFloating] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [insightsOpen, setInsightsOpen] = useState(false);
+  const insightsTimeout = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,13 +17,22 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleInsightsEnter = () => {
+    clearTimeout(insightsTimeout.current);
+    setInsightsOpen(true);
+  };
+
+  const handleInsightsLeave = () => {
+    insightsTimeout.current = setTimeout(() => {
+      setInsightsOpen(false);
+    }, 300);
+  };
+
   const navLinks = [
     { path: "/platform", label: "Platform" },
     { path: "/pipeline", label: "Pipeline" },
     { path: "/partnership", label: "Partnership" },
-    { path: "/news-media", label: "News & Research" },
     { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
   ];
 
   return (
@@ -35,12 +46,6 @@ function Navbar() {
     >
       {/* Logo */}
       <div>
-        {/* <NavLink
-          to="/"
-          className="text-lg font-bold tracking-wide text-gray-800 hover:text-black transition"
-        >
-          PRECISION KINETICA
-        </NavLink> */}
         <NavLink to="/" data-testid="link-home">
           <motion.div
             className="flex items-center space-x-2"
@@ -58,7 +63,7 @@ function Navbar() {
       </div>
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex gap-4 text-sm font-medium">
+      <div className="hidden md:flex gap-4 text-sm font-medium items-center relative flex-1 justify-center">
         {navLinks.map((link) => (
           <NavLink
             key={link.path}
@@ -72,6 +77,47 @@ function Navbar() {
             {link.label}
           </NavLink>
         ))}
+
+        {/* Insights Dropdown */}
+        <div
+          className="relative"
+          onMouseEnter={handleInsightsEnter}
+          onMouseLeave={handleInsightsLeave}
+        >
+          <button className="text-gray-700 hover:text-black transition">
+            Insights ▾
+          </button>
+          {insightsOpen && (
+            <div
+              className="absolute top-full mt-2 w-40 bg-white shadow-lg rounded-lg py-2"
+              onMouseEnter={handleInsightsEnter}
+              onMouseLeave={handleInsightsLeave}
+            >
+              <NavLink
+                to="/news"
+                className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              >
+                News
+              </NavLink>
+              <NavLink
+                to="/research"
+                className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              >
+                Research
+              </NavLink>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Contact Button (Desktop) */}
+      <div className="hidden md:block">
+        <NavLink
+          to="/contact"
+          className="bg-gradient-to-r from-teal-500 to-blue-600 text-white px-4 py-2 rounded-full hover:from-teal-600 hover:to-blue-700 transition font-medium"
+        >
+          Contact
+        </NavLink>
       </div>
 
       {/* Mobile Menu Button */}
@@ -107,6 +153,34 @@ function Navbar() {
               {link.label}
             </NavLink>
           ))}
+
+          {/* Mobile Insights */}
+          <div className="flex flex-col items-center gap-2">
+            <span className="font-medium text-gray-800">Insights</span>
+            <NavLink
+              to="/news"
+              onClick={() => setMenuOpen(false)}
+              className="text-gray-700 hover:text-black transition"
+            >
+              News
+            </NavLink>
+            <NavLink
+              to="/research"
+              onClick={() => setMenuOpen(false)}
+              className="text-gray-700 hover:text-black transition"
+            >
+              Research
+            </NavLink>
+          </div>
+
+          {/* Contact Button Mobile */}
+          <NavLink
+            to="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="bg-gradient-to-r from-teal-500 to-blue-600 text-white px-4 py-2 rounded-full hover:from-teal-600 hover:to-blue-700 transition font-medium"
+          >
+            Contact
+          </NavLink>
         </div>
       )}
     </nav>

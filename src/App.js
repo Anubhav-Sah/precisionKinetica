@@ -1,8 +1,16 @@
-import { BrowserRouter, Routes, Route, RouterProvider, createBrowserRouter, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  useLocation
+} from 'react-router-dom';
 import { useEffect } from 'react';
 import Home from './Pages/Home';
 import Contact from './Pages/Contact';
 import NewsMedia from './Pages/News&Media';
+import Research from './Pages/Research';
 import Partnership from './Pages/Partnership';
 import Pipeline from './Pages/Pipeline';
 import Platform from './Pages/PlatformPage';
@@ -13,47 +21,22 @@ import Footer from './Components/Footer';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
   return null;
 }
 
 const routes = [
-  {
-    path: '/',
-    element: <div><Navbar /><Home /><Footer /></div>
-  },
-  {
-    path: '/contact',
-    element: <div><Navbar /><Contact /><Footer /></div>
-  },
-  {
-    path: '/news-media',
-    element: <div><Navbar /><NewsMedia /><Footer /></div>
-  },
-  {
-    path: '/partnership',
-    element: <div><Navbar /><Partnership /><Footer /></div>
-  },
-  {
-    path: '/pipeline',
-    element: <div><Navbar /><Pipeline /><Footer /></div>
-  },
-  {
-    path: '/platform',
-    element: <div><Navbar /><Platform /><Footer /></div>
-  },
-  {
-    path: '/about',
-    element: <div><Navbar /><About /><Footer /></div>
-  },
-  {
-    path: '*',
-    element: <div>404 Not Found<Footer /></div>
-  }
+  { path: '/', element: <Home /> },
+  { path: '/contact', element: <Contact /> },
+  { path: '/news', element: <NewsMedia /> }, // ✅ Changed to match Navbar
+  { path: '/research', element: <Research /> }, // ✅ Added Research page
+  { path: '/partnership', element: <Partnership /> },
+  { path: '/pipeline', element: <Pipeline /> },
+  { path: '/platform', element: <Platform /> },
+  { path: '/about', element: <About /> },
+  { path: '*', element: <div>404 Not Found</div> }
 ];
 
 const router = createBrowserRouter(
@@ -62,18 +45,16 @@ const router = createBrowserRouter(
     element: (
       <>
         <ScrollToTop />
+        <Navbar />
         {route.element}
+        <Footer />
       </>
     )
   }))
 );
 
 function App() {
-  return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
