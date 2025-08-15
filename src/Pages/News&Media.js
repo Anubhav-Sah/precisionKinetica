@@ -124,25 +124,8 @@ const Research = () => {
             viewport={{ once: true }}
           >
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-slate-600 text-slate-700 hover:bg-slate-600 hover:text-white"
-                data-testid="button-view-github"
-              >
-                <a href="https://github.com/anandojha/automated_milestoning_pipeline" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                  View on GitHub →
-                </a>
-              </Button>
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700"
-                data-testid="button-access-datasets"
-              >
-                <a href="https://zenodo.org/records/14968047" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                  Access Datasets →
-                </a>
-              </Button>
+              
+             
             </div>
           </motion.div>
         </div>
