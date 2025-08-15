@@ -124,7 +124,7 @@ const onSubmit = (data) => {
                   <Card className="bg-slate-50 border-slate-200" data-testid="contact-map">
                     <CardContent className="p-6">
                       <motion.img 
-                        src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300" 
+                        src="https://images.pexels.com/photos/4659806/pexels-photo-4659806.jpeg" 
                         alt="San Diego location map with pin drop animation" 
                         className="rounded-xl w-full h-auto"
                         animate={floatingAnimation}
