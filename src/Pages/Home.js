@@ -176,7 +176,7 @@ const Home = () => {
                     <p className="text-slate-600 mb-6 leading-relaxed flex-1">{feature.description}</p>
                     <Link to={`/platform`} data-testid={`link-read-more-${feature.title.toLowerCase()}`}>
                       <span className="text-teal-600 font-semibold hover:text-teal-700 transition-colors cursor-pointer">
-                        Read More →
+                        
                       </span>
                     </Link>
                   </CardContent>
