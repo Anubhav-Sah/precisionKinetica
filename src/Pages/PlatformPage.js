@@ -11,18 +11,23 @@ const Platform = () => {
 
   const staggerChildren = {
     animate: {
-      transition: {
-        staggerChildren: 0.2
-      }
+      transition: { staggerChildren: 0.2 }
     }
   };
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 relative">
+
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
-        <div className="container mx-auto px-6">
-          <motion.div 
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50 relative overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-teal-100 to-blue-100 opacity-20"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        />
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,40 +43,48 @@ const Platform = () => {
         </div>
       </section>
 
-      {/* Technology Overview */}
-      <section className="py-20 bg-white">
+      {/* Image + Pipeline Section */}
+      <section className="py-12 bg-gray-50 relative overflow-hidden">
         <div className="container mx-auto px-6">
-          <motion.div 
-            className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Card className="bg-slate-50 border-slate-200 mb-12" data-testid="platform-overview">
-              <CardContent className="p-8">
-                <img 
-                  src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600" 
-                  alt="Automated milestoning pipeline schematic" 
-                  className="rounded-xl shadow-lg w-full h-auto mb-6"
-                  data-testid="img-pipeline-schematic"
-                />
-                <h2 className="font-heading font-bold text-3xl text-slate-800 mb-4">
-                  Automated Milestoning Pipeline
-                </h2>
-                <p className="text-slate-600 leading-relaxed text-lg">
-                  First, receptor and ligand are each parameterized using our QM-trained espaloma force field model, capturing subtle electronic effects. Next, configurational space is partitioned into one-dimensional Voronoi cells along the center-of-mass reaction coordinate, ensuring systematic coverage of binding and unbinding pathways. Finally, explicit-solvent MD simulations execute within each cell—by default 200 ns per cell using OpenMM with TIP3P water and reflective-boundary conditions—while parallel Brownian-dynamics runs define long-range association.
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+
+            {/* Image */}
+            <motion.div className="lg:w-1/2 w-full" {...fadeInUp}>
+              <img
+                className="w-full rounded-lg shadow-lg"
+                src="https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg"
+                alt="Automated Milestoning Pipeline"
+              />
+            </motion.div>
+
+            {/* Pipeline Description */}
+            <motion.div className="lg:w-1/2 w-full bg-white p-6 rounded-lg shadow-lg" {...fadeInUp}>
+              <h3 className="text-xl font-semibold mb-4">Automated Milestoning Pipeline</h3>
+              <p className="text-gray-700 mb-2">
+                First, receptor and ligand are each parameterized using our QM-trained espaloma force field model, capturing subtle electronic effects.
+              </p>
+              <p className="text-gray-700 mb-2">
+                Next, configurational space is partitioned into one-dimensional Voronoi cells along the center-of-mass reaction coordinate, ensuring systematic coverage of binding and unbinding pathways.
+              </p>
+              <p className="text-gray-700">
+                Finally, explicit-solvent MD simulations execute within each cell—by default 200 ns per cell using OpenMM with TIP3P water and reflective-boundary conditions—while parallel Brownian-dynamics runs define long-range association.
+              </p>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
       {/* Core Technologies */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
-        <div className="container mx-auto px-6">
-          <motion.div 
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50 relative overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-tr from-teal-50 to-blue-100 opacity-20"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        />
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -82,8 +95,8 @@ const Platform = () => {
               Core Technologies
             </h2>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -109,8 +122,13 @@ const Platform = () => {
                 features: ["GPU acceleration", "Explicit solvent modeling", "TIP3P water model", "Reflective boundaries"],
                 testId: "tech-openmm"
               }
-            ].map((tech, index) => (
-              <motion.div key={tech.title} variants={fadeInUp}>
+            ].map((tech) => (
+              <motion.div
+                key={tech.title}
+                variants={fadeInUp}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
                 <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full" data-testid={tech.testId}>
                   <CardContent className="p-8 h-full flex flex-col">
                     <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-600 rounded-2xl mb-6 flex items-center justify-center">
@@ -119,10 +137,8 @@ const Platform = () => {
                     <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">{tech.title}</h3>
                     <p className="text-slate-600 mb-6 leading-relaxed flex-1">{tech.description}</p>
                     <div className="space-y-2">
-                      {tech.features.map((feature, featureIndex) => (
-                        <Badge key={featureIndex} variant="secondary" className="mr-2">
-                          {feature}
-                        </Badge>
+                      {tech.features.map((feature, i) => (
+                        <Badge key={i} variant="secondary" className="mr-2">{feature}</Badge>
                       ))}
                     </div>
                   </CardContent>
@@ -133,10 +149,10 @@ const Platform = () => {
         </div>
       </section>
 
-      {/* Process Flow */}
+      {/* Workflow Process */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -150,8 +166,8 @@ const Platform = () => {
               Our workflow unfolds as a continuous story rather than discrete steps, delivering comprehensive kinetic profiles.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-2 lg:grid-cols-5 gap-6"
             variants={staggerChildren}
             initial="initial"
@@ -159,33 +175,18 @@ const Platform = () => {
             viewport={{ once: true }}
           >
             {[
-              {
-                step: "01",
-                title: "Structure Preparation",
-                description: "Upload complex, split into receptor and ligand, parameterize with espaloma"
-              },
-              {
-                step: "02", 
-                title: "Tessellation",
-                description: "One-dimensional reaction coordinate anchors milestone tessellation"
-              },
-              {
-                step: "03",
-                title: "Enhanced Sampling",
-                description: "Steered MD, metadynamics, or random-acceleration for initialization"
-              },
-              {
-                step: "04",
-                title: "Parallel Simulations",
-                description: "Unbiased MD for dissociation, Brownian dynamics for association"
-              },
-              {
-                step: "05",
-                title: "Analysis",
-                description: "Milestoning theory assembles transition statistics into kinetic profiles"
-              }
-            ].map((step, index) => (
-              <motion.div key={step.step} variants={fadeInUp}>
+              { step: "01", title: "Structure Preparation", description: "Upload complex, split into receptor and ligand, parameterize with espaloma" },
+              { step: "02", title: "Tessellation", description: "One-dimensional reaction coordinate anchors milestone tessellation" },
+              { step: "03", title: "Enhanced Sampling", description: "Steered MD, metadynamics, or random-acceleration for initialization" },
+              { step: "04", title: "Parallel Simulations", description: "Unbiased MD for dissociation, Brownian dynamics for association" },
+              { step: "05", title: "Analysis", description: "Milestoning theory assembles transition statistics into kinetic profiles" }
+            ].map((step) => (
+              <motion.div
+                key={step.step}
+                variants={fadeInUp}
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
                 <Card className="bg-gradient-to-br from-slate-50 to-teal-50 hover:shadow-lg transition-all duration-300 h-full" data-testid={`workflow-step-${step.step}`}>
                   <CardContent className="p-6 text-center h-full flex flex-col">
                     <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -204,7 +205,7 @@ const Platform = () => {
       {/* Performance Metrics */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -218,8 +219,8 @@ const Platform = () => {
               Rigorously derived transition-rate matrix yields kon, koff, and ΔG without any manual intervention.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-4 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -227,28 +228,12 @@ const Platform = () => {
             viewport={{ once: true }}
           >
             {[
-              {
-                metric: "200 ns",
-                description: "Default simulation time per Voronoi cell",
-                testId: "metric-simulation-time"
-              },
-              {
-                metric: "Hours",
-                description: "From PDB upload to kinetic profile delivery",
-                testId: "metric-delivery-time"
-              },
-              {
-                metric: "Automated",
-                description: "Zero manual intervention required",
-                testId: "metric-automation"
-              },
-              {
-                metric: "GPU",
-                description: "OpenMM acceleration for maximum performance",
-                testId: "metric-acceleration"
-              }
-            ].map((metric, index) => (
-              <motion.div key={metric.metric} variants={fadeInUp}>
+              { metric: "200 ns", description: "Default simulation time per Voronoi cell", testId: "metric-simulation-time" },
+              { metric: "Hours", description: "From PDB upload to kinetic profile delivery", testId: "metric-delivery-time" },
+              { metric: "Automated", description: "Zero manual intervention required", testId: "metric-automation" },
+              { metric: "GPU", description: "OpenMM acceleration for maximum performance", testId: "metric-acceleration" }
+            ].map((metric) => (
+              <motion.div key={metric.metric} variants={fadeInUp} whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 200 }}>
                 <Card className="bg-white hover:shadow-lg transition-all duration-300 text-center" data-testid={metric.testId}>
                   <CardContent className="p-8">
                     <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text mb-2">
@@ -262,6 +247,7 @@ const Platform = () => {
           </motion.div>
         </div>
       </section>
+
     </div>
   );
 };
