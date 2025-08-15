@@ -51,7 +51,7 @@ const Pipeline = () => {
             <Card className="bg-slate-50 border-slate-200 mb-12" data-testid="pipeline-visualization">
               <CardContent className="p-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400" 
+                  src="https://images.pexels.com/photos/5878510/pexels-photo-5878510.jpeg" 
                   alt="Five-panel step animation showing complete pipeline workflow" 
                   className="rounded-xl w-full h-auto mb-6"
                   data-testid="img-pipeline-steps"
