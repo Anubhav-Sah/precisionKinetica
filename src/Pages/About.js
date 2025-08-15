@@ -41,36 +41,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Collaboration */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-6xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Card className="bg-slate-50 border-slate-200 mb-12" data-testid="team-collaboration">
-              <CardContent className="p-8">
-                <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500"
-                  alt="Team brainstorming and collaboration session"
-                  className="rounded-xl w-full h-auto mb-6"
-                  data-testid="img-team-brainstorming"
-                />
-                <h2 className="font-heading font-bold text-3xl text-slate-800 mb-4">
-                  Pioneering the Future of Drug Discovery
-                </h2>
-                <p className="text-slate-600 leading-relaxed text-lg">
-                  At Precision Kinetica, we accelerate therapeutic discovery by combining cutting-edge computational methods with deep domain expertise. Our team represents the perfect convergence of business acumen, scientific innovation, and engineering excellence, working together to transform how the pharmaceutical industry approaches drug optimization.
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-
+      
       {/* Leadership Team */}
       <section className="py-20 bg-gradient-to-br from-teal-50 to-slate-50">
         <div className="container mx-auto px-6">
