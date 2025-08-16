@@ -39,31 +39,34 @@ const Pipeline = () => {
       </section>
 
       {/* Pipeline Overview */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            className="max-w-6xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+      <section className="py-0 bg-gray-50 relative overflow-hidden">
+        <div className="flex flex-col lg:flex-row w-full h-full min-h-[500px]">
+
+          {/* Left: Full-height image */}
+          <div className="lg:w-1/2 w-full">
+            <img
+              className="w-full h-full object-cover"
+              src="https://images.pexels.com/photos/5878510/pexels-photo-5878510.jpeg"
+              alt="Five-panel step animation showing complete pipeline workflow"
+            />
+          </div>
+
+          {/* Right: Text */}
+          <motion.div
+            className="lg:w-1/2 w-full flex items-center p-12 bg-white"
+            {...fadeInUp}
           >
-            <Card className="bg-slate-50 border-slate-200 mb-12" data-testid="pipeline-visualization">
-              <CardContent className="p-8">
-                <img 
-                  src="https://images.pexels.com/photos/5878510/pexels-photo-5878510.jpeg" 
-                  alt="Five-panel step animation showing complete pipeline workflow" 
-                  className="rounded-xl w-full h-auto mb-6"
-                  data-testid="img-pipeline-steps"
-                />
-                <h2 className="font-heading font-bold text-3xl text-slate-800 mb-4">
-                  Complete Automated Workflow
-                </h2>
-                <p className="text-slate-600 leading-relaxed text-lg">
-                  From structure preparation through final analysis, our pipeline handles every step automatically. The uploaded complex is split into receptor and ligand, parameterized, solvated with physiological ion concentration, and energy-minimized. Enhanced-sampling techniques generate realistic conformations for each milestone cell, ensuring robust initialization before parallel simulations begin.
-                </p>
-              </CardContent>
-            </Card>
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+                Complete Automated Workflow
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-3">
+                From structure preparation through final analysis, our pipeline handles every step automatically. 
+                The uploaded complex is split into receptor and ligand, parameterized, solvated with physiological 
+                ion concentration, and energy-minimized. Enhanced-sampling techniques generate realistic conformations 
+                for each milestone cell, ensuring robust initialization before parallel simulations begin.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
