@@ -33,7 +33,7 @@ const Partnerships = () => {
               Partnerships
             </h1>
             <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              We partner with biotech and pharma R&D teams to integrate kinetic insights at every stage of lead optimization. Together, we translate residence-time predictions into go/no-go decisions.
+              We collaborate with industry and academia to integrate kinetics-driven insights into drug discovery workflows.
             </p>
           </motion.div>
         </div>
@@ -93,22 +93,22 @@ const Partnerships = () => {
           >
             {[
               {
-                title: "Co-Development",
-                description: "Novel target collaboration with secure cloud deployment and method development. Work directly with our team to tackle your most challenging targets.",
+                title: "Co-Development Projects",
+                description: "Partner with our scientists and engineers to tailor seekrflow for your novel targets, from custom milestone schemes to bespoke force-field refinements.",
                 features: ["Novel target focus", "Secure cloud deployment", "Method customization", "Direct collaboration"],
                 gradient: "from-teal-500 to-blue-600",
                 testId: "partnership-codevelopment"
               },
               {
                 title: "Platform Integration",
-                description: "Seamless integration into internal workflows with scientific and engineering support. Maintain your existing processes while adding kinetic insights.",
+                description: "Deploy Precision Kinetica on your secure cloud or on-premise infrastructure with full technical support, training, and seamless API integration into your informatics environment. ",
                 features: ["Workflow integration", "API connectivity", "Training programs", "Technical support"],
                 gradient: "from-blue-500 to-teal-600",
                 testId: "partnership-integration"
               },
               {
                 title: "Academic Collaboration",
-                description: "Co-author high-impact publications demonstrating real-world ROI and breakthroughs. Push the boundaries of computational drug discovery.",
+                description: "Engage in joint research initiatives, method-development grants, and co-authored publications that advance the science of molecular kinetics and simulation. ",
                 features: ["Joint publications", "Method development", "Conference presentations", "Grant applications"],
                 gradient: "from-emerald-500 to-blue-600",
                 testId: "partnership-academic"
@@ -277,7 +277,7 @@ const Partnerships = () => {
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-4xl md:text-5xl mb-6">
-              Ready to Partner?
+              Interested in partnering?
             </h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
               Let's discuss how Precision Kinetica can accelerate your drug discovery programs with cutting-edge kinetic insights.

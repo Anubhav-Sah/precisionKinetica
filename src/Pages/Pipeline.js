@@ -29,10 +29,10 @@ const Pipeline = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-slate-800 mb-6">
-              Pipeline
+              Our Pipeline
             </h1>
             <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              Our workflow unfolds as a continuous story rather than discrete steps. It begins with structure preparation and delivers comprehensive kinetic and thermodynamic profiles.
+              A single upload powers our three-stage, fully automated kinetics engine.
             </p>
           </motion.div>
         </div>
@@ -95,39 +95,39 @@ const Pipeline = () => {
           >
             {[
               {
-                title: "Structure Preparation",
-                description: "The uploaded complex is split into receptor and ligand, parameterized using espaloma force fields, solvated with physiological ion concentration, and energy-minimized to prepare for simulation.",
-                details: ["Complex splitting", "Force field parameterization", "Solvation with ions", "Energy minimization"],
+                title: "Upload Your PDB",
+                description: "Drop in any receptor–ligand complex. No prep, no scripts—just your starting structure.",
+                details: ["Upload receptor–ligand complex", "No preprocessing needed", "Drag-and-drop upload"],
                 gradient: "from-slate-50 to-teal-50",
-                testId: "step-structure-prep"
+                testId: "step-upload"
               },
               {
-                title: "Reaction Coordinate Definition",
-                description: "A one-dimensional reaction coordinate, defined by the center-of-mass distance of binding-site residues, anchors a tessellation of milestones that track progress from bound to unbound states.",
-                details: ["Center-of-mass distance", "Binding-site residues", "Milestone tessellation", "Progress tracking"],
+                title: "Seeding",
+                description: "Structures are parameterized with Espaloma and seeded into Voronoi cells around the binding site for initialization.",
+                details: ["Espaloma parameterization", "Voronoi tessellation", "Milestone seeding"],
                 gradient: "from-slate-50 to-blue-50",
-                testId: "step-reaction-coordinate"
+                testId: "step-seeding"
               },
               {
-                title: "Enhanced Sampling",
-                description: "Enhanced-sampling techniques such as steered MD, metadynamics or random-acceleration MD generate realistic conformations for each milestone cell, ensuring robust initialization.",
-                details: ["Steered molecular dynamics", "Metadynamics simulations", "Random-acceleration MD", "Robust initialization"],
+                title: "Simulations",
+                description: "Parallel MD and BD simulations are launched in the cloud to explore binding and unbinding dynamics.",
+                details: ["Molecular dynamics (MD)", "Brownian dynamics (BD)", "Parallel cloud execution"],
                 gradient: "from-slate-50 to-emerald-50",
-                testId: "step-enhanced-sampling"
+                testId: "step-simulations"
               },
               {
-                title: "Parallel Simulations",
-                description: "All simulations run in parallel—unbiased MD to capture dissociation kinetics and Brownian-dynamics to capture association rates—maximizing computational efficiency.",
-                details: ["Unbiased MD simulations", "Brownian dynamics", "Parallel execution", "Kinetic rate capture"],
+                title: "Milestoning Analysis",
+                description: "Trajectory data is assembled into transition statistics, building kinetic and thermodynamic profiles.",
+                details: ["Transition statistics", "Kinetic rate calculation", "Free-energy landscapes"],
                 gradient: "from-slate-50 to-purple-50",
-                testId: "step-parallel-sims"
+                testId: "step-analysis"
               },
               {
-                title: "Milestoning Analysis", 
-                description: "Milestoning theory assembles transition statistics into mean first-passage times and free-energy profiles, delivering comprehensive kinetic and thermodynamic characterization.",
-                details: ["Transition statistics", "First-passage times", "Free-energy profiles", "Kinetic characterization"],
+                title: "Receive Results",
+                description: "Get kon, koff, ΔG and full free-energy landscapes directly delivered to your dashboard.",
+                details: ["Binding and unbinding rates", "Free-energy profiles", "Dashboard delivery"],
                 gradient: "from-slate-50 to-orange-50",
-                testId: "step-analysis"
+                testId: "step-results"
               }
             ].map((step, index) => (
               <motion.div key={step.title} variants={fadeInUp}>

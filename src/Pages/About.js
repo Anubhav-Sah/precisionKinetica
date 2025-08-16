@@ -4,6 +4,8 @@ import { Button } from "../Components/ui/button";
 import { Link } from "wouter";
 import arpitaHeadshot from "../assets/images/arpita.jpg";
 import anupamHeadshot from "../assets/images/anupam.jpeg";
+import Lottie from "lottie-react";
+import teamAnimation from "../animations/About Us Team.json";
 
 const About = () => {
   const fadeInUp = {
@@ -35,7 +37,7 @@ const About = () => {
               About Us
             </h1>
             <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              Our mission is to bridge the gap between molecular structure and drug efficacy by predicting how long molecules stay bound, not just how tightly they bind. Together, we bring a unique blend of business strategy, computational chemistry, and software engineering.
+              Precision Kinetica unites physics, AI, and biology to predict how long drug candidates stay bound—accelerating lead optimization with unprecedented speed and accuracy
             </p>
           </motion.div>
         </div>
@@ -148,21 +150,21 @@ const About = () => {
             {[
               {
                 value: "Scientific Rigor",
-                description: "Maintaining the highest standards of computational accuracy and reproducibility",
+                description: "Every prediction undergoes stringent validation against experimental benchmarks to ensure accuracy and reproducibility you can trust.",
                 icon: "🔬",
                 testId: "value-rigor"
               },
               {
-                value: "Open Innovation",
-                description: "Contributing to the scientific community through open-source code and publications",
-                icon: "🌟",
-                testId: "value-innovation"
+                value: "Open Transparency",
+                description: "Sharing algorithms, datasets, and workflows so collaborators and customers can reproduce, inspect, and build upon our results.",
+                icon: "🌐",
+                testId: "value-transparency"
               },
               {
-                value: "Patient Impact",
-                description: "Focused on accelerating better medicines to patients with speed and proven effectiveness.",
-                icon: "❤️",
-                testId: "value-impact"
+                value: "User-Centered Innovation",
+                description: "Designing each feature with real drug-discovery teams in mind, making our platform as intuitive and practical in the lab as it is powerful under the hood.",
+                icon: "💡",
+                testId: "value-innovation"
               },
               {
                 value: "Collaborative Spirit",
@@ -185,114 +187,49 @@ const About = () => {
         </div>
       </section>
 
-      {/* Careers Section */}
-      {/* <section id="careers" className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
-        <div className="container mx-auto px-6">
+      {/* Our Story */}
+      <section className="py-0 bg-gray-50 relative overflow-hidden">
+        <div className="flex flex-col lg:flex-row w-full h-full min-h-[500px]">
+
+          {/* Left: Lottie Animation */}
+          <div className="lg:w-1/2 w-full flex items-center justify-center bg-white">
+            <Lottie 
+              animationData={teamAnimation} 
+              loop={true} 
+              className="w-full h-[500px] object-contain"
+            />
+          </div>
+
+          {/* Right: Text */}
           <motion.div
-            className="text-center mb-16"
+            className="lg:w-1/2 w-full flex items-center p-12 bg-white"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
-              Careers
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Join us in redefining drug discovery. Work at the intersection of physics, AI, and biology—contributing code, co-authoring papers, and shaping the future of precision therapeutics.
-            </p>
-          </motion.div> */}
-
-          {/* Team Culture */}
-          {/* <motion.div
-            className="mb-16"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Card className="bg-slate-50 border-slate-200" data-testid="team-culture">
-              <CardContent className="p-8 text-center">
-                <img
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
-                  alt="Team culture and office environment montage"
-                  className="rounded-xl mx-auto mb-6"
-                  data-testid="img-office-culture"
-                />
-                <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">
-                  Join Our Mission
-                </h3>
-                <p className="text-slate-600 max-w-2xl mx-auto">
-                  We're building the future of computational drug discovery, and we need passionate individuals who share our vision of accelerating therapeutic development through innovative science and technology.
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-3 gap-8"
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                role: "Computational Scientists",
-                description: "Develop next-generation sampling algorithms and advance milestoning methodologies for enhanced kinetic simulations.",
-                responsibilities: ["Algorithm development", "Method validation", "Scientific publications", "Collaboration with partners"],
-                testId: "role-computational"
-              },
-              {
-                role: "ML Engineers",
-                description: "Train QM-level force fields using physics-informed machine learning approaches and neural network architectures.",
-                responsibilities: ["Neural network development", "Force field training", "Model optimization", "Performance analysis"],
-                testId: "role-ml"
-              },
-              {
-                role: "DevOps Specialists",
-                description: "Scale our advanced pipeline on cloud and HPC infrastructure for high-throughput molecular dynamics simulations.",
-                responsibilities: ["Infrastructure scaling", "Pipeline optimization", "Cloud deployment", "Performance monitoring"],
-                testId: "role-devops"
-              }
-            ].map((role, index) => (
-              <motion.div key={role.role} variants={fadeInUp}>
-                <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full" data-testid={role.testId}>
-                  <CardContent className="p-8 h-full flex flex-col">
-                    <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-600 rounded-2xl mb-6 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">{index + 1}</span>
-                    </div>
-                    <h3 className="font-heading font-semibold text-xl text-slate-800 mb-4">{role.role}</h3>
-                    <p className="text-slate-600 mb-6 flex-1">{role.description}</p>
-                    <div className="space-y-2">
-                      {role.responsibilities.map((resp, respIndex) => (
-                        <div key={respIndex} className="flex items-center text-sm text-slate-600">
-                          <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
-                          {resp}
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Link href="/contact" data-testid="button-view-careers">
-              <Button size="lg" className="bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 px-8 py-4 rounded-full text-lg font-semibold">
-                View Open Positions →
-              </Button>
-            </Link>
+            <div>
+              <h3 className="text-3xl font-bold mb-6 text-gray-900">
+                Our Story
+              </h3>
+              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                Precision Kinetica began as a collaboration between computational chemists and AI 
+                researchers, united by a single mission: to automate the prediction of molecular binding kinetics 
+                with physics-based precision. What started in an academic lab—refining milestoning theory and 
+                graph-neural-network force fields—grew into a fully automated pipeline capable of transforming 
+                a PDB file into a comprehensive kinetic and thermodynamic profile in mere hours.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Along the way, we partnered with industry pioneers, tested our methods on dozens of real-world 
+                targets, and continuously tuned our workflows to meet the exacting needs of both academic and 
+                pharmaceutical labs. Today, we stand at the forefront of simulation-driven drug discovery, 
+                building a future where every compound’s residence time guides smarter, faster decisions.
+              </p>
+            </div>
           </motion.div>
         </div>
-      </section> */}
+      </section>
+
     </div>
   );
 };
