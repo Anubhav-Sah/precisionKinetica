@@ -18,6 +18,8 @@ import About from './Pages/About';
 import './App.css';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+import AdminNews from './Pages/AdminNews'; // ✅ Added AdminNews page
+
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -36,7 +38,12 @@ const routes = [
   { path: '/pipeline', element: <Pipeline /> },
   { path: '/platform', element: <Platform /> },
   { path: '/about', element: <About /> },
-  { path: '*', element: <div>404 Not Found</div> }
+  { path: '*', element: <div>404 Not Found</div> },
+  {
+  path: '/admin',
+  element: <AdminNews />,
+  ErrorBoundary: <div>Something went wrong with Admin News.</div>,
+}
 ];
 
 const router = createBrowserRouter(

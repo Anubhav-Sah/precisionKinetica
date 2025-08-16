@@ -11,23 +11,34 @@ import { db } from "../firebase";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 
 const Home = () => {
-  const [newsData, setNewsData] = useState([]);
+  const [newsList, setNewsList] = useState([]);
 
   // ✅ Fetch only latest 3 news from Firestore
+  // ✅ Fetch only latest 3 news from Firestore (sorted by date desc)
   useEffect(() => {
     const fetchNews = async () => {
       try {
         const q = query(
           collection(db, "news"),
           orderBy("date", "desc"),
-          limit(3)
+          limit(3) // ✅ Only fetch 3 latest news
         );
         const querySnapshot = await getDocs(q);
-        const newsList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setNewsData(newsList);
+
+        const newsData = querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+
+          // ✅ Convert Firestore Timestamp to JS Date
+          return {
+            id: doc.id,
+            ...data,
+            date: data.date?.seconds
+              ? new Date(data.date.seconds * 1000)
+              : null,
+          };
+        });
+
+        setNewsList(newsData);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -35,6 +46,7 @@ const Home = () => {
 
     fetchNews();
   }, []);
+
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -298,72 +310,118 @@ const Home = () => {
       </section>
 
       {/* News Preview Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
-              News & Media
-            </h2>
-          </motion.div>
+      {/* <section id="news" className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Latest News</h2>
 
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {newsData.length === 0 ? (
-              <p className="col-span-full text-center text-slate-500 mt-4 text-lg">
-                No news available.
-              </p>
-            ) : (
-              newsData.map((news) => (
-                <motion.div key={news.id} variants={fadeInUp}>
-                  <Card className="bg-white hover:shadow-lg transition-all duration-300 h-full">
-                    <CardContent className="p-6 h-full flex flex-col">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="text-sm text-teal-600 font-semibold">
-                          {news.date}
-                        </div>
-                      </div>
-                      <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">
-                        {news.title}
-                      </h3>
-                      <p className="text-slate-600 mb-4 flex-1">
-                        {news.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))
-            )}
-          </motion.div>
-
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Link to="/news" data-testid="button-view-all-news">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 px-8 py-4 rounded-full text-lg font-semibold"
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {newsList.length > 0 ? (
+            newsList.map((news) => (
+              <div
+                key={news.id}
+                className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-md hover:shadow-xl 
+                     transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
               >
-                View All News →
-              </Button>
-            </Link>
-          </motion.div>
+                {/* Title */}
+      {/* <h3 className="text-xl font-semibold mb-3 text-gray-800">
+                  {news.title}
+                </h3> */}
+
+      {/* Date */}
+      {/* <p className="text-gray-500 text-sm mb-3">
+                  {news.date?.seconds
+                    ? new Date(news.date.seconds * 1000).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })
+                    : ""}
+                </p> */}
+
+      {/* Description */}
+      {/* <p className="text-gray-700 mb-3 line-clamp-3">{news.description}</p> */}
+
+      {/* Body */}
+      {/* <p className="text-gray-600 text-sm">{news.body}</p> */}
+
+      {/* Read More / CTA */}
+      {/* <div className="mt-4">
+                  <button className="text-blue-600 hover:text-blue-800 font-medium text-sm">
+                    Read more →
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500 col-span-3">No news available</p>
+          )}
+        </div>
+      </section> */}
+      {/* News Section */}
+      {/* News Section */}
+      <section id="news" className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Latest News</h2>
+
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {newsList.length > 0 ? (
+            newsList.map((news) => (
+              <div
+                key={news.id}
+                className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 flex flex-col justify-between"
+              >
+                {/* Date + Badge */}
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-sm font-medium text-blue-600">
+                    {news.date?.seconds
+                      ? new Date(news.date.seconds * 1000).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })
+                      : ""}
+                  </p>
+                  {news.type && (
+                    <span className="px-3 py-1 text-xs font-semibold text-gray-800 border border-gray-300 rounded-full">
+                      {news.type}
+                    </span>
+                  )}
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {news.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-600 text-sm mb-4">
+                  {news.description}
+                </p>
+
+                {/* Read More */}
+                <a
+                  href="#"
+                  className="text-green-600 hover:text-green-800 font-medium text-sm"
+                >
+                  Read More →
+                </a>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500 col-span-3">No news available</p>
+          )}
+          {/* View All News Button */}
+          {newsList.length > 0 && (
+            <div className="mt-12 flex justify-center">
+              <a
+                href="/news" // 👉 Replace with your dedicated news page route
+                className="px-6 py-3 bg-blue-600 text-white font-medium rounded-full shadow-md hover:bg-blue-700 transition"
+              >
+                View All News
+              </a>
+            </div>
+          )}
         </div>
       </section>
+
 
 
       {/* Contact CTA Section */}
@@ -387,6 +445,7 @@ const Home = () => {
               </Button>
             </Link>
           </motion.div>
+
         </div>
       </section>
     </div>

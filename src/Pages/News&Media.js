@@ -1,39 +1,37 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "../Components/ui/card";
-import { Button } from "../Components/ui/button";
 import { Badge } from "../Components/ui/badge";
-import { db } from "../firebase"; // Import Firestore
+import { db } from "../firebase"; 
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 const Research = () => {
-  const [newsData, setNewsData] = useState([]);
-  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [newsList, setNewsList] = useState([]);
 
-  // Animation variants
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" },
   };
 
-  const staggerChildren = {
-    animate: {
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  // Fetch news from Firestore
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const newsRef = collection(db, "news"); // Your collection name
-        const q = query(newsRef, orderBy("date", "desc")); // Order by date
-        const snapshot = await getDocs(q);
-        const newsList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setNewsData(newsList);
+        const q = query(collection(db, "news"), orderBy("date", "desc"));
+        const querySnapshot = await getDocs(q);
+
+        const newsData = querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+            date: data.date?.seconds
+              ? new Date(data.date.seconds * 1000)
+              : null,
+          };
+        });
+
+        setNewsList(newsData);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -64,69 +62,57 @@ const Research = () => {
             </p>
           </motion.div>
 
-          {/* Dynamic Responsive Grid */}
-          <motion.div
-            className="grid gap-8 grid-cols-1"
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {newsData.length === 0 ? (
-              <p className="text-center text-slate-500 col-span-full">No news available.</p>
-            ) : (
-              newsData.map((news, index) => (
-                <motion.div key={news.id} variants={fadeInUp}>
-                  <Card className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-
-                      {/* LEFT SIDE — Text */}
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="text-sm text-teal-600 font-semibold">
-                            {news.date ? new Date(news.date.seconds * 1000).toLocaleDateString() : ""}
-                          </div>
-                          <Badge variant="outline">{news.type || "General"}</Badge>
-                        </div>
-
-                        <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">
-                          {news.title}
-                        </h3>
-
-                        <p className="text-slate-600 mb-4">{news.description}</p>
-
-                        {expandedIndex === index && (
-                          <p className="text-slate-700 mt-2">{news.body}</p>
+          {/* News Cards Grid */}
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {newsList.length > 0 ? (
+              newsList.map((news) => (
+                <motion.div
+                  key={news.id}
+                  variants={fadeInUp}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                >
+                  <Card className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 flex flex-col justify-between h-full">
+                    <CardContent className="p-0 flex flex-col h-full">
+                      {/* Date + Badge */}
+                      <div className="flex items-center justify-between mb-4">
+                        <p className="text-sm font-medium text-blue-600">
+                          {news.date
+                            ? news.date.toLocaleDateString("en-US", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              })
+                            : ""}
+                        </p>
+                        {news.type && (
+                          <Badge variant="outline">{news.type}</Badge>
                         )}
-
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-teal-600 hover:text-teal-700 p-0 h-auto mt-2"
-                          onClick={() =>
-                            setExpandedIndex(expandedIndex === index ? null : index)
-                          }
-                        >
-                          {expandedIndex === index ? "Show Less ↑" : "Read More →"}
-                        </Button>
                       </div>
 
-                      {/* RIGHT SIDE — Image */}
-                      {news.image && (
-                        <div className="flex-shrink-0 w-full md:w-48 h-32 md:h-40 overflow-hidden rounded-lg shadow-sm">
-                          <img
-                            src={news.image}
-                            alt={news.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      )}
+                      {/* Title */}
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        {news.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-gray-600 text-sm flex-1">
+                        {news.description}
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
               ))
+            ) : (
+              <p className="text-center text-gray-500 col-span-3">
+                No news available
+              </p>
             )}
-          </motion.div>
+          </div>
+
+          {/* View All News Button */}
+          
         </div>
       </section>
     </div>
