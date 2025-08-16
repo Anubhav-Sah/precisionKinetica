@@ -15,6 +15,7 @@
     "classnames": "^2.5.1",
     "drizzle-orm": "^0.44.4",
     "drizzle-zod": "^0.8.3",
+    "firebase": "^12.1.0",
     "framer-motion": "^12.23.12",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.539.0",

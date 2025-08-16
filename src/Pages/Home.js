@@ -2,9 +2,40 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "../Components/ui/button";
 import { Card, CardContent } from "../Components/ui/card";
-import { newsData } from "../data/newsData";
+// import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+
+// ✅ Import Firestore
+import { db } from "../firebase";
+import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 
 const Home = () => {
+  const [newsData, setNewsData] = useState([]);
+
+  // ✅ Fetch only latest 3 news from Firestore
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const q = query(
+          collection(db, "news"),
+          orderBy("date", "desc"),
+          limit(3)
+        );
+        const querySnapshot = await getDocs(q);
+        const newsList = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setNewsData(newsList);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -27,11 +58,9 @@ const Home = () => {
       ease: "easeInOut"
     }
   };
-  const latestNews = newsData.slice(0, 3);
 
   return (
     <div className="w-full min-h-screen pt-20">
-      {/* Hero Section */}
       {/* Hero Section */}
       <section className="h-screen molecular-bg flex items-center justify-center relative overflow-hidden">
         {/* Animated molecular structures */}
@@ -65,7 +94,6 @@ const Home = () => {
             initial="initial"
             animate="animate"
           >
-            {/* Heading + paragraph floating effect */}
             <motion.div
               initial={{ y: 0 }}
               animate={{ y: [0, 10, 0] }}
@@ -98,9 +126,6 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-
-
-
 
       {/* Trusted By Section */}
       <section className="py-16 bg-white">
@@ -141,6 +166,7 @@ const Home = () => {
             </p>
           </motion.div>
 
+          {/* Feature cards */}
           <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
@@ -167,7 +193,7 @@ const Home = () => {
                 gradient: "from-emerald-500 to-blue-600",
                 testId: "card-execution"
               }
-            ].map((feature, index) => (
+            ].map((feature) => (
               <motion.div key={feature.title} variants={fadeInUp}>
                 <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group h-full" data-testid={feature.testId}>
                   <CardContent className="p-8 h-full flex flex-col">
@@ -176,11 +202,6 @@ const Home = () => {
                     </div>
                     <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">{feature.title}</h3>
                     <p className="text-slate-600 mb-6 leading-relaxed flex-1">{feature.description}</p>
-                    <Link to={`/platform`} data-testid={`link-read-more-${feature.title.toLowerCase()}`}>
-                      <span className="text-teal-600 font-semibold hover:text-teal-700 transition-colors cursor-pointer">
-
-                      </span>
-                    </Link>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -207,6 +228,7 @@ const Home = () => {
             </p>
           </motion.div>
 
+          {/* Pipeline cards */}
           <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
@@ -239,7 +261,7 @@ const Home = () => {
                 border: "hover:border-emerald-300",
                 testId: "pipeline-novel"
               }
-            ].map((program, index) => (
+            ].map((program) => (
               <motion.div key={program.title} variants={fadeInUp}>
                 <Card className={`bg-gradient-to-br ${program.gradient} border border-slate-200 ${program.border} transition-all duration-300`} data-testid={program.testId}>
                   <CardContent className="p-8">
@@ -297,25 +319,31 @@ const Home = () => {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {latestNews.map((news) => (
-              <motion.div key={news.title} variants={fadeInUp}>
-                <Card className="bg-white hover:shadow-lg transition-all duration-300 h-full">
-                  <CardContent className="p-6 h-full flex flex-col">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="text-sm text-teal-600 font-semibold">
-                        {news.date}
+            {newsData.length === 0 ? (
+              <p className="col-span-full text-center text-slate-500 mt-4 text-lg">
+                No news available.
+              </p>
+            ) : (
+              newsData.map((news) => (
+                <motion.div key={news.id} variants={fadeInUp}>
+                  <Card className="bg-white hover:shadow-lg transition-all duration-300 h-full">
+                    <CardContent className="p-6 h-full flex flex-col">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="text-sm text-teal-600 font-semibold">
+                          {news.date}
+                        </div>
                       </div>
-                    </div>
-                    <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">
-                      {news.title}
-                    </h3>
-                    <p className="text-slate-600 mb-4 flex-1">
-                      {news.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                      <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3">
+                        {news.title}
+                      </h3>
+                      <p className="text-slate-600 mb-4 flex-1">
+                        {news.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))
+            )}
           </motion.div>
 
           <motion.div
