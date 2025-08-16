@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "../Components/ui/card";
 import { Badge } from "../Components/ui/badge";
 import { db } from "../firebase"; 
@@ -7,6 +7,7 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 const Research = () => {
   const [newsList, setNewsList] = useState([]);
+  const [expandedId, setExpandedId] = useState(null);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -14,6 +15,13 @@ const Research = () => {
     transition: { duration: 0.6, ease: "easeOut" },
   };
 
+  const staggerChildren = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -40,6 +48,18 @@ const Research = () => {
     fetchNews();
   }, []);
 
+  const toggleExpand = (id) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
+  // gradient mapping based on type
+  const gradientMap = {
+    Publication: "from-teal-500 to-blue-600",
+    Conference: "from-blue-500 to-teal-600",
+    Media: "from-emerald-500 to-blue-600",
+    Default: "from-slate-400 to-slate-600",
+  };
+
   return (
     <div className="pt-20">
       <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
@@ -49,7 +69,7 @@ const Research = () => {
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
@@ -62,22 +82,31 @@ const Research = () => {
             </p>
           </motion.div>
 
-          {/* News Cards Grid */}
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* News Cards */}
+          <div className="space-y-8">
             {newsList.length > 0 ? (
-              newsList.map((news) => (
+              newsList.map((step,news) => (
                 <motion.div
-                  key={news.id}
-                  variants={fadeInUp}
+                  key={step.title} variants={fadeInUp}
                   initial="initial"
                   whileInView="animate"
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 flex flex-col justify-between h-full">
-                    <CardContent className="p-0 flex flex-col h-full">
+                  <Card className={`bg-gradient-to-br ${step.gradient} border border-slate-200 hover:shadow-lg transition-all duration-300`} data-testid={news.testId}>
+                    <CardContent className="p-6">
+                      
+                      {/* Gradient Icon/Header */}
+                      {/* <div
+                        className={`w-16 h-16 bg-gradient-to-br ${
+                          gradientMap[news.type] || gradientMap.Default
+                        } rounded-2xl mb-6 flex items-center justify-center group-hover:scale-110 transition-transform`}
+                      >
+                        <div className="w-8 h-8 bg-white rounded-lg"></div>
+                      </div> */}
+
                       {/* Date + Badge */}
-                      <div className="flex items-center justify-between mb-4">
-                        <p className="text-sm font-medium text-blue-600">
+                      <div className="flex items-center justify-between mb-3">
+                        <p className="text-sm text-teal-600 font-semibold mb-2">
                           {news.date
                             ? news.date.toLocaleDateString("en-US", {
                                 year: "numeric",
@@ -87,32 +116,61 @@ const Research = () => {
                             : ""}
                         </p>
                         {news.type && (
-                          <Badge variant="outline">{news.type}</Badge>
+                          <Badge variant="outline" className="text-xs px-2 py-1 text-sm text-teal-600 font-semibold mb-2">
+                            {news.type}
+                          </Badge>
                         )}
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      <h3 className="text-xl font-semibold text-slate-800 mb-2">
                         {news.title}
                       </h3>
 
-                      {/* Description */}
-                      <p className="text-gray-600 text-sm flex-1">
-                        {news.description}
+                      {/* Short Description */}
+                      <p className="text-slate-600 text-sm mb-3 leading-relaxed">
+                        {news.shortDescription || news.description?.slice(0, 120) + "..."}
                       </p>
+
+                      {/* Read More Button */}
+                      {expandedId !== news.id && (
+                        <button
+                          onClick={() => toggleExpand(news.id)}
+                          className="text-blue-600 text-sm font-medium hover:underline text-sm text-teal-600 font-semibold mb-2"
+                        >
+                          Read More →
+                        </button>
+                      )}
+
+                      {/* Expanded Body */}
+                      <AnimatePresence>
+                        {expandedId === news.id && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.4 }}
+                            className="mt-4 text-gray-700 leading-relaxed text-sm"
+                          >
+                            <div>{news.body}</div>
+                            {/* Read Less button below body */}
+                            <button
+                              onClick={() => toggleExpand(news.id)}
+                              className="text-sm text-teal-600 font-semibold mb-2 hover:underline"
+                            >
+                              Read Less ↑
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </CardContent>
                   </Card>
                 </motion.div>
               ))
             ) : (
-              <p className="text-center text-gray-500 col-span-3">
-                No news available
-              </p>
+              <p className="text-center text-gray-500">No news available</p>
             )}
           </div>
-
-          {/* View All News Button */}
-          
         </div>
       </section>
     </div>
