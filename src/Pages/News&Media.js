@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "../Components/ui/card";
 import { Badge } from "../Components/ui/badge";
-import { db } from "../firebase"; 
+import { db } from "../firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 const Research = () => {
@@ -15,13 +15,6 @@ const Research = () => {
     transition: { duration: 0.6, ease: "easeOut" },
   };
 
-  const staggerChildren = {
-    animate: {
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -33,9 +26,7 @@ const Research = () => {
           return {
             id: doc.id,
             ...data,
-            date: data.date?.seconds
-              ? new Date(data.date.seconds * 1000)
-              : null,
+            date: data.date?.seconds ? new Date(data.date.seconds * 1000) : null,
           };
         });
 
@@ -51,8 +42,23 @@ const Research = () => {
   const toggleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);
   };
+    const floatingAnimation = {
+    y: [-20, 20, -20],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  };
+  const staggerChildren = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
 
-  // gradient mapping based on type
+  // gradient mapping
   const gradientMap = {
     Publication: "from-teal-500 to-blue-600",
     Conference: "from-blue-500 to-teal-600",
@@ -62,61 +68,62 @@ const Research = () => {
 
   return (
     <div className="pt-20">
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
+
         <div className="container mx-auto px-6">
-          {/* Section Heading */}
+
+          {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
+        <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
+            <h1 className="font-heading font-bold text-4xl md:text-6xl text-slate-800 mb-6">
               News & Media
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            </h1>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
               Since our seed round in July 2025, we've presented at leading
-              conferences and been featured in top-tier publications for our
-              physics-AI approach.
+                      conferences and been featured in top-tier publications for our
+                      physics-AI approach.
             </p>
           </motion.div>
+        </div>
+      </section>
 
           {/* News Cards */}
           <div className="space-y-8">
             {newsList.length > 0 ? (
-              newsList.map((step,news) => (
+              newsList.map((news, index) => (
                 <motion.div
-                  key={step.title} variants={fadeInUp}
+                  key={news.id}
+                  variants={fadeInUp}
                   initial="initial"
                   whileInView="animate"
                   viewport={{ once: true }}
                 >
-                  <Card className={`bg-gradient-to-br ${step.gradient} border border-slate-200 hover:shadow-lg transition-all duration-300`} data-testid={news.testId}>
-                    <CardContent className="p-6">
-                      
-                      {/* Gradient Icon/Header */}
-                      {/* <div
-                        className={`w-16 h-16 bg-gradient-to-br ${
-                          gradientMap[news.type] || gradientMap.Default
-                        } rounded-2xl mb-6 flex items-center justify-center group-hover:scale-110 transition-transform`}
-                      >
-                        <div className="w-8 h-8 bg-white rounded-lg"></div>
-                      </div> */}
-
+                  <Card
+                    className={`bg-white-400 ${gradientMap[news.type] || gradientMap.Default
+                      } border border-slate-200 hover:shadow-lg transition-all duration-300`}
+                  >
+                    <CardContent className="p-2">
                       {/* Date + Badge */}
                       <div className="flex items-center justify-between mb-3">
                         <p className="text-sm text-teal-600 font-semibold mb-2">
                           {news.date
                             ? news.date.toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                              })
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })
                             : ""}
                         </p>
                         {news.type && (
-                          <Badge variant="outline" className="text-xs px-2 py-1 text-sm text-teal-600 font-semibold mb-2">
+                          <Badge
+                            variant="outline"
+                            className="text-xs px-2 py-1 text-sm text-teal-600 font-semibold mb-2"
+                          >
                             {news.type}
                           </Badge>
                         )}
@@ -129,14 +136,17 @@ const Research = () => {
 
                       {/* Short Description */}
                       <p className="text-slate-600 text-sm mb-3 leading-relaxed">
-                        {news.shortDescription || news.description?.slice(0, 120) + "..."}
+                        {news.shortDescription ||
+                          (news.description
+                            ? news.description.slice(0, 120)
+                            : "")}
                       </p>
 
                       {/* Read More Button */}
                       {expandedId !== news.id && (
                         <button
                           onClick={() => toggleExpand(news.id)}
-                          className="text-blue-600 text-sm font-medium hover:underline text-sm text-teal-600 font-semibold mb-2"
+                          className="text-sm text-teal-600 font-semibold mb-2 hover:underline"
                         >
                           Read More →
                         </button>
@@ -153,7 +163,6 @@ const Research = () => {
                             className="mt-4 text-gray-700 leading-relaxed text-sm"
                           >
                             <div>{news.body}</div>
-                            {/* Read Less button below body */}
                             <button
                               onClick={() => toggleExpand(news.id)}
                               className="text-sm text-teal-600 font-semibold mb-2 hover:underline"
@@ -172,7 +181,7 @@ const Research = () => {
             )}
           </div>
         </div>
-      </section>
+      {/* </section> */}
     </div>
   );
 };

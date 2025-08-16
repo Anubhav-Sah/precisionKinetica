@@ -13,12 +13,22 @@ import { Card, CardContent } from "../Components/ui/card";
 import { Button } from "../Components/ui/button";
 import { Badge } from "../Components/ui/badge";
 
+const ADMIN_USERNAME = "admin";
+const ADMIN_PASSWORD = "secret123"; // change this
+
 const AdminNews = () => {
   const [newsData, setNewsData] = useState([]);
   const [form, setForm] = useState({ title: "", description: "", body: "", type: "", image: "" });
   const [editingId, setEditingId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [imageValid, setImageValid] = useState(true);
+
+  // 🔒 local auth state
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("isAdminAuthenticated") === "true"
+  );
+  const [loginForm, setLoginForm] = useState({ username: "", password: "" });
+  const [loginError, setLoginError] = useState("");
 
   const newsCollection = collection(db, "news");
 
@@ -33,12 +43,14 @@ const AdminNews = () => {
   };
 
   useEffect(() => {
-    fetchNews();
-  }, []);
+    if (isAuthenticated) {
+      fetchNews();
+    }
+  }, [isAuthenticated]);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    if (e.target.name === "image") setImageValid(true); // reset validity when editing
+    if (e.target.name === "image") setImageValid(true);
   };
 
   const openAddModal = () => {
@@ -63,7 +75,7 @@ const AdminNews = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!imageValid) return; // prevent submit if image is invalid
+    if (!imageValid) return;
 
     try {
       if (editingId) {
@@ -89,13 +101,64 @@ const AdminNews = () => {
     }
   };
 
-  const imagePreview = form.image && form.image.trim() !== "" ? form.image : null;
+  // 🔒 Simple login handler
+  const handleLogin = e => {
+    e.preventDefault();
+    if (
+      loginForm.username === ADMIN_USERNAME &&
+      loginForm.password === ADMIN_PASSWORD
+    ) {
+      setIsAuthenticated(true);
+      localStorage.setItem("isAdminAuthenticated", "true");
+    } else {
+      setLoginError("Invalid username or password");
+    }
+  };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem("isAdminAuthenticated");
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 px-6">
+        <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm">
+          <h2 className="text-2xl font-bold mb-4 text-center">Admin Login</h2>
+          {loginError && <p className="text-red-500 text-sm mb-2">{loginError}</p>}
+          <form onSubmit={handleLogin} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Username"
+              className="w-full p-2 border rounded"
+              value={loginForm.username}
+              onChange={e => setLoginForm({ ...loginForm, username: e.target.value })}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full p-2 border rounded"
+              value={loginForm.password}
+              onChange={e => setLoginForm({ ...loginForm, password: e.target.value })}
+              required
+            />
+            <Button type="submit" className="w-full">Login</Button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  // 🔒 If authenticated, show admin dashboard
   return (
     <div className="pt-20 pb-20 max-w-6xl mx-auto px-6">
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-3xl font-bold">Admin - Manage News</h2>
-        <Button onClick={openAddModal}>Add News</Button>
+        <div className="flex gap-2">
+          <Button onClick={openAddModal}>Add News</Button>
+          <Button onClick={handleLogout} variant="destructive">Logout</Button>
+        </div>
       </div>
 
       {/* News Grid */}
@@ -136,11 +199,10 @@ const AdminNews = () => {
           <div className="bg-white rounded-xl w-full max-w-lg p-6 relative">
             <h3 className="text-2xl font-bold mb-4">{editingId ? "Edit News" : "Add News"}</h3>
 
-            {/* Image preview with validation */}
-            {imagePreview && (
+            {form.image && form.image.trim() !== "" && (
               <div className="w-full h-48 mb-2 overflow-hidden rounded-lg shadow-sm relative">
                 <img
-                  src={imagePreview}
+                  src={form.image}
                   alt="Preview"
                   className="w-full h-full object-cover"
                   onError={() => setImageValid(false)}
