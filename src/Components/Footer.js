@@ -3,14 +3,14 @@ import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#334155] text-white py-10 mt-10">
+    <footer className="bg-[#334155] text-white py-5 mt-5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
 
         {/* About Section */}
         <div>
           <h2 className="text-xl font-semibold mb-4">About Us</h2>
           <p className="text-gray-300">
-            lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Precision Kinetica combines physics, AI, and biology to predict drug–target kinetics in hours. Our automated platform accelerates drug discovery with rigor, transparency, and innovation.
           </p>
         </div>
 

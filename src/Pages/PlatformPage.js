@@ -44,36 +44,47 @@ const Platform = () => {
       </section>
 
       {/* Image + Pipeline Section */}
-      <section className="py-12 bg-gray-50 relative overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-8">
+<section className="py-0 bg-gray-50 relative overflow-hidden">
+  <div className="flex flex-col lg:flex-row w-full h-full">
 
-            {/* Image */}
-            <motion.div className="lg:w-1/2 w-full" {...fadeInUp}>
-              <img
-                className="w-full rounded-lg shadow-lg"
-                src="https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg"
-                alt="Automated Milestoning Pipeline"
-              />
-            </motion.div>
+    {/* Left: Full-height image */}
+    <div className="lg:w-1/2 w-full h-[400px] lg:h-auto">
+      <img
+        className="w-full h-full object-cover"
+        src="https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg"
+        alt="Automated Milestoning Pipeline"
+      />
+    </div>
 
-            {/* Pipeline Description */}
-            <motion.div className="lg:w-1/2 w-full bg-white p-6 rounded-lg shadow-lg" {...fadeInUp}>
-              <h3 className="text-xl font-semibold mb-4">Automated Milestoning Pipeline</h3>
-              <p className="text-gray-700 mb-2">
-                First, receptor and ligand are each parameterized using our QM-trained espaloma force field model, capturing subtle electronic effects.
-              </p>
-              <p className="text-gray-700 mb-2">
-                Next, configurational space is partitioned into one-dimensional Voronoi cells along the center-of-mass reaction coordinate, ensuring systematic coverage of binding and unbinding pathways.
-              </p>
-              <p className="text-gray-700">
-                Finally, explicit-solvent MD simulations execute within each cell—by default 200 ns per cell using OpenMM with TIP3P water and reflective-boundary conditions—while parallel Brownian-dynamics runs define long-range association.
-              </p>
-            </motion.div>
+    {/* Right: Text */}
+    <motion.div
+      className="lg:w-1/2 w-full flex items-center p-8 bg-white"
+      {...fadeInUp}
+    >
+      <div>
+        <h3 className="text-2xl font-bold mb-4 text-gray-900">
+          Automated Milestoning Pipeline
+        </h3>
+        <p className="text-gray-600 leading-relaxed mb-3">
+          First, receptor and ligand are each parameterized using our QM-trained
+          espaloma force field model, capturing subtle electronic effects.
+        </p>
+        <p className="text-gray-600 leading-relaxed mb-3">
+          Next, configurational space is partitioned into one-dimensional Voronoi
+          cells along the center-of-mass reaction coordinate, ensuring systematic
+          coverage of binding and unbinding pathways.
+        </p>
+        <p className="text-gray-600 leading-relaxed">
+          Finally, explicit-solvent MD simulations execute within each cell—by default
+          200 ns per cell using OpenMM with TIP3P water and reflective-boundary
+          conditions—while parallel Brownian-dynamics runs define long-range
+          association.
+        </p>
+      </div>
+    </motion.div>
+  </div>
+</section>
 
-          </div>
-        </div>
-      </section>
 
       {/* Core Technologies */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50 relative overflow-hidden">
