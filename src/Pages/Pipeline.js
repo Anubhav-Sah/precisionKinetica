@@ -207,10 +207,10 @@ const Pipeline = () => {
                       </div>
                       <div className="text-center">
                         <img
-                          src={`https://images.unsplash.com/photo-155975714${8 + index}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450`}
+                          src={`/images/step-${index + 1}.png`}
                           alt={`${step.title} visualization`}
-                          className="rounded-lg shadow-lg w-full h-auto"
-                          data-testid={`img-step-${index + 1}`}
+                          className="max-w-[200px] max-h-[180px] w-auto h-auto mx-auto object-contain"
+                          data-testid={`image-step-${index + 1}`}
                         />
                       </div>
                     </div>
