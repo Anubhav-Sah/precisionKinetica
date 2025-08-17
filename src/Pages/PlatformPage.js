@@ -34,10 +34,10 @@ const Platform = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-slate-800 mb-6">
-              Platform
+              Automated Drug-Target Kinetics in Hours
             </h1>
             <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              At the core of our technology lies an end-to-end pipeline that merges three state-of-the-art advances into a single, fully automated process.
+              Upload your PDB. Receive kon, koff and ΔG profiles in hours—no manual setup.
             </p>
           </motion.div>
         </div>

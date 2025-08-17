@@ -29,7 +29,7 @@ function Navbar() {
   };
 
   const navLinks = [
-    { path: "/platform", label: "Platform" },
+    { path: "/platform", label: "Technology" },
     { path: "/pipeline", label: "Pipeline" },
     { path: "/partnership", label: "Partnership" },
     { path: "/about", label: "About" },
@@ -45,17 +45,19 @@ function Navbar() {
       `}
     >
       {/* Logo */}
-      <div>
+      <div className="max-h-10">
         <NavLink to="/" data-testid="link-home">
           <motion.div
             className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">PK</span>
+            <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-gradient-to-br from-teal-500 to-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-xs sm:text-sm md:text-base">
+                PK
+              </span>
             </div>
-            <span className="font-heading font-semibold text-xl text-slate-800">
+            <span className="font-heading font-semibold text-base sm:text-lg md:text-xl text-slate-800 leading-none">
               PRECISION KINETICA
             </span>
           </motion.div>
@@ -139,7 +141,7 @@ function Navbar() {
           to="/contact"
           className="bg-gradient-to-r from-teal-500 to-blue-600 text-white px-4 py-2 rounded-full hover:from-teal-600 hover:to-blue-700 transition font-medium"
         >
-          Contact
+          Get Started
         </NavLink>
       </div>
 
