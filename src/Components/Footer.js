@@ -22,7 +22,7 @@ const Footer = () => {
               <NavLink to="/" className="text-gray-300 hover:text-white">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/platform" className="text-gray-300 hover:text-white">Platform</NavLink>
+              <NavLink to="/platform" className="text-gray-300 hover:text-white">Technology</NavLink>
             </li>
             <li>
               <NavLink to="/pipeline" className="text-gray-300 hover:text-white">Pipeline</NavLink>
