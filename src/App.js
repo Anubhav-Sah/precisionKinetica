@@ -18,6 +18,7 @@ import About from './Pages/About';
 import './App.css';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import AdminNews from './Pages/AdminNews'; // ✅ Added AdminNews page
 
 
@@ -61,7 +62,13 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+  <>
+      <RouterProvider router={router} />
+      <SpeedInsights />
+    </>
+  );
+
 }
 
 export default App;
