@@ -237,73 +237,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Additional Contact Methods */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
-              Other Ways to Connect
-            </h2>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Schedule a Demo",
-                description: "Book a personalized demonstration of our platform and see how it can benefit your research.",
-                action: "Schedule Now",
-                gradient: "from-teal-500 to-blue-600",
-                testId: "contact-demo"
-              },
-              {
-                title: "Technical Support",
-                description: "Get help with implementation, troubleshooting, or technical questions about our platform.",
-                action: "Get Support",
-                gradient: "from-blue-500 to-teal-600",
-                testId: "contact-support"
-              },
-              {
-                title: "Media Inquiries",
-                description: "For press releases, interviews, or media-related questions about Precision Kinetica.",
-                action: "Contact Press",
-                gradient: "from-emerald-500 to-blue-600",
-                testId: "contact-media"
-              }
-            ].map((method, index) => (
-              <motion.div
-                key={method.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full group" data-testid={method.testId}>
-                  <CardContent className="p-8 h-full flex flex-col text-center">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${method.gradient} rounded-2xl mb-6 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform`}>
-                      <div className="w-8 h-8 bg-white rounded-lg"></div>
-                    </div>
-                    <h3 className="font-heading font-semibold text-xl text-slate-800 mb-4">{method.title}</h3>
-                    <p className="text-slate-600 mb-6 flex-1">{method.description}</p>
-                    <Button 
-                      variant="outline" 
-                      className="border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
-                      data-testid={`button-${method.title.toLowerCase().replace(/\s+/g, '-')}`}
-                    >
-                      {method.action}
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 };
