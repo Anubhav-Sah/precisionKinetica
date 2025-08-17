@@ -14,18 +14,44 @@ const Platform = () => {
       transition: { staggerChildren: 0.2 }
     }
   };
+  const floatingAnimation = {
+    y: [-20, 20, -20],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  };
 
   return (
     <div className="pt-20 relative">
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50 relative overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-teal-100 to-blue-100 opacity-20"
-          initial={{ x: -50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        />
+      <section className="molecular-bg flex items-center justify-center relative overflow-hidden py-20">
+        {/* Animated molecular structures */}
+        <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-10 w-16 h-16 bg-teal-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+          />
+          <motion.div
+            className="absolute top-32 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -2 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -4 }}
+          />
+          <motion.div
+            className="absolute bottom-32 right-1/3 w-14 h-14 bg-emerald-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -1 }}
+          />
+        </motion.div>
+
+        {/* Centered content */}
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             className="text-center mb-16"
@@ -43,57 +69,76 @@ const Platform = () => {
         </div>
       </section>
 
+
       {/* Image + Pipeline Section */}
-<section className="py-0 bg-gray-50 relative overflow-hidden">
-  <div className="flex flex-col lg:flex-row w-full h-full">
+      <section className="py-0 bg-gray-50 relative overflow-hidden">
+        <div className="flex flex-col lg:flex-row w-full h-full">
 
-    {/* Left: Full-height image */}
-    <div className="lg:w-1/2 w-full h-[400px] lg:h-auto">
-      <img
-        className="w-full h-full object-cover"
-        src="https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg"
-        alt="Automated Milestoning Pipeline"
-      />
-    </div>
+          {/* Left: Full-height image */}
+          <div className="lg:w-1/2 w-full h-[400px] lg:h-auto">
+            <img
+              className="w-full h-full object-cover"
+              src="https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg"
+              alt="Automated Milestoning Pipeline"
+            />
+          </div>
 
-    {/* Right: Text */}
-    <motion.div
-      className="lg:w-1/2 w-full flex items-center p-8 bg-white"
-      {...fadeInUp}
-    >
-      <div>
-        <h3 className="text-2xl font-bold mb-4 text-gray-900">
-          Automated Milestoning Pipeline
-        </h3>
-        <p className="text-gray-600 leading-relaxed mb-3">
-          First, receptor and ligand are each parameterized using our QM-trained
-          espaloma force field model, capturing subtle electronic effects.
-        </p>
-        <p className="text-gray-600 leading-relaxed mb-3">
-          Next, configurational space is partitioned into one-dimensional Voronoi
-          cells along the center-of-mass reaction coordinate, ensuring systematic
-          coverage of binding and unbinding pathways.
-        </p>
-        <p className="text-gray-600 leading-relaxed">
-          Finally, explicit-solvent MD simulations execute within each cell—by default
-          200 ns per cell using OpenMM with TIP3P water and reflective-boundary
-          conditions—while parallel Brownian-dynamics runs define long-range
-          association.
-        </p>
-      </div>
-    </motion.div>
-  </div>
-</section>
+          {/* Right: Text */}
+          <motion.div
+            className="lg:w-1/2 w-full flex items-center p-8 bg-white"
+            {...fadeInUp}
+          >
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+                Automated Milestoning Pipeline
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-3">
+                First, receptor and ligand are each parameterized using our QM-trained
+                espaloma force field model, capturing subtle electronic effects.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-3">
+                Next, configurational space is partitioned into one-dimensional Voronoi
+                cells along the center-of-mass reaction coordinate, ensuring systematic
+                coverage of binding and unbinding pathways.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Finally, explicit-solvent MD simulations execute within each cell—by default
+                200 ns per cell using OpenMM with TIP3P water and reflective-boundary
+                conditions—while parallel Brownian-dynamics runs define long-range
+                association.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
 
       {/* Core Technologies */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50 relative overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-tr from-teal-50 to-blue-100 opacity-20"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        />
+      <section className="molecular-bg flex items-center justify-center relative overflow-hidden py-20">
+        {/* Animated molecular structures */}
+        <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-10 w-16 h-16 bg-teal-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+          />
+          <motion.div
+            className="absolute top-32 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -2 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -4 }}
+          />
+          <motion.div
+            className="absolute bottom-32 right-1/3 w-14 h-14 bg-emerald-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -1 }}
+          />
+        </motion.div>
+
+        {/* Centered content */}
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             className="text-center mb-16"
@@ -160,6 +205,7 @@ const Platform = () => {
         </div>
       </section>
 
+
       {/* Workflow Process */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
@@ -214,8 +260,32 @@ const Platform = () => {
       </section>
 
       {/* Performance Metrics */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-6">
+      <section className="molecular-bg flex items-center justify-center relative overflow-hidden py-20">
+        {/* Animated molecular structures */}
+        <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-10 w-16 h-16 bg-teal-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+          />
+          <motion.div
+            className="absolute top-32 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -2 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -4 }}
+          />
+          <motion.div
+            className="absolute bottom-32 right-1/3 w-14 h-14 bg-emerald-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -1 }}
+          />
+        </motion.div>
+
+        {/* Centered content */}
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -244,7 +314,11 @@ const Platform = () => {
               { metric: "Automated", description: "Zero manual intervention required", testId: "metric-automation" },
               { metric: "GPU", description: "OpenMM acceleration for maximum performance", testId: "metric-acceleration" }
             ].map((metric) => (
-              <motion.div key={metric.metric} variants={fadeInUp} whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 200 }}>
+              <motion.div
+                key={metric.metric}
+                variants={fadeInUp}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 200 }}>
                 <Card className="bg-white hover:shadow-lg transition-all duration-300 text-center" data-testid={metric.testId}>
                   <CardContent className="p-8">
                     <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text mb-2">
@@ -258,6 +332,7 @@ const Platform = () => {
           </motion.div>
         </div>
       </section>
+
 
     </div>
   );

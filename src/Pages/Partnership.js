@@ -101,9 +101,33 @@ const Partnerships = () => {
       </section>
 
       {/* Partnership Types */}
-      <section className="py-20 bg-gradient-to-br from-teal-50 to-slate-50">
-        <div className="container mx-auto px-6">
-          <motion.div 
+      <section className="molecular-bg flex items-center justify-center relative overflow-hidden py-20">
+        {/* Animated molecular structures */}
+        <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-10 w-16 h-16 bg-teal-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+          />
+          <motion.div
+            className="absolute top-32 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -2 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -4 }}
+          />
+          <motion.div
+            className="absolute bottom-32 right-1/3 w-14 h-14 bg-emerald-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -1 }}
+          />
+        </motion.div>
+
+        {/* Centered content */}
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -114,8 +138,8 @@ const Partnerships = () => {
               Partnership Models
             </h2>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -169,10 +193,11 @@ const Partnerships = () => {
         </div>
       </section>
 
+
       {/* Success Stories */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -186,8 +211,8 @@ const Partnerships = () => {
               Our partnerships have delivered breakthrough insights across diverse therapeutic areas and target classes.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-2 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -205,7 +230,7 @@ const Partnerships = () => {
               },
               {
                 title: "JAK Selectivity Analysis",
-                company: "Biotech Research Consortium", 
+                company: "Biotech Research Consortium",
                 result: "Spearman correlation of 0.95 for threonine-tyrosine kinase inhibitors",
                 description: "Recovered isoform-specific residence times between JAK2 and JAK3 that directly inform selective lead design. Addressed complex allosteric unbinding mechanisms with unprecedented accuracy.",
                 metrics: ["Spearman ρ = 0.95", "JAK2/JAK3 selectivity", "Allosteric mechanisms", "Lead optimization"],
@@ -237,9 +262,33 @@ const Partnerships = () => {
       </section>
 
       {/* Partnership Benefits */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
-        <div className="container mx-auto px-6">
-          <motion.div 
+      <section className="molecular-bg flex items-center justify-center relative overflow-hidden py-20">
+        {/* Animated molecular structures */}
+        <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-10 w-16 h-16 bg-teal-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+          />
+          <motion.div
+            className="absolute top-32 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -2 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -4 }}
+          />
+          <motion.div
+            className="absolute bottom-32 right-1/3 w-14 h-14 bg-emerald-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -1 }}
+          />
+        </motion.div>
+
+        {/* Centered content */}
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -250,8 +299,8 @@ const Partnerships = () => {
               Partnership Benefits
             </h2>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
             variants={staggerChildren}
             initial="initial"
@@ -283,7 +332,7 @@ const Partnerships = () => {
                 icon: "🏆",
                 testId: "benefit-excellence"
               }
-            ].map((benefit, index) => (
+            ].map((benefit) => (
               <motion.div key={benefit.benefit} variants={fadeInUp}>
                 <Card className="bg-white hover:shadow-lg transition-all duration-300 text-center h-full" data-testid={benefit.testId}>
                   <CardContent className="p-8 flex flex-col h-full">
@@ -297,6 +346,7 @@ const Partnerships = () => {
           </motion.div>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-slate-800 to-blue-800 text-white">
