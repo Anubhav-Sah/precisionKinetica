@@ -146,91 +146,94 @@ function Navbar() {
       </div>
 
       {/* Mobile Menu Button */}
-      <div className="md:hidden">
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="text-gray-800 hover:text-black transition"
-        >
-          {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
-      </div>
+<div className="md:hidden relative z-50">
+  <button
+    onClick={() => setMenuOpen(!menuOpen)}
+    className="text-gray-800 hover:text-black transition focus:outline-none"
+  >
+    {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+  </button>
+</div>
+
 
       {/* Mobile Dropdown */}
-      {menuOpen && (
-        <div
-          className="
-            absolute top-[64px] left-0 right-0
-            bg-white/90 backdrop-blur-md rounded-b-xl shadow-md
-            flex flex-col items-center gap-4 py-6 md:hidden
-          "
-        >
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-2 transition ${
-                  isActive ? "text-black font-medium" : "text-gray-700 hover:text-black"
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  {isActive && <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>}
-                  {link.label}
-                </>
-              )}
-            </NavLink>
-          ))}
+{menuOpen && (
+  <div
+    className="
+      fixed top-[64px] left-0 right-0 z-50
+      bg-white/95 backdrop-blur-sm pointer-events-auto
+      flex flex-col items-center gap-4 py-6 md:hidden
+      rounded-b-xl shadow-md
+    "
+  >
+    {navLinks.map((link) => (
+      <NavLink
+        key={link.path}
+        to={link.path}
+        onClick={() => setMenuOpen(false)}
+        className={({ isActive }) =>
+          `flex items-center gap-2 transition ${
+            isActive ? "text-black font-medium" : "text-gray-700 hover:text-black"
+          }`
+        }
+      >
+        {({ isActive }) => (
+          <>
+            {isActive && <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>}
+            {link.label}
+          </>
+        )}
+      </NavLink>
+    ))}
 
-          {/* Mobile Insights */}
-          <div className="flex flex-col items-center gap-2">
-            <span className="font-medium text-gray-800">Insights</span>
-            <NavLink
-              to="/news"
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-2 transition ${
-                  isActive ? "text-black font-medium" : "text-gray-700 hover:text-black"
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  {isActive && <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>}
-                  News
-                </>
-              )}
-            </NavLink>
-            <NavLink
-              to="/research"
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-2 transition ${
-                  isActive ? "text-black font-medium" : "text-gray-700 hover:text-black"
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  {isActive && <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>}
-                  Research
-                </>
-              )}
-            </NavLink>
-          </div>
+    {/* Mobile Insights */}
+    <div className="flex flex-col items-center gap-2 mt-4">
+      <span className="font-medium text-gray-800">Insights</span>
+      <NavLink
+        to="/news"
+        onClick={() => setMenuOpen(false)}
+        className={({ isActive }) =>
+          `flex items-center gap-2 transition ${
+            isActive ? "text-black font-medium" : "text-gray-700 hover:text-black"
+          }`
+        }
+      >
+        {({ isActive }) => (
+          <>
+            {isActive && <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>}
+            News
+          </>
+        )}
+      </NavLink>
+      <NavLink
+        to="/research"
+        onClick={() => setMenuOpen(false)}
+        className={({ isActive }) =>
+          `flex items-center gap-2 transition ${
+            isActive ? "text-black font-medium" : "text-gray-700 hover:text-black"
+          }`
+        }
+      >
+        {({ isActive }) => (
+          <>
+            {isActive && <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>}
+            Research
+          </>
+        )}
+      </NavLink>
+    </div>
 
-          {/* Contact Button Mobile */}
-          <NavLink
-            to="/contact"
-            onClick={() => setMenuOpen(false)}
-            className="bg-gradient-to-r from-teal-500 to-blue-600 text-white px-4 py-2 rounded-full hover:from-teal-600 hover:to-blue-700 transition font-medium"
-          >
-            Contact
-          </NavLink>
-        </div>
-      )}
+    {/* Contact Button Mobile */}
+    <NavLink
+      to="/contact"
+      onClick={() => setMenuOpen(false)}
+      className="mt-6 bg-gradient-to-r from-teal-500 to-blue-600 text-white px-4 py-2 rounded-full hover:from-teal-600 hover:to-blue-700 transition font-medium"
+    >
+      Contact
+    </NavLink>
+  </div>
+)}
+
     </nav>
   );
 }

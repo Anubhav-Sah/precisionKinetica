@@ -207,12 +207,19 @@ const Home = () => {
               }
             ].map((feature) => (
               <motion.div key={feature.title} variants={fadeInUp}>
-                <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group h-full" data-testid={feature.testId}>
+                <Card
+                  className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group h-full max-h-[500px] overflow-auto"
+                  data-testid={feature.testId}
+                >
                   <CardContent className="p-8 h-full flex flex-col">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl mb-6 flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl mb-6 flex items-center justify-center group-hover:scale-110 transition-transform`}
+                    >
                       <div className="w-8 h-8 bg-white rounded-lg"></div>
                     </div>
-                    <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">{feature.title}</h3>
+                    <h3 className="font-heading font-semibold text-2xl text-slate-800 mb-4">
+                      {feature.title}
+                    </h3>
                     <p className="text-slate-600 mb-6 leading-relaxed flex-1">{feature.description}</p>
                   </CardContent>
                 </Card>
