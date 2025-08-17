@@ -4,8 +4,6 @@ import { Button } from "../Components/ui/button";
 import { Link } from "wouter";
 import arpitaHeadshot from "../assets/images/arpita.jpg";
 import anupamHeadshot from "../assets/images/anupam.jpeg";
-import Lottie from "lottie-react";
-import teamAnimation from "../animations/About Us Team.json";
 
 const About = () => {
   const fadeInUp = {
@@ -68,7 +66,7 @@ const About = () => {
               About Us
             </h1>
             <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              Precision Kinetica unites physics, AI, and biology to predict how long drug candidates stay bound—accelerating lead optimization with unprecedented speed and accuracy
+              Our mission is to bridge the gap between molecular structure and drug efficacy by predicting how long molecules stay bound, not just how tightly they bind. Together, we bring a unique blend of business strategy, computational chemistry, and software engineering.
             </p>
           </motion.div>
         </div>
@@ -207,21 +205,21 @@ const About = () => {
             {[
               {
                 value: "Scientific Rigor",
-                description: "Every prediction undergoes stringent validation against experimental benchmarks to ensure accuracy and reproducibility you can trust.",
+                description: "Maintaining the highest standards of computational accuracy and reproducibility",
                 icon: "🔬",
                 testId: "value-rigor"
               },
               {
-                value: "Open Transparency",
-                description: "Sharing algorithms, datasets, and workflows so collaborators and customers can reproduce, inspect, and build upon our results.",
-                icon: "🌐",
-                testId: "value-transparency"
+                value: "Open Innovation",
+                description: "Contributing to the scientific community through open-source code and publications",
+                icon: "🌟",
+                testId: "value-innovation"
               },
               {
-                value: "User-Centered Innovation",
-                description: "Designing each feature with real drug-discovery teams in mind, making our platform as intuitive and practical in the lab as it is powerful under the hood.",
-                icon: "💡",
-                testId: "value-innovation"
+                value: "Patient Impact",
+                description: "Focused on accelerating better medicines to patients with speed and proven effectiveness.",
+                icon: "❤️",
+                testId: "value-impact"
               },
               {
                 value: "Collaborative Spirit",
@@ -245,22 +243,11 @@ const About = () => {
       </section>
 
 
-      {/* Our Story */}
-      <section className="py-0 bg-gray-50 relative overflow-hidden">
-        <div className="flex flex-col lg:flex-row w-full h-full min-h-[500px]">
-
-          {/* Left: Lottie Animation */}
-          <div className="lg:w-1/2 w-full flex items-center justify-center bg-white">
-            <Lottie 
-              animationData={teamAnimation} 
-              loop={true} 
-              className="w-full h-[500px] object-contain"
-            />
-          </div>
-
-          {/* Right: Text */}
+      {/* Careers Section */}
+       <section id="careers" className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
+        <div className="container mx-auto px-6">
           <motion.div
-            className="lg:w-1/2 w-full flex items-center p-12 bg-white"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -274,8 +261,8 @@ const About = () => {
             </p>
           </motion.div> */}
 
-          {/* Team Culture */}
-          {/* <motion.div
+      {/* Team Culture */}
+      <motion.div
             className="mb-16"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -364,7 +351,6 @@ const About = () => {
           </motion.div>
         </div>
       </section>
-
     </div>
   );
 };
