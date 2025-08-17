@@ -19,14 +19,45 @@ const About = () => {
       }
     }
   };
+  const floatingAnimation = {
+    y: [-20, 20, -20],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  };
 
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-6">
+      <section className="molecular-bg flex items-center justify-center relative overflow-hidden py-20">
+        {/* Animated molecular structures */}
+        <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
-            className="text-center mb-16"
+            className="absolute top-20 left-10 w-16 h-16 bg-teal-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+          />
+          <motion.div
+            className="absolute top-32 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -2 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -4 }}
+          />
+          <motion.div
+            className="absolute bottom-32 right-1/3 w-14 h-14 bg-emerald-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -1 }}
+          />
+        </motion.div>
+        {/* Centered content */}
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            className="text-center mb-16 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -41,9 +72,11 @@ const About = () => {
         </div>
       </section>
 
-      
+
+
+
       {/* Leadership Team */}
-      <section className="py-20 bg-gradient-to-br from-teal-50 to-slate-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-16"
@@ -92,7 +125,7 @@ const About = () => {
                 testId: "founder-anupam",
                 image: anupamHeadshot
               },
-              
+
             ].map((member, index) => (
               <motion.div key={member.name} variants={fadeInUp}>
                 <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full" data-testid={member.testId}>
@@ -124,8 +157,32 @@ const About = () => {
 
 
       {/* Company Values */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="molecular-bg flex items-center justify-center relative overflow-hidden py-20">
+        {/* Animated molecular structures */}
+        <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-10 w-16 h-16 bg-teal-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+          />
+          <motion.div
+            className="absolute top-32 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -2 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -4 }}
+          />
+          <motion.div
+            className="absolute bottom-32 right-1/3 w-14 h-14 bg-emerald-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -1 }}
+          />
+        </motion.div>
+
+        {/* Centered content */}
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -170,7 +227,7 @@ const About = () => {
                 icon: "🤝",
                 testId: "value-collaboration"
               }
-            ].map((value, index) => (
+            ].map((value) => (
               <motion.div key={value.value} variants={fadeInUp}>
                 <Card className="bg-gradient-to-br from-slate-50 to-teal-50 hover:shadow-lg transition-all duration-300 text-center h-full" data-testid={value.testId}>
                   <CardContent className="p-8 flex flex-col h-full">
@@ -184,6 +241,7 @@ const About = () => {
           </motion.div>
         </div>
       </section>
+
 
       {/* Careers Section */}
       {/* <section id="careers" className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
@@ -203,8 +261,8 @@ const About = () => {
             </p>
           </motion.div> */}
 
-          {/* Team Culture */}
-          {/* <motion.div
+      {/* Team Culture */}
+      {/* <motion.div
             className="mb-16"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

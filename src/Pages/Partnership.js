@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "../Components/ui/card";
 import { Button } from "../Components/ui/button";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 const Partnerships = () => {
   const fadeInUp = {
@@ -17,14 +17,45 @@ const Partnerships = () => {
       }
     }
   };
+  const floatingAnimation = {
+    y: [-20, 20, -20],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  };
 
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            className="text-center mb-16"
+      <section className="molecular-bg flex items-center justify-center relative overflow-hidden py-20">
+        {/* Animated molecular structures */}
+        <motion.div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-10 w-16 h-16 bg-teal-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+          />
+          <motion.div
+            className="absolute top-32 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -2 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -4 }}
+          />
+          <motion.div
+            className="absolute bottom-32 right-1/3 w-14 h-14 bg-emerald-200 rounded-full opacity-20"
+            animate={floatingAnimation}
+            transition={{ ...floatingAnimation.transition, delay: -1 }}
+          />
+        </motion.div>
+        {/* Centered content */}
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            className="text-center mb-16 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -282,7 +313,7 @@ const Partnerships = () => {
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
               Let's discuss how Precision Kinetica can accelerate your drug discovery programs with cutting-edge kinetic insights.
             </p>
-            <Link href="/contact" data-testid="button-start-partnership">
+            <Link to="/contact" data-testid="button-start-partnership">
               <Button size="lg" className="bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:from-teal-600 hover:to-emerald-600 px-8 py-4 rounded-full text-lg font-semibold">
                 Start a Partnership →
               </Button>
