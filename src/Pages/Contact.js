@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react"; // ✨ merged useRef here
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,13 +11,15 @@ import { Label } from "../Components/ui/label";
 import { useToast } from "../hooks/use-toast";
 import { apiRequest } from "../lib/queryClient";
 import { insertContactSchema } from "../shared/schema";
-import { InsertContact } from "../shared/schema";
+import emailjs from "@emailjs/browser"; // ✨ Added for EmailJS
 
+import { InsertContact } from "../shared/schema";
 import { z } from "zod";
 
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const formRef = useRef(); // ✨ Added for EmailJS
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -35,42 +37,67 @@ const Contact = () => {
   };
 
   const form = useForm({
-  resolver: zodResolver(insertContactSchema),
-  defaultValues: {
-    firstName: "",
-    lastName: "",
-    email: "",
-    company: "",
-    message: ""
-  }
-});
+    resolver: zodResolver(insertContactSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      company: "",
+      message: ""
+    }
+  });
   
-const contactMutation = useMutation({
-  mutationFn: async (data) => {
-    const response = await apiRequest("POST", "/api/contact", data);
-    return response.json();
-  },
-  onSuccess: () => {
-    setIsSubmitted(true);
-    form.reset();
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you as soon as possible.",
-    });
-  },
-  onError: (error) => {
-    toast({
-      title: "Failed to send message",
-      description: error.message || "Please try again later.",
-      variant: "destructive",
-    });
-  }
-});
+  const contactMutation = useMutation({
+    mutationFn: async (data) => {
+      const response = await apiRequest("POST", "/api/contact", data);
+      return response.json();
+    },
+    onSuccess: () => {
+      setIsSubmitted(true);
+      form.reset();
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you as soon as possible.",
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Failed to send message",
+        description: error.message || "Please try again later.",
+        variant: "destructive",
+      });
+    }
+  });
 
-const onSubmit = (data) => {
-  contactMutation.mutate(data);
-};
+  const onSubmit = (data) => {
+    // Keep your API request
+    contactMutation.mutate(data);
 
+    // ✨ Send Email via EmailJS
+    emailjs.sendForm(
+      "service_fdjvqsu",       // Your Service ID
+      "template_srijvdn",      // Your Template ID
+      formRef.current,         // Attach formRef
+      "pTHNYgNhtJR7V0QGw"      // Your Public Key
+    )
+    .then(
+      (result) => {
+        console.log(result.text);
+        toast({
+          title: "Email sent successfully! ✅",
+          description: "We’ve received your message via Email.",
+        });
+      },
+      (error) => {
+        console.log(error.text);
+        toast({
+          title: "Email failed ❌",
+          description: "Could not send via EmailJS.",
+          variant: "destructive",
+        });
+      }
+    );
+  };
 
   return (
     <div className="pt-20">
@@ -172,31 +199,31 @@ const onSubmit = (data) => {
                 <CardContent className="flex flex-col justify-between p-8">
                   {/* form content stays same as before */}
                   <h3 className="font-heading font-semibold text-2xl mb-6 text-slate-800">Send us a message</h3>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 flex flex-col h-full">
+                  <form ref={formRef} onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 flex flex-col h-full"> {/* ✨ added ref={formRef} */}
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="firstName">First Name</Label>
-                        <Input id="firstName" placeholder="John" {...form.register("firstName")} />
+                        <Input id="firstName" placeholder="John" {...form.register("firstName")} name="firstName" /> {/* ✨ name added for EmailJS */}
                       </div>
                       <div>
                         <Label htmlFor="lastName">Last Name</Label>
-                        <Input id="lastName" placeholder="Doe" {...form.register("lastName")} />
+                        <Input id="lastName" placeholder="Doe" {...form.register("lastName")} name="lastName" /> {/* ✨ name added */}
                       </div>
                     </div>
 
                     <div>
                       <Label htmlFor="email">Email</Label>
-                      <Input id="email" type="email" placeholder="john@company.com" {...form.register("email")} />
+                      <Input id="email" type="email" placeholder="john@company.com" {...form.register("email")} name="email" /> {/* ✨ name added */}
                     </div>
 
                     <div>
                       <Label htmlFor="company">Company</Label>
-                      <Input id="company" placeholder="Your Company" {...form.register("company")} />
+                      <Input id="company" placeholder="Your Company" {...form.register("company")} name="company" /> {/* ✨ name added */}
                     </div>
 
                     <div className="flex-grow">
                       <Label htmlFor="message">Message</Label>
-                      <Textarea id="message" rows={4} placeholder="Tell us about your project..." {...form.register("message")} />
+                      <Textarea id="message" rows={4} placeholder="Tell us about your project..." {...form.register("message")} name="message" /> {/* ✨ name added */}
                     </div>
 
                     <Button type="submit" className="w-full bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 py-3 text-lg font-semibold mt-auto">
