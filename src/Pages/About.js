@@ -244,24 +244,7 @@ const About = () => {
 
 
       {/* Careers Section */}
-       <section id="careers" className="py-20 bg-gradient-to-br from-blue-50 to-slate-50">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-slate-800 mb-6">
-              Careers
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Join us in redefining drug discovery. Work at the intersection of physics, AI, and biology—contributing code, co-authoring papers, and shaping the future of precision therapeutics.
-            </p>
-          </motion.div> 
-        </div>
-      </section>
+       
     </div>
   );
 };
