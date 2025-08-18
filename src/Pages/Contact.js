@@ -162,19 +162,13 @@ const Contact = () => {
                 <div>
                   <h3 className="font-heading font-semibold text-lg text-slate-800">General Inquiries</h3>
                   <a href="mailto:info@precisionkinetica.com" className="text-teal-600 hover:text-teal-700">
-                    info@precisionkinetica.com
+                    precisionkinetica.com
                   </a>
                 </div>
                 <div>
                   <h3 className="font-heading font-semibold text-lg text-slate-800">Partnerships</h3>
                   <a href="mailto:partnerships@precisionkinetica.com" className="text-teal-600 hover:text-teal-700">
-                    partnerships@precisionkinetica.com
-                  </a>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg text-slate-800">Careers</h3>
-                  <a href="mailto:careers@precisionkinetica.com" className="text-teal-600 hover:text-teal-700">
-                    careers@precisionkinetica.com
+                    precisionkinetica.com
                   </a>
                 </div>
                 <div>
