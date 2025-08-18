@@ -21,6 +21,8 @@ import Footer from './Components/Footer';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import AdminNews from './Pages/AdminNews';
 import PageNotFound from './Pages/NotFound';
+import ErrorBoundary from './Pages/ErrorBoundary';
+import ErrorPage from './Pages/ErrorPage';
 
 
 function ScrollToTop() {
@@ -32,20 +34,16 @@ function ScrollToTop() {
 }
 
 const routes = [
-  { path: '/', element: <Home /> },
-  { path: '/contact', element: <Contact /> },
-  { path: '/news', element: <NewsMedia /> }, // ✅ Changed to match Navbar
-  { path: '/research', element: <Research /> }, // ✅ Added Research page
-  { path: '/partnership', element: <Partnership /> },
-  { path: '/pipeline', element: <Pipeline /> },
-  { path: '/platform', element: <Platform /> },
-  { path: '/about', element: <About /> },
-  { path: '*', element: <PageNotFound/> },
-  {
-  path: '/admin',
-  element: <AdminNews />,
-  ErrorBoundary: <div>Something went wrong with Admin News.</div>,
-}
+  { path: '/', element: <Home />, errorElement: <ErrorPage /> },
+  { path: '/contact', element: <Contact />,errorElement: <ErrorPage /> },
+  { path: '/news', element: <NewsMedia />, errorElement: <ErrorPage />}, // ✅ Changed to match Navbar
+  { path: '/research', element: <Research />,errorElement: <ErrorPage /> }, // ✅ Added Research page
+  { path: '/partnership', element: <Partnership />,errorElement: <ErrorPage /> },
+  { path: '/pipeline', element: <Pipeline /> ,errorElement: <ErrorPage />},
+  { path: '/platform', element: <Platform />,errorElement: <ErrorPage />, },
+  { path: '/about', element: <About />,errorElement: <ErrorPage />, },
+  { path: '*', element: <PageNotFound/>,errorElement: <ErrorPage />, },
+  {path: '/admin',element: <AdminNews />,errorElement: <ErrorPage />,}
 ];
 
 const router = createBrowserRouter(
@@ -65,8 +63,10 @@ const router = createBrowserRouter(
 function App() {
   return (
   <>
+    <ErrorBoundary>
       <RouterProvider router={router} />
       <SpeedInsights />
+    </ErrorBoundary>
     </>
   );
 
