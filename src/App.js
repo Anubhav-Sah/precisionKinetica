@@ -19,7 +19,8 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import { SpeedInsights } from '@vercel/speed-insights/react';
-import AdminNews from './Pages/AdminNews'; // ✅ Added AdminNews page
+import AdminNews from './Pages/AdminNews';
+import PageNotFound from './Pages/NotFound';
 
 
 function ScrollToTop() {
@@ -39,7 +40,7 @@ const routes = [
   { path: '/pipeline', element: <Pipeline /> },
   { path: '/platform', element: <Platform /> },
   { path: '/about', element: <About /> },
-  { path: '*', element: <div>404 Not Found</div> },
+  { path: '*', element: <PageNotFound/> },
   {
   path: '/admin',
   element: <AdminNews />,
