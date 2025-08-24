@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "../Components/ui/card";
-import { Button } from "../Components/ui/button";
-import { Link } from "wouter";
 import arpitaHeadshot from "../assets/images/arpita.jpg";
 import anupamHeadshot from "../assets/images/anupam.jpeg";
 
