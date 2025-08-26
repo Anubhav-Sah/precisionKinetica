@@ -1,6 +1,4 @@
 
-
-```
 # Precision Kinetica
 
 **Precision Kinetica** is a React-based web application bootstrapped with Create React App. *(Add a short description of what your project does and its purpose here.)*
@@ -69,7 +67,7 @@ Make sure you have the following installed:
    ```bash
    git clone https://github.com/Anubhav-Sah/precisionKinetica.git
    cd precisionKinetica
-````
+
 
 2. Install dependencies:
 
@@ -129,19 +127,16 @@ Contributions are welcome! To contribute:
 
 *(You can also include info about coding standards, branch naming, PR guidelines, etc.)*
 
----
+
 
 ## License
 
 *(Specify the license here, e.g., MIT, Apache 2.0, etc. Or remove if none.)*
 
----
+
 
 *Enjoy building amazing things with Precision Kinetica!*
 
-```
-
----
 
 ### Next Steps
 - **Review & Update Content:** Customize key placeholders, especially the project description, features, deployment details, and license.
@@ -150,6 +145,6 @@ Contributions are welcome! To contribute:
 
 Let me know if you’d like me to refine the README further or convert it into another format for your client!
 ::contentReference[oaicite:5]{index=5}
-```
+
 
 [1]: https://github.com/Anubhav-Sah/precisionKinetica "GitHub - Anubhav-Sah/precisionKinetica"
